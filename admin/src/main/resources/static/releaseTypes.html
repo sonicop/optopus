@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div>TODO write content</div>
+    <div id="TableContainer"></div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
+
+    <!-- Include one of jTable styles. -->
+    <link href="scripts/jtable/themes/metro/blue/jtable.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Include jTable script file. -->
+    <script src="scripts/jtable/jquery.jtable.min.js" type="text/javascript"></script>    
+
+    <script type="text/javascript">
+      var entityName = "releaseTypes";
+      $(document).ready(function () {
+        $('#TableContainer').jtable({
+          title: 'Table of ' + entityName,
+          actions: {
+            listAction: function (postData, jtParams) {
+              return $.Deferred(function ($dfd) {
+                $.ajax({
+                  url: entityName,
+                  type: 'GET',
+                  dataType: 'json',
+                  //data: postData,
+                  success: function (data) {
+                    var result = {};
+                    result['Result'] = 'OK';
+                    result['Records'] = data['_embedded'][entityName];
+                    console.log(result);
+                    alert('Ok');
+                    $dfd.resolve(result);
+                  },
+                  error: function (xhr) {
+                    console.error(xhr);
+                    $dfd.reject();
+                  }
+                });
+              });
+            },
+            createAction: entityName,
+            updateAction: '/GettingStarted/UpdatePerson',
+            deleteAction: '/GettingStarted/DeletePerson'
+          },
+          fields: {
+            name: {title: 'Type', key: true},
+            description: {title: 'Description'}
+          }
+        });
+      });
+    </script>
+
+  </body>
+</html>
