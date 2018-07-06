@@ -1,11 +1,14 @@
 <html>
   <head>
-    <title>TODO supply a title</title>
+    <title>Optopus Admin</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="scripts/jquery/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <!--<link href="scripts/jtable/themes/jqueryui/jtable_jqueryui.css" rel="stylesheet" type="text/css"/>-->    
+    <link href="scripts/jtable/themes/lightcolor/blue/jtable.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
-    <div>TODO write content</div>
+    <div>Optopus Admin</div>
     <div id="TableContainer"></div>
 
     <script
@@ -13,22 +16,31 @@
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
 
-    <script
-      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-    crossorigin="anonymous"></script>
-
-    <!-- Include one of jTable styles. -->
-    <link href="scripts/jtable/themes/metro/blue/jtable.min.css" rel="stylesheet" type="text/css" />
+    <script src="scripts/jquery/jquery-ui.min.js"></script>
 
     <!-- Include jTable script file. -->
     <script src="scripts/jtable/jquery.jtable.min.js" type="text/javascript"></script>    
 
     <script type="text/javascript">
+      
+      var tableTitle = 'Release Types';
       var entityName = "releaseTypes";
+      var tableHeaders = 
+          {
+            releaseCode: { title: 'Code', 
+                           key: true,
+                           create: false,
+                           edit: false,
+                           list: true },
+            name: {title: 'Name'},
+            description: {title: 'Description'}
+          }
+          
       $(document).ready(function () {
         $('#TableContainer').jtable({
-          title: 'Table of ' + entityName,
+          title: tableTitle,
+          paging: true,
+          sorting: true,
           actions: {
             listAction: function (postData, jtParams) {
               return $.Deferred(function ($dfd) {
@@ -42,7 +54,6 @@
                     result['Result'] = 'OK';
                     result['Records'] = data['_embedded'][entityName];
                     console.log(result);
-                    alert('Ok');
                     $dfd.resolve(result);
                   },
                   error: function (xhr) {
@@ -56,11 +67,9 @@
             updateAction: '/GettingStarted/UpdatePerson',
             deleteAction: '/GettingStarted/DeletePerson'
           },
-          fields: {
-            name: {title: 'Type', key: true},
-            description: {title: 'Description'}
-          }
+          fields: tableHeaders
         });
+        $('#TableContainer').jtable('load');
       });
     </script>
 
