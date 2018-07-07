@@ -29,7 +29,7 @@ public class ReleaseType implements Serializable {
   @Id
   @Basic(optional = false)
   @NotNull
-  @Size(min = 1, max = 2)
+  @Size(min = 1, max = 4)
   @Column(name = "release_code")
   private String releaseCode;
   @Basic(optional = false)

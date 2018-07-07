@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="scripts/jquery/jquery-ui.css" rel="stylesheet" type="text/css" />
-    <!--<link href="scripts/jtable/themes/jqueryui/jtable_jqueryui.css" rel="stylesheet" type="text/css"/>-->    
-    <link href="scripts/jtable/themes/lightcolor/blue/jtable.css" rel="stylesheet" type="text/css"/>
+    <link href="scripts/jtable/themes/lightcolor/gray/jtable.css" rel="stylesheet" type="text/css"/>
+    <style>
+      div.jtable-main-container {
+        font-size: larger !important;
+      }
+    </style>
   </head>
   <body>
-    <div>Optopus Admin</div>
+    <h1>Optopus Admin</h1>
+    
     <div id="TableContainer"></div>
 
     <script
@@ -29,8 +34,8 @@
           {
             releaseCode: { title: 'Code', 
                            key: true,
-                           create: false,
-                           edit: false,
+                           create: true,
+                           edit: true,
                            list: true },
             name: {title: 'Name'},
             description: {title: 'Description'}
@@ -44,26 +49,55 @@
           actions: {
             listAction: function (postData, jtParams) {
               return $.Deferred(function ($dfd) {
+                var result = {};
+                var sortingParam = '';
+                if (jtParams.jtSorting) {
+                  sortingParam = '&sort=' + (jtParams.jtSorting).replace(' ', ',');
+                }
                 $.ajax({
-                  url: entityName,
+                  url: entityName + '/?size=' + jtParams.jtPageSize + '&page=' + (jtParams.jtStartIndex/jtParams.jtPageSize) + sortingParam,
                   type: 'GET',
+                  contentType: 'application/json',
                   dataType: 'json',
-                  //data: postData,
                   success: function (data) {
-                    var result = {};
-                    result['Result'] = 'OK';
                     result['Records'] = data['_embedded'][entityName];
+                    result['TotalRecordCount'] = data.page.totalElements;
                     console.log(result);
+                    result['Result'] = 'OK';
                     $dfd.resolve(result);
                   },
                   error: function (xhr) {
                     console.error(xhr);
-                    $dfd.reject();
+                    result['Result'] = 'FAILED';
+                    $dfd.reject(result);
                   }
                 });
               });
             },
-            createAction: entityName,
+            createAction: function (postData, jtParams) {
+              return $.Deferred(function ($dfd) {
+                var record = convertQueryStringToJson(postData);
+                var result = {};
+                $.ajax({
+                  url: entityName,
+                  type: 'POST',
+                  contentType: 'application/json',
+                  dataType: 'json',
+                  data: JSON.stringify(record),
+                  success: function (data) {
+                    console.log(data);
+                    result['Result'] = 'OK';
+                    result['Record'] = data;
+                    $dfd.resolve(result);
+                  },
+                  error: function (xhr) {
+                    console.error(xhr);
+                    result['Result'] = 'FAILED';
+                    $dfd.reject(result);
+                  }
+                });
+              });
+            },
             updateAction: '/GettingStarted/UpdatePerson',
             deleteAction: '/GettingStarted/DeletePerson'
           },
@@ -71,6 +105,10 @@
         });
         $('#TableContainer').jtable('load');
       });
+      
+      function convertQueryStringToJson(queryString) {
+        return JSON.parse('{"' + decodeURI(queryString).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
+      }
     </script>
 
   </body>
