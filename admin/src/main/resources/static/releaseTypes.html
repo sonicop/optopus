@@ -98,8 +98,54 @@
                 });
               });
             },
-            updateAction: '/GettingStarted/UpdatePerson',
-            deleteAction: '/GettingStarted/DeletePerson'
+            updateAction: function (postData, jtParams) {
+              return $.Deferred(function ($dfd) {
+                var record = convertQueryStringToJson(postData);
+                var result = {};
+                $.ajax({
+                  url: entityName,
+                  type: 'POST',
+                  headers: { "X-HTTP-Method": "PATCH" },
+                  contentType: 'application/json',
+                  dataType: 'json',
+                  data: JSON.stringify(record),
+                  success: function (data) {
+                    console.log(data);
+                    result['Result'] = 'OK';
+                    result['Record'] = data;
+                    $dfd.resolve(result);
+                  },
+                  error: function (xhr) {
+                    console.error(xhr);
+                    result['Result'] = 'FAILED';
+                    $dfd.reject(result);
+                  }
+                });
+              });
+            },
+            deleteAction:  function (postData, jtParams) {
+              return $.Deferred(function ($dfd) {
+                var key = encodeURI(Object.values(postData).join('_'));
+                var result = {};
+                $.ajax({
+                  url: entityName + '/' + key,
+                  type: 'DELETE',
+                  contentType: 'application/json',
+                  dataType: 'json',
+                  success: function (data) {
+                    console.log(data);
+                    result['Result'] = 'OK';
+                    result['Record'] = data;
+                    $dfd.resolve(result);
+                  },
+                  error: function (xhr) {
+                    console.error(xhr.responseText);
+                    result['Result'] = 'FAILED';
+                    $dfd.reject(result);
+                  }
+                });
+              });
+            }
           },
           fields: tableHeaders
         });
