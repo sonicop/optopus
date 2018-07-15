@@ -10,12 +10,13 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -45,8 +46,17 @@ public class Product implements Serializable {
   @Basic(optional = false)
   @NotNull
   @Size(min = 1, max = 500)
-  @Column(name = "description")
-  private String description;
+  @Column(name = "comment")
+  private String comment;
+  @Basic(optional = false)
+  @NotNull
+  @Column(name = "create_time")
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date createTime;
+  @Basic(optional = false)
+  @NotNull
+  @Column(name = "created_by")
+  private int createdBy;
   // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
   @Column(name = "map")
   private BigDecimal map;
@@ -59,8 +69,6 @@ public class Product implements Serializable {
   @Column(name = "soldout_date")
   @Temporal(TemporalType.DATE)
   private Date soldoutDate;
-  @ManyToMany(mappedBy = "productList")
-  private List<Image> imageList;
   @JoinColumn(name = "brand_id", referencedColumnName = "brand_id")
   @ManyToOne(optional = false)
   private Brand brandId;
@@ -70,6 +78,12 @@ public class Product implements Serializable {
   @JoinColumn(name = "rating_id", referencedColumnName = "rating_id")
   @ManyToOne
   private Rating ratingId;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "sku")
+  private List<Image> imageList;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+  private List<ProductsHasCategory> productsHasCategoryList;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+  private List<UsersHasProduct> usersHasProductList;
 
   public Product() {
   }
@@ -78,10 +92,12 @@ public class Product implements Serializable {
     this.sku = sku;
   }
 
-  public Product(String sku, String name, String description) {
+  public Product(String sku, String name, String comment, Date createTime, int createdBy) {
     this.sku = sku;
     this.name = name;
-    this.description = description;
+    this.comment = comment;
+    this.createTime = createTime;
+    this.createdBy = createdBy;
   }
 
   public String getSku() {
@@ -100,12 +116,28 @@ public class Product implements Serializable {
     this.name = name;
   }
 
-  public String getDescription() {
-    return description;
+  public String getComment() {
+    return comment;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setComment(String comment) {
+    this.comment = comment;
+  }
+
+  public Date getCreateTime() {
+    return createTime;
+  }
+
+  public void setCreateTime(Date createTime) {
+    this.createTime = createTime;
+  }
+
+  public int getCreatedBy() {
+    return createdBy;
+  }
+
+  public void setCreatedBy(int createdBy) {
+    this.createdBy = createdBy;
   }
 
   public BigDecimal getMap() {
@@ -140,14 +172,6 @@ public class Product implements Serializable {
     this.soldoutDate = soldoutDate;
   }
 
-  public List<Image> getImageList() {
-    return imageList;
-  }
-
-  public void setImageList(List<Image> imageList) {
-    this.imageList = imageList;
-  }
-
   public Brand getBrandId() {
     return brandId;
   }
@@ -170,6 +194,30 @@ public class Product implements Serializable {
 
   public void setRatingId(Rating ratingId) {
     this.ratingId = ratingId;
+  }
+
+  public List<Image> getImageList() {
+    return imageList;
+  }
+
+  public void setImageList(List<Image> imageList) {
+    this.imageList = imageList;
+  }
+
+  public List<ProductsHasCategory> getProductsHasCategoryList() {
+    return productsHasCategoryList;
+  }
+
+  public void setProductsHasCategoryList(List<ProductsHasCategory> productsHasCategoryList) {
+    this.productsHasCategoryList = productsHasCategoryList;
+  }
+
+  public List<UsersHasProduct> getUsersHasProductList() {
+    return usersHasProductList;
+  }
+
+  public void setUsersHasProductList(List<UsersHasProduct> usersHasProductList) {
+    this.usersHasProductList = usersHasProductList;
   }
 
   @Override

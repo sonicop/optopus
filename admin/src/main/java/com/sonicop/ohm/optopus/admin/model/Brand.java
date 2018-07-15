@@ -37,8 +37,8 @@ public class Brand implements Serializable {
   @Column(name = "name")
   private String name;
   @Size(max = 500)
-  @Column(name = "description")
-  private String description;
+  @Column(name = "comment")
+  private String comment;
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "brandId")
   private List<Product> productList;
 
@@ -70,12 +70,12 @@ public class Brand implements Serializable {
     this.name = name;
   }
 
-  public String getDescription() {
-    return description;
+  public String getComment() {
+    return comment;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setComment(String comment) {
+    this.comment = comment;
   }
 
   public List<Product> getProductList() {
