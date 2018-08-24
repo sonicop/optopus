@@ -27,31 +27,32 @@ import javax.validation.constraints.Size;
  * @author oproot
  */
 @Entity
-@Table(name = "images")
+@Table(name = "comments")
 @NamedQueries({
-  @NamedQuery(name = "Image.findAll", query = "SELECT i FROM Image i")})
-public class Image implements Serializable {
+  @NamedQuery(name = "Comment.findAll", query = "SELECT c FROM Comment c")})
+public class Comment implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @Id
   @Basic(optional = false)
   @NotNull
   @Lob
-  @Column(name = "image_id")
-  private byte[] imageId;
-  @Basic(optional = false)
-  @NotNull
-  @Size(min = 1, max = 1024)
-  @Column(name = "reference")
-  private String reference;
+  @Column(name = "comment_id")
+  private byte[] commentId;
   @Basic(optional = false)
   @NotNull
   @Column(name = "create_time")
   @Temporal(TemporalType.TIMESTAMP)
   private Date createTime;
-  @Size(max = 500)
-  @Column(name = "caption")
-  private String caption;
+  @Basic(optional = false)
+  @NotNull
+  @Column(name = "rate")
+  private int rate;
+  @Basic(optional = false)
+  @NotNull
+  @Size(min = 1, max = 1000)
+  @Column(name = "comment")
+  private String comment;
   @JoinColumn(name = "sku", referencedColumnName = "sku")
   @ManyToOne(optional = false)
   private Product sku;
@@ -59,33 +60,26 @@ public class Image implements Serializable {
   @ManyToOne(optional = false)
   private User createdBy;
 
-  public Image() {
+  public Comment() {
   }
 
-  public Image(byte[] imageId) {
-    this.imageId = imageId;
+  public Comment(byte[] commentId) {
+    this.commentId = commentId;
   }
 
-  public Image(byte[] imageId, String reference, Date createTime) {
-    this.imageId = imageId;
-    this.reference = reference;
+  public Comment(byte[] commentId, Date createTime, int rate, String comment) {
+    this.commentId = commentId;
     this.createTime = createTime;
+    this.rate = rate;
+    this.comment = comment;
   }
 
-  public byte[] getImageId() {
-    return imageId;
+  public byte[] getCommentId() {
+    return commentId;
   }
 
-  public void setImageId(byte[] imageId) {
-    this.imageId = imageId;
-  }
-
-  public String getReference() {
-    return reference;
-  }
-
-  public void setReference(String reference) {
-    this.reference = reference;
+  public void setCommentId(byte[] commentId) {
+    this.commentId = commentId;
   }
 
   public Date getCreateTime() {
@@ -96,12 +90,20 @@ public class Image implements Serializable {
     this.createTime = createTime;
   }
 
-  public String getCaption() {
-    return caption;
+  public int getRate() {
+    return rate;
   }
 
-  public void setCaption(String caption) {
-    this.caption = caption;
+  public void setRate(int rate) {
+    this.rate = rate;
+  }
+
+  public String getComment() {
+    return comment;
+  }
+
+  public void setComment(String comment) {
+    this.comment = comment;
   }
 
   public Product getSku() {
@@ -123,18 +125,18 @@ public class Image implements Serializable {
   @Override
   public int hashCode() {
     int hash = 0;
-    hash += (imageId != null ? imageId.hashCode() : 0);
+    hash += (commentId != null ? commentId.hashCode() : 0);
     return hash;
   }
 
   @Override
   public boolean equals(Object object) {
     // TODO: Warning - this method won't work in the case the id fields are not set
-    if (!(object instanceof Image)) {
+    if (!(object instanceof Comment)) {
       return false;
     }
-    Image other = (Image) object;
-    if ((this.imageId == null && other.imageId != null) || (this.imageId != null && !this.imageId.equals(other.imageId))) {
+    Comment other = (Comment) object;
+    if ((this.commentId == null && other.commentId != null) || (this.commentId != null && !this.commentId.equals(other.commentId))) {
       return false;
     }
     return true;
@@ -142,7 +144,7 @@ public class Image implements Serializable {
 
   @Override
   public String toString() {
-    return "com.sonicop.ohm.optopus.myohmbeads.model.Image[ imageId=" + imageId + " ]";
+    return "com.sonicop.ohm.optopus.myohmbeads.model.Comment[ commentId=" + commentId + " ]";
   }
   
 }

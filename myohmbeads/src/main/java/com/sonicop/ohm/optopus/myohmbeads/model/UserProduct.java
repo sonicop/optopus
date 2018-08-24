@@ -8,95 +8,115 @@ package com.sonicop.ohm.optopus.myohmbeads.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
+import java.util.UUID;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
  * @author oproot
  */
 @Entity
-@Table(name = "User_Products")
+@Table(name = "user_products")
 @NamedQueries({
   @NamedQuery(name = "UserProduct.findAll", query = "SELECT u FROM UserProduct u")})
 public class UserProduct implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  @EmbeddedId
-  protected UserProductPK userProductPK;
-  //@Basic(optional = false)
-  //@NotNull
+  
+  @Id
+  @Basic(optional = false)
+  @NotNull
+  @GeneratedValue(generator = "uuid2")
+  @GenericGenerator(name = "uuid2", strategy = "uuid2")
+  @Column(name = "transaction_id", columnDefinition = "BINARY(16)")
+  private UUID transactionId;
+ 
+  @Basic(optional = false)
+  @NotNull
   @Column(name = "create_time")
   @Temporal(TemporalType.TIMESTAMP)
   private Date createTime;
-  @Basic(optional = false)
-  @NotNull
-  @Column(name = "created_by")
-  private int createdBy;
-  @Basic(optional = false)
-  @NotNull
-  @Column(name = "quantity")
-  private int quantity;
+  // TODO: cannot be mapped with String
+  //@Basic(optional = false)
+  //@NotNull
+  @Column(name = "created_by", columnDefinition = "BINARY(16)", updatable = false)
+  private UUID createdBy;
   // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-  @Column(name = "unit_price")
-  private BigDecimal unitPrice;
-  @Size(max = 100)
+  @Basic(optional = false)
+  @NotNull
+  @Column(name = "purchase_price")
+  private BigDecimal purchasePrice;
+  @Basic(optional = false)
+  @NotNull
+  @Size(min = 1, max = 100)
   @Column(name = "purchase_from")
   private String purchaseFrom;
   @Column(name = "purchase_date")
   @Temporal(TemporalType.DATE)
   private Date purchaseDate;
-//  @Size(max = 45)
-//  @Column(name = "image_id")
-//  private String imageId;
   @Size(max = 500)
-  @Column(name = "comment")
-  private String comment;
-  @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+  @Column(name = "note")
+  private String note;
+  @JoinColumn(name = "user_id", referencedColumnName = "user_id")
   @ManyToOne(optional = false)
   private User user;
-  @JoinColumn(name = "sku", referencedColumnName = "sku", insertable = false, updatable = false)
+  @JoinColumn(name = "sku", referencedColumnName = "sku")
   @ManyToOne(optional = false)
   private Product product;
+  @JoinColumn(name = "currency_code", referencedColumnName = "currency_code")
+  @ManyToOne(optional = false)
+  private Currency currency;
+  
+  @Column(name = "updated_time")
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date updatedTime;
+
+  @Column(name = "updated_by", columnDefinition = "BINARY(16)")
+  private UUID updatedBy;
+
+  @Column(name = "deleted_time")
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date deletedTime;
+
+  @Column(name = "deleted_by", columnDefinition = "BINARY(16)")
+  private UUID deletedBy;
+  
 
   public UserProduct() {
   }
 
-  public UserProduct(UserProductPK userProductPK) {
-    this.userProductPK = userProductPK;
+  public UserProduct(UUID transactionId) {
+    this.transactionId = transactionId;
   }
 
-  public UserProduct(UserProductPK userProductPK, Date createTime, int createdBy, int quantity) {
-    this.userProductPK = userProductPK;
+  public UserProduct(UUID transactionId, Date createTime, UUID createdBy, BigDecimal purchasePrice, String purchaseFrom) {
+    this.transactionId = transactionId;
     this.createTime = createTime;
     this.createdBy = createdBy;
-    this.quantity = quantity;
+    this.purchasePrice = purchasePrice;
+    this.purchaseFrom = purchaseFrom;
   }
 
-  public UserProduct(int userId, String sku) {
-    this.userProductPK = new UserProductPK(userId, sku);
+  public UUID getTransactionId() {
+    return transactionId;
   }
 
-  public UserProductPK getUserProductPK() {
-    return userProductPK;
-  }
-
-  public void setUserProductPK(UserProductPK userProductPK) {
-    this.userProductPK = userProductPK;
+  public void setTransactionId(UUID transactionId) {
+    this.transactionId = transactionId;
   }
 
   public Date getCreateTime() {
@@ -107,28 +127,24 @@ public class UserProduct implements Serializable {
     this.createTime = createTime;
   }
 
-  public int getCreatedBy() {
+  public UUID getCreatedBy() {
     return createdBy;
   }
 
-  public void setCreatedBy(int createdBy) {
-    this.createdBy = createdBy;
+  public void setCreatedBy(UUID createdBy) {
+    if (createdBy != null) {
+      this.createdBy = createdBy;
+    } else {
+      this.createdBy = this.user.getUserId();
+    }
   }
 
-  public int getQuantity() {
-    return quantity;
+  public BigDecimal getPurchasePrice() {
+    return purchasePrice;
   }
 
-  public void setQuantity(int quantity) {
-    this.quantity = quantity;
-  }
-
-  public BigDecimal getUnitPrice() {
-    return unitPrice;
-  }
-
-  public void setUnitPrice(BigDecimal unitPrice) {
-    this.unitPrice = unitPrice;
+  public void setPurchasePrice(BigDecimal purchasePrice) {
+    this.purchasePrice = purchasePrice;
   }
 
   public String getPurchaseFrom() {
@@ -147,20 +163,12 @@ public class UserProduct implements Serializable {
     this.purchaseDate = purchaseDate;
   }
 
-//  public String getImageId() {
-//    return imageId;
-//  }
-//
-//  public void setImageId(String imageId) {
-//    this.imageId = imageId;
-//  }
-
-  public String getComment() {
-    return comment;
+  public String getNote() {
+    return note;
   }
 
-  public void setComment(String comment) {
-    this.comment = comment;
+  public void setNote(String note) {
+    this.note = note;
   }
 
   public User getUser() {
@@ -169,6 +177,9 @@ public class UserProduct implements Serializable {
 
   public void setUser(User user) {
     this.user = user;
+    if (user !=null && this.createdBy == null) {
+      this.createdBy = user.getUserId();
+    }    
   }
 
   public Product getProduct() {
@@ -179,10 +190,50 @@ public class UserProduct implements Serializable {
     this.product = product;
   }
 
+  public Currency getCurrency() {
+    return currency;
+  }
+
+  public void setCurrency(Currency currency) {
+    this.currency = currency;
+  }
+
+  public Date getUpdatedTime() {
+    return updatedTime;
+  }
+
+  public void setUpdatedTime(Date updatedTime) {
+    this.updatedTime = updatedTime;
+  }
+
+  public UUID getUpdatedBy() {
+    return updatedBy;
+  }
+
+  public void setUpdatedBy(UUID updatedBy) {
+    this.updatedBy = updatedBy;
+  }
+  
+  public Date getDeletedTime() {
+    return deletedTime;
+  }
+
+  public void setDeletedTime(Date deletedTime) {
+    this.deletedTime = deletedTime;
+  }
+
+  public UUID getDeletedBy() {
+    return deletedBy;
+  }
+
+  public void setDeletedBy(UUID deletedBy) {
+    this.deletedBy = deletedBy;
+  } 
+
   @Override
   public int hashCode() {
     int hash = 0;
-    hash += (userProductPK != null ? userProductPK.hashCode() : 0);
+    hash += (transactionId != null ? transactionId.hashCode() : 0);
     return hash;
   }
 
@@ -193,7 +244,7 @@ public class UserProduct implements Serializable {
       return false;
     }
     UserProduct other = (UserProduct) object;
-    if ((this.userProductPK == null && other.userProductPK != null) || (this.userProductPK != null && !this.userProductPK.equals(other.userProductPK))) {
+    if ((this.transactionId == null && other.transactionId != null) || (this.transactionId != null && !this.transactionId.equals(other.transactionId))) {
       return false;
     }
     return true;
@@ -201,7 +252,7 @@ public class UserProduct implements Serializable {
 
   @Override
   public String toString() {
-    return "com.sonicop.ohm.optopus.admin.model.UserProduct[ userProductPK=" + userProductPK + " ]";
+    return "com.sonicop.ohm.optopus.myohmbeads.model.UserProduct[ transactionId=" + transactionId + " ]";
   }
   
 }

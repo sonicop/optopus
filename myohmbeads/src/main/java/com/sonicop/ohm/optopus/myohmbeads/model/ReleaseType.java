@@ -24,7 +24,7 @@ import javax.validation.constraints.Size;
  * @author oproot
  */
 @Entity
-@Table(name = "Release_Types")
+@Table(name = "release_types")
 @NamedQueries({
   @NamedQuery(name = "ReleaseType.findAll", query = "SELECT r FROM ReleaseType r")})
 public class ReleaseType implements Serializable {
@@ -41,11 +41,8 @@ public class ReleaseType implements Serializable {
   @Size(min = 1, max = 100)
   @Column(name = "name")
   private String name;
-  @Size(max = 500)
-  @Column(name = "comment")
-  private String comment;
-//  @OneToMany(cascade = CascadeType.ALL, mappedBy = "releaseTypeCode")
-//  private List<Product> productList;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "releaseTypeCode")
+  private List<Product> productList;
 
   public ReleaseType() {
   }
@@ -75,21 +72,13 @@ public class ReleaseType implements Serializable {
     this.name = name;
   }
 
-  public String getComment() {
-    return comment;
+  public List<Product> getProductList() {
+    return productList;
   }
 
-  public void setComment(String comment) {
-    this.comment = comment;
+  public void setProductList(List<Product> productList) {
+    this.productList = productList;
   }
-
-//  public List<Product> getProductList() {
-//    return productList;
-//  }
-//
-//  public void setProductList(List<Product> productList) {
-//    this.productList = productList;
-//  }
 
   @Override
   public int hashCode() {
@@ -113,7 +102,7 @@ public class ReleaseType implements Serializable {
 
   @Override
   public String toString() {
-    return "com.sonicop.ohm.optopus.admin.model.ReleaseType[ releaseCode=" + releaseCode + " ]";
+    return "com.sonicop.ohm.optopus.myohmbeads.model.ReleaseType[ releaseCode=" + releaseCode + " ]";
   }
   
 }

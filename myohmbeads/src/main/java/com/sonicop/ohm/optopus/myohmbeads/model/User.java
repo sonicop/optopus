@@ -7,52 +7,61 @@ package com.sonicop.ohm.optopus.myohmbeads.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.GenericGenerator;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  *
  * @author oproot
  */
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 @NamedQueries({
   @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")})
-public class User implements Serializable {
+public class User implements UserDetails, Serializable {
 
   private static final long serialVersionUID = 1L;
+  
   @Id
   @Basic(optional = false)
   @NotNull
-  @Column(name = "user_id")
-  private Integer userId;
+  @GeneratedValue(generator = "uuid2")
+  @GenericGenerator(name = "uuid2", strategy = "uuid2")
+  @Column(name = "user_id", columnDefinition = "BINARY(16)")
+  private UUID userId;
+  
   @Basic(optional = false)
   @NotNull
   @Column(name = "user_type")
   private int userType;
   @Basic(optional = false)
   @NotNull
+  @Size(min = 1, max = 10)
   @Column(name = "role_type")
-  private int roleType;
+  private String roleType;
   @Basic(optional = false)
   @NotNull
-  @Size(min = 1, max = 16)
+  @Size(min = 1, max = 255)
   @Column(name = "username")
   private String username;
   // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
@@ -63,7 +72,7 @@ public class User implements Serializable {
   private String email;
   @Basic(optional = false)
   @NotNull
-  @Size(min = 1, max = 32)
+  @Size(min = 1, max = 255)
   @Column(name = "password")
   private String password;
   @Basic(optional = false)
@@ -77,31 +86,21 @@ public class User implements Serializable {
   @Column(name = "eula_time")
   @Temporal(TemporalType.TIMESTAMP)
   private Date eulaTime;
-//  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//  private List<UserProduct> userProductList;
-//  @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdBy")
-//  private List<Image> imageList;
-
-  @ManyToMany(fetch = FetchType.LAZY,
-          cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-          })
-  @JoinTable(name = "User_Products",
-          joinColumns = {
-            @JoinColumn(name = "user_id")},
-          inverseJoinColumns = {
-            @JoinColumn(name = "sku")})
-  private List<Product> products = new ArrayList<>();
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdBy")
+  private List<Image> imageList;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdBy")
+  private List<Comment> commentList;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+  private List<UserProduct> userProductList;
 
   public User() {
   }
 
-  public User(Integer userId) {
+  public User(UUID userId) {
     this.userId = userId;
   }
 
-  public User(Integer userId, int userType, int roleType, String username, String email, String password, Date createTime) {
+  public User(UUID userId, int userType, String roleType, String username, String email, String password, Date createTime) {
     this.userId = userId;
     this.userType = userType;
     this.roleType = roleType;
@@ -111,11 +110,11 @@ public class User implements Serializable {
     this.createTime = createTime;
   }
 
-  public Integer getUserId() {
+  public UUID getUserId() {
     return userId;
   }
 
-  public void setUserId(Integer userId) {
+  public void setUserId(UUID userId) {
     this.userId = userId;
   }
 
@@ -127,11 +126,11 @@ public class User implements Serializable {
     this.userType = userType;
   }
 
-  public int getRoleType() {
+  public String getRoleType() {
     return roleType;
   }
 
-  public void setRoleType(int roleType) {
+  public void setRoleType(String roleType) {
     this.roleType = roleType;
   }
 
@@ -183,28 +182,30 @@ public class User implements Serializable {
     this.eulaTime = eulaTime;
   }
 
-//  public List<UserProduct> getUserProductList() {
-//    return userProductList;
-//  }
-//
-//  public void setUserProductList(List<UserProduct> userProductList) {
-//    this.userProductList = userProductList;
-//  }
-  public List<Product> getProducts() {
-    return products;
+  public List<Image> getImageList() {
+    return imageList;
   }
 
-  public void setProducts(List<Product> products) {
-    this.products = products;
+  public void setImageList(List<Image> imageList) {
+    this.imageList = imageList;
   }
 
-//  public List<Image> getImageList() {
-//    return imageList;
-//  }
-//
-//  public void setImageList(List<Image> imageList) {
-//    this.imageList = imageList;
-//  }
+  public List<Comment> getCommentList() {
+    return commentList;
+  }
+
+  public void setCommentList(List<Comment> commentList) {
+    this.commentList = commentList;
+  }
+
+  public List<UserProduct> getUserProductList() {
+    return userProductList;
+  }
+
+  public void setUserProductList(List<UserProduct> userProductList) {
+    this.userProductList = userProductList;
+  }
+
   @Override
   public int hashCode() {
     int hash = 0;
@@ -227,7 +228,35 @@ public class User implements Serializable {
 
   @Override
   public String toString() {
-    return "com.sonicop.ohm.optopus.admin.model.User[ userId=" + userId + " ]";
+    return "com.sonicop.ohm.optopus.myohmbeads.model.User[ userId=" + userId + " ]";
   }
+  
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		
+		return authorities;
+	}
 
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// we never lock accounts
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// credentials never expire
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 }

@@ -1,4 +1,4 @@
-<div class="page" data-name="new-item">
+<div class="page" data-name="edit-item">
   <div class="navbar">
     <div class="navbar-inner sliding">
       <div class="left">
@@ -7,19 +7,19 @@
           <span class="ios-only">Back</span>
         </a>
       </div>
-      <div class="title">New Item</div>
+      <div class="title">Edit Item</div>
     </div>
   </div>
   <div class="page-content">
     <div class="list no-hairlines-md">
-      <form id="new-item-form">
+      <form id="edit-item-form">
       <ul>
         <li>
           <div class="item-content item-input">
             <div class="item-inner">
               <div class="item-title item-label">Brand</div>
               <div class="item-input-wrap">
-                <select id="selectedBrandId" name="brandId">
+                <select id="selectedBrandId" name="brandId" disabled>
                 </select>
               </div>              
             </div>
@@ -30,7 +30,7 @@
             <div class="item-inner">
               <div class="item-title item-label">Product</div>
               <div class="item-input-wrap">
-                <input name="sku" id="product-autocomplete" type="text" placeholder="SKU">
+                <input name="sku" id="product-autocomplete" type="text" disabled>
               </div>              
             </div>
           </div>
@@ -98,9 +98,8 @@
     </div>
     <div class="block">
       <p class="row">
-        <a href="#" class="col button button-round button-fill" id="save">Save</a>
-        <a href="#" class="col button button-round button-fill" id="add-more">Add More</a>
-        <a href="#" class="col button button-round button-fill back" id="done">Done</a>
+        <a href="#" class="col button button-round button-fill" id="update">Update</a>
+        <a href="#" class="col button button-round button-fill" id="remove">Remove</a>
       </p>
     </div>
   </div>

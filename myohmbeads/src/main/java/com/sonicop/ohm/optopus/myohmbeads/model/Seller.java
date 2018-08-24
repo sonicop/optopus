@@ -7,18 +7,13 @@ package com.sonicop.ohm.optopus.myohmbeads.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,22 +25,18 @@ import javax.validation.constraints.Size;
  * @author oproot
  */
 @Entity
-@Table(name = "brands")
+@Table(name = "sellers")
 @NamedQueries({
-  @NamedQuery(name = "Brand.findAll", query = "SELECT b FROM Brand b")})
-public class Brand implements Serializable {
+  @NamedQuery(name = "Seller.findAll", query = "SELECT s FROM Seller s")})
+public class Seller implements Serializable {
 
   private static final long serialVersionUID = 1L;
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Basic(optional = false)
-  @Column(name = "brand_id")
-  private Integer brandId;
   @Basic(optional = false)
   @NotNull
   @Size(min = 1, max = 100)
-  @Column(name = "name")
-  private String name;
+  @Column(name = "seller")
+  private String seller;
   @Basic(optional = false)
   @NotNull
   @Column(name = "create_time")
@@ -56,37 +47,26 @@ public class Brand implements Serializable {
   @Lob
   @Column(name = "created_by")
   private byte[] createdBy;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "brandId")
-  private List<Product> productList;
 
-  public Brand() {
+  public Seller() {
   }
 
-  public Brand(Integer brandId) {
-    this.brandId = brandId;
+  public Seller(String seller) {
+    this.seller = seller;
   }
 
-  public Brand(Integer brandId, String name, Date createTime, byte[] createdBy) {
-    this.brandId = brandId;
-    this.name = name;
+  public Seller(String seller, Date createTime, byte[] createdBy) {
+    this.seller = seller;
     this.createTime = createTime;
     this.createdBy = createdBy;
   }
 
-  public Integer getBrandId() {
-    return brandId;
+  public String getSeller() {
+    return seller;
   }
 
-  public void setBrandId(Integer brandId) {
-    this.brandId = brandId;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
+  public void setSeller(String seller) {
+    this.seller = seller;
   }
 
   public Date getCreateTime() {
@@ -105,29 +85,21 @@ public class Brand implements Serializable {
     this.createdBy = createdBy;
   }
 
-  public List<Product> getProductList() {
-    return productList;
-  }
-
-  public void setProductList(List<Product> productList) {
-    this.productList = productList;
-  }
-
   @Override
   public int hashCode() {
     int hash = 0;
-    hash += (brandId != null ? brandId.hashCode() : 0);
+    hash += (seller != null ? seller.hashCode() : 0);
     return hash;
   }
 
   @Override
   public boolean equals(Object object) {
     // TODO: Warning - this method won't work in the case the id fields are not set
-    if (!(object instanceof Brand)) {
+    if (!(object instanceof Seller)) {
       return false;
     }
-    Brand other = (Brand) object;
-    if ((this.brandId == null && other.brandId != null) || (this.brandId != null && !this.brandId.equals(other.brandId))) {
+    Seller other = (Seller) object;
+    if ((this.seller == null && other.seller != null) || (this.seller != null && !this.seller.equals(other.seller))) {
       return false;
     }
     return true;
@@ -135,7 +107,7 @@ public class Brand implements Serializable {
 
   @Override
   public String toString() {
-    return "com.sonicop.ohm.optopus.myohmbeads.model.Brand[ brandId=" + brandId + " ]";
+    return "com.sonicop.ohm.optopus.myohmbeads.model.Seller[ seller=" + seller + " ]";
   }
   
 }

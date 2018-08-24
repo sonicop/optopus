@@ -12,6 +12,10 @@ routes = [
     url: './pages/new-item.html',
   },
   {
+    path: '/edit-item/:transactionId',
+    url: './pages/edit-item.html',
+  },
+  {
     path: '/form/',
     url: './pages/form.html',
   },

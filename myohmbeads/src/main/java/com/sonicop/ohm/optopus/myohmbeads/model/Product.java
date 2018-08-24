@@ -7,18 +7,15 @@ package com.sonicop.ohm.optopus.myohmbeads.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -34,7 +31,7 @@ import javax.validation.constraints.Size;
  * @author oproot
  */
 @Entity
-@Table(name = "Products")
+@Table(name = "products")
 @NamedQueries({
   @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")})
 public class Product implements Serializable {
@@ -53,8 +50,9 @@ public class Product implements Serializable {
   private Date createTime;
   @Basic(optional = false)
   @NotNull
+  @Lob
   @Column(name = "created_by")
-  private int createdBy;
+  private byte[] createdBy;
   @Basic(optional = false)
   @NotNull
   @Size(min = 1, max = 100)
@@ -63,9 +61,9 @@ public class Product implements Serializable {
   // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
   @Column(name = "map")
   private BigDecimal map;
-  @Column(name = "manufactured_date")
+  @Column(name = "release_date")
   @Temporal(TemporalType.DATE)
-  private Date manufacturedDate;
+  private Date releaseDate;
   @Column(name = "discontinued_date")
   @Temporal(TemporalType.DATE)
   private Date discontinuedDate;
@@ -73,30 +71,23 @@ public class Product implements Serializable {
   @Temporal(TemporalType.DATE)
   private Date soldoutDate;
   @Size(max = 500)
-  @Column(name = "comment")
-  private String comment;
-  @JoinTable(name = "Product_Categories",
-           joinColumns = {@JoinColumn(name = "sku")},
-           inverseJoinColumns = {@JoinColumn(name = "category_id")})
-  @ManyToMany(fetch = FetchType.LAZY,
-          cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-          })
-  private List<Category> categoryList;
-//  @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-//  private List<UserProduct> userProductList;
+  @Column(name = "tags")
+  private String tags;
+  @Size(max = 500)
+  @Column(name = "note")
+  private String note;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "sku")
+  private List<Image> imageList;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "sku")
+  private List<Comment> commentList;
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+  private List<UserProduct> userProductList;
   @JoinColumn(name = "brand_id", referencedColumnName = "brand_id")
   @ManyToOne(optional = false)
   private Brand brandId;
   @JoinColumn(name = "release_type_code", referencedColumnName = "release_code")
   @ManyToOne(optional = false)
   private ReleaseType releaseTypeCode;
-  @JoinColumn(name = "rating_id", referencedColumnName = "rating_id")
-  @ManyToOne
-  private Rating ratingId;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "sku")
-  private List<Image> imageList;
 
   public Product() {
   }
@@ -105,7 +96,7 @@ public class Product implements Serializable {
     this.sku = sku;
   }
 
-  public Product(String sku, Date createTime, int createdBy, String name) {
+  public Product(String sku, Date createTime, byte[] createdBy, String name) {
     this.sku = sku;
     this.createTime = createTime;
     this.createdBy = createdBy;
@@ -128,11 +119,11 @@ public class Product implements Serializable {
     this.createTime = createTime;
   }
 
-  public int getCreatedBy() {
+  public byte[] getCreatedBy() {
     return createdBy;
   }
 
-  public void setCreatedBy(int createdBy) {
+  public void setCreatedBy(byte[] createdBy) {
     this.createdBy = createdBy;
   }
 
@@ -152,12 +143,12 @@ public class Product implements Serializable {
     this.map = map;
   }
 
-  public Date getManufacturedDate() {
-    return manufacturedDate;
+  public Date getReleaseDate() {
+    return releaseDate;
   }
 
-  public void setManufacturedDate(Date manufacturedDate) {
-    this.manufacturedDate = manufacturedDate;
+  public void setReleaseDate(Date releaseDate) {
+    this.releaseDate = releaseDate;
   }
 
   public Date getDiscontinuedDate() {
@@ -176,29 +167,46 @@ public class Product implements Serializable {
     this.soldoutDate = soldoutDate;
   }
 
-  public String getComment() {
-    return comment;
+  public String getTags() {
+    return tags;
   }
 
-  public void setComment(String comment) {
-    this.comment = comment;
+  public void setTags(String tags) {
+    this.tags = tags;
   }
 
-  public List<Category> getCategoryList() {
-    return categoryList;
+  public String getNote() {
+    return note;
   }
 
-  public void setCategoryList(List<Category> categoryList) {
-    this.categoryList = categoryList;
+  public void setNote(String note) {
+    this.note = note;
   }
 
-//  public List<UserProduct> getUserProductList() {
-//    return userProductList;
-//  }
-//
-//  public void setUserProductList(List<UserProduct> userProductList) {
-//    this.userProductList = userProductList;
-//  }
+  public List<Image> getImageList() {
+    return imageList;
+  }
+
+  public void setImageList(List<Image> imageList) {
+    this.imageList = imageList;
+  }
+
+  public List<Comment> getCommentList() {
+    return commentList;
+  }
+
+  public void setCommentList(List<Comment> commentList) {
+    this.commentList = commentList;
+  }
+
+  public List<UserProduct> getUserProductList() {
+    return userProductList;
+  }
+
+  public void setUserProductList(List<UserProduct> userProductList) {
+    this.userProductList = userProductList;
+  }
+
   public Brand getBrandId() {
     return brandId;
   }
@@ -213,22 +221,6 @@ public class Product implements Serializable {
 
   public void setReleaseTypeCode(ReleaseType releaseTypeCode) {
     this.releaseTypeCode = releaseTypeCode;
-  }
-
-  public Rating getRatingId() {
-    return ratingId;
-  }
-
-  public void setRatingId(Rating ratingId) {
-    this.ratingId = ratingId;
-  }
-
-  public List<Image> getImageList() {
-    return imageList;
-  }
-
-  public void setImageList(List<Image> imageList) {
-    this.imageList = imageList;
   }
 
   @Override
@@ -253,7 +245,10 @@ public class Product implements Serializable {
 
   @Override
   public String toString() {
-    return "com.sonicop.ohm.optopus.admin.model.Product[ sku=" + sku + " ]";
+    return "com.sonicop.ohm.optopus.myohmbeads.model.Product[ sku=" + sku + " ]";
   }
-
+  
+  public String getDropDownText() {
+    return sku + " - " + name + ((tags != null)? " " + tags:"");
+  }
 }
