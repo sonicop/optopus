@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +25,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  *
@@ -33,6 +36,8 @@ import javax.validation.constraints.Size;
 @Table(name = "brands")
 @NamedQueries({
   @NamedQuery(name = "Brand.findAll", query = "SELECT b FROM Brand b")})
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Brand implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -56,8 +61,6 @@ public class Brand implements Serializable {
   @Lob
   @Column(name = "created_by")
   private byte[] createdBy;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "brandId")
-  private List<Product> productList;
 
   public Brand() {
   }
@@ -103,14 +106,6 @@ public class Brand implements Serializable {
 
   public void setCreatedBy(byte[] createdBy) {
     this.createdBy = createdBy;
-  }
-
-  public List<Product> getProductList() {
-    return productList;
-  }
-
-  public void setProductList(List<Product> productList) {
-    this.productList = productList;
   }
 
   @Override

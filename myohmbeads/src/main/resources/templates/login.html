@@ -68,9 +68,14 @@
                   <a href="#" class="item-link list-button login-button" onclick="javascript:document.getElementById('login-form').submit()">Sign In</a>
                 </li>
               </ul>
-              <div class="block-footer">Sign in with Facebook</div>
+              <div class="block-footer">
+                <a href="javascript:void(0)" class="item-link list-button login-button" onclick="javascript:document.getElementById('facebook-form').submit()">Sign in with Facebook</a>
+              </div>
             </div>
           </form>
+          <form id="facebook-form" action="/signin/facebook" method="POST">
+            <input type="hidden" name="scope" value="public_profile" />
+          </form>          
         </div>
       </div>
 

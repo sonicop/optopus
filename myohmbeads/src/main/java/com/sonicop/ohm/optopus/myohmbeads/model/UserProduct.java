@@ -23,6 +23,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -73,12 +75,15 @@ public class UserProduct implements Serializable {
   private String note;
   @JoinColumn(name = "user_id", referencedColumnName = "user_id")
   @ManyToOne(optional = false)
+  @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
   private User user;
   @JoinColumn(name = "sku", referencedColumnName = "sku")
   @ManyToOne(optional = false)
+  @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
   private Product product;
   @JoinColumn(name = "currency_code", referencedColumnName = "currency_code")
   @ManyToOne(optional = false)
+  @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
   private Currency currency;
   
   @Column(name = "updated_time")

@@ -1,6 +1,5 @@
 package com.sonicop.ohm.optopus.myohmbeads.repository;
 
-import com.sonicop.ohm.optopus.myohmbeads.model.Currency;
 import com.sonicop.ohm.optopus.myohmbeads.model.Product;
 import com.sonicop.ohm.optopus.myohmbeads.model.User;
 import com.sonicop.ohm.optopus.myohmbeads.model.UserProduct;

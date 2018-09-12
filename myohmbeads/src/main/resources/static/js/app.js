@@ -16,21 +16,8 @@ var app  = new Framework7({
   ,
   // App root methods
   methods: {
-    getBrands: function () {
-      var url = host + 'brands';
-      app.request.get(url, function (data) {
-        if (data) {
-          var selectedBrandIdDropdown = $$('#selectedBrandId');
-          selectedBrandIdDropdown.empty();
-          var brandArray = JSON.parse(data)._embedded.brands;
-          for (var i = 0; i < brandArray.length; i++) {
-            selectedBrandIdDropdown.append('<option value="' + brandArray[i].brandId + '">' + brandArray[i].name + '</option>');
-          }
-        }
-      });
-    },
-    getUserProducts: function(userId) {
-      var url = host + 'purchaseTransactions?userId=' + userId
+    getUserProducts: function() {
+      var url = host + 'purchaseTransactions'
       app.request.get(url, function (data) {
         if (data) {
           var productListUl = document.getElementById('product-list');
@@ -54,7 +41,6 @@ var app  = new Framework7({
     },
     saveUserProduct: function(record) {
       var promise = new Promise(function(resolve, reject) {
-        record['userId'] = app.data.user.userId;
         console.log(record);
         app.request.postJSON(
           host + 'purchaseTransactions',
@@ -71,7 +57,6 @@ var app  = new Framework7({
     },
     updateUserProduct: function(record, transactionId) {
       var promise = new Promise(function(resolve, reject) {
-        record['userId'] = app.data.user.userId;
         console.log(record);
         app.request({
           method: "PUT",
@@ -117,14 +102,13 @@ var app  = new Framework7({
       return promise;
     },
     prepareDropDowns: function() {
-      app.methods.getBrands();
       app.autocomplete.create({
         inputEl: '#product-autocomplete', //link that opens autocomplete
         openIn: 'dropdown', //open in page
         valueProperty: 'sku', //object's "value" property name
         textProperty: 'dropDownText', //object's "text" property name
         typeahead: true,
-        limit: 50,
+        limit: 10,
         preloader: true, //enable preloader
         source: function (query, render) {
           var autocomplete = this;
@@ -137,7 +121,7 @@ var app  = new Framework7({
           autocomplete.preloaderShow();
           // Do Ajax request to Autocomplete data
           app.request({
-            url: host + 'brands/' + $$('#selectedBrandId').val() + '/productList',
+            url: host + 'products',
             method: 'GET',
             dataType: 'json',
             //send "query" to server. Useful in case you generate response dynamically
@@ -250,12 +234,7 @@ var mainView = app.views.create('.view-main', {
   url: '/',
   on: {
     pageInit: function (page) {
-      if (typeof app.data.user === 'undefined') {
-        app.request.get(host + 'users/6c7acae9-9941-11e8-ab1c-080027d981a5', function (data) {
-          app.data['user'] = JSON.parse(data);
-          app.methods.getUserProducts(app.data.user.userId);
-        }); 
-      }
+      app.methods.getUserProducts();
     },
     pageBeforeIn: function (page) {
       if (page.name === 'home') {
@@ -267,14 +246,14 @@ var mainView = app.views.create('.view-main', {
 
 
 $$(document).on('page:afterin', '.page[data-name="home"]', function (e) {
-  app.methods.getUserProducts(app.data.user.userId);
+  app.methods.getUserProducts();
 });
 
 
 
 $$(document).on('page:init', '.page[data-name="new-item"]', function (e, page) {
   app.methods.prepareDropDowns();
-  $$('.page[data-name="new-item"] a#save').on('click', function() {
+  $$('.page[data-name="new-item"] a#done').on('click', function() {
     var formData = app.form.convertToData('#new-item-form');
     console.log(JSON.stringify(formData));
     app.methods.saveUserProduct(formData).then(function() {

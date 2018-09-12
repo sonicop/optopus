@@ -15,6 +15,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.social.connect.ConnectionFactoryLocator;
+import org.springframework.social.connect.UsersConnectionRepository;
+import org.springframework.social.connect.web.ProviderSignInController;
 
 @Configuration
 @EnableWebSecurity
@@ -30,7 +33,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //  public AuthenticationManager authenticationManager() throws Exception {
 //    return super.authenticationManagerBean();
 //  }
-
+  @Autowired
+  private ConnectionFactoryLocator connectionFactoryLocator;
+ 
+  @Autowired
+  private UsersConnectionRepository usersConnectionRepository;
+ 
+  @Autowired
+  private FacebookConnectionSignup facebookConnectionSignup;
+  
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     //http
@@ -41,6 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/framework7/**").permitAll()
                     .antMatchers("/images/**").permitAll()
                     .antMatchers("/scripts/**").permitAll()
+                    .antMatchers("/signin/**","/signup/**").permitAll()
                     .antMatchers("/**").authenticated()
                     .and()
                 .formLogin()
@@ -51,6 +63,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll();
 //http.authorizeRequests().antMatchers("/**").permitAll();
   }
+  
+  
+  @Bean
+  public ProviderSignInController providerSignInController() {
+//    ((InMemoryUsersConnectionRepository) usersConnectionRepository)
+//            .setConnectionSignUp(facebookConnectionSignup);
+
+    return new ProviderSignInController(
+            connectionFactoryLocator,
+            usersConnectionRepository,
+            new FacebookSignInAdapter());
+  }
+  
   
 
   @Order(Ordered.HIGHEST_PRECEDENCE + 10)

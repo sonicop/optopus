@@ -10,9 +10,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -25,6 +27,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -34,6 +40,8 @@ import javax.validation.constraints.Size;
 @Table(name = "products")
 @NamedQueries({
   @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")})
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Product implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -76,17 +84,21 @@ public class Product implements Serializable {
   @Size(max = 500)
   @Column(name = "note")
   private String note;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "sku")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "sku", fetch = FetchType.EAGER)
+//  @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+  @Fetch(FetchMode.SUBSELECT)  
   private List<Image> imageList;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "sku")
-  private List<Comment> commentList;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-  private List<UserProduct> userProductList;
+//  @OneToMany(cascade = CascadeType.ALL, mappedBy = "sku")
+//  private List<Comment> commentList;
+//  @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+//  private List<UserProduct> userProductList;
   @JoinColumn(name = "brand_id", referencedColumnName = "brand_id")
+  @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
   @ManyToOne(optional = false)
   private Brand brandId;
   @JoinColumn(name = "release_type_code", referencedColumnName = "release_code")
   @ManyToOne(optional = false)
+  @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
   private ReleaseType releaseTypeCode;
 
   public Product() {
@@ -191,21 +203,21 @@ public class Product implements Serializable {
     this.imageList = imageList;
   }
 
-  public List<Comment> getCommentList() {
-    return commentList;
-  }
+//  public List<Comment> getCommentList() {
+//    return commentList;
+//  }
 
-  public void setCommentList(List<Comment> commentList) {
-    this.commentList = commentList;
-  }
+//  public void setCommentList(List<Comment> commentList) {
+//    this.commentList = commentList;
+//  }
 
-  public List<UserProduct> getUserProductList() {
-    return userProductList;
-  }
+//  public List<UserProduct> getUserProductList() {
+//    return userProductList;
+//  }
 
-  public void setUserProductList(List<UserProduct> userProductList) {
-    this.userProductList = userProductList;
-  }
+//  public void setUserProductList(List<UserProduct> userProductList) {
+//    this.userProductList = userProductList;
+//  }
 
   public Brand getBrandId() {
     return brandId;
@@ -249,6 +261,6 @@ public class Product implements Serializable {
   }
   
   public String getDropDownText() {
-    return sku + " - " + name + ((tags != null)? " " + tags:"");
+    return brandId.getName()  + " - " + name + " (" + sku + ")" + ((tags != null)? " " + tags:"");
   }
 }

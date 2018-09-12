@@ -8,6 +8,7 @@ package com.sonicop.ohm.optopus.myohmbeads.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  *
@@ -27,6 +30,8 @@ import javax.validation.constraints.Size;
 @Table(name = "release_types")
 @NamedQueries({
   @NamedQuery(name = "ReleaseType.findAll", query = "SELECT r FROM ReleaseType r")})
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class ReleaseType implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -41,8 +46,6 @@ public class ReleaseType implements Serializable {
   @Size(min = 1, max = 100)
   @Column(name = "name")
   private String name;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "releaseTypeCode")
-  private List<Product> productList;
 
   public ReleaseType() {
   }
@@ -70,14 +73,6 @@ public class ReleaseType implements Serializable {
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public List<Product> getProductList() {
-    return productList;
-  }
-
-  public void setProductList(List<Product> productList) {
-    this.productList = productList;
   }
 
   @Override

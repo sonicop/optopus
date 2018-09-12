@@ -12,10 +12,13 @@ import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
@@ -25,12 +28,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MyOhmBeadsController {
+  
+  @Autowired
+  private Environment environment;
   
 	@Autowired
 	private UserProductRepository userProductRepository;
@@ -38,11 +43,15 @@ public class MyOhmBeadsController {
   @Autowired
   private UserRepository userRepository;
   
+  @Value("${testUserName}")
+  private String testUserName;
+  
 	@PostMapping(value = "/purchaseTransactions")
 	public ResponseEntity saveTransaction(@RequestBody PurchaseTransaction transaction, Principal principal) {
+    UUID userId = getUserId(principal);
     UserProduct userProduct = new UserProduct();
     userProduct.setProduct(new Product(transaction.getSku()));
-    userProduct.setUser(new User(UUID.fromString(transaction.getUserId())));
+    userProduct.setUser(new User(userId));
     userProduct.setCurrency(new Currency(transaction.getCurrencyCode()));
     userProduct.setPurchasePrice(new BigDecimal(transaction.getPurchasePrice()));
     userProduct.setPurchaseFrom(transaction.getPurchaseFrom());
@@ -58,10 +67,7 @@ public class MyOhmBeadsController {
     }
     userProduct.setNote(transaction.getNote());
     userProduct.setCreateTime(new Date());
-    if (principal != null) {
-      User user = userRepository.findOneByUsername(principal.getName());
-      userProduct.setCreatedBy(user.getUserId());
-    }
+    userProduct.setCreatedBy(userId);
     userProductRepository.save(userProduct);
 		return new ResponseEntity(transaction, HttpStatus.OK);
 	}
@@ -70,6 +76,7 @@ public class MyOhmBeadsController {
   
   @RequestMapping(value = "/purchaseTransactions/{transactionId}", method = RequestMethod.PUT)
 	public ResponseEntity updateTransaction(@RequestBody PurchaseTransaction transaction, @PathVariable String transactionId, Principal principal) {
+    UUID userId = getUserId(principal);
     UserProduct userProduct = userProductRepository.findById(UUID.fromString(transactionId)).orElse(null);
     userProduct.setCurrency(new Currency(transaction.getCurrencyCode()));
     userProduct.setPurchasePrice(new BigDecimal(transaction.getPurchasePrice()));
@@ -86,10 +93,7 @@ public class MyOhmBeadsController {
     }
     userProduct.setNote(transaction.getNote());
     userProduct.setUpdatedTime(new Date());
-    if (principal != null) {
-      User user = userRepository.findOneByUsername(principal.getName());
-      userProduct.setUpdatedBy(user.getUserId());
-    }
+    userProduct.setUpdatedBy(userId);
     userProductRepository.save(userProduct);
 		return new ResponseEntity(transaction, HttpStatus.OK);
 	}
@@ -98,13 +102,11 @@ public class MyOhmBeadsController {
   
   @RequestMapping(value = "/purchaseTransactions/{transactionId}", method = RequestMethod.DELETE)
 	public @ResponseBody void deleteTransaction(@PathVariable String transactionId, Principal principal) {
+    UUID userId = getUserId(principal);
     UserProduct userProduct = userProductRepository.findById(UUID.fromString(transactionId)).orElse(null);
     if (userProduct != null) {
       userProduct.setDeletedTime(new Date());
-      if (principal != null) {
-        User user = userRepository.findOneByUsername(principal.getName());
-        userProduct.setDeletedBy(user.getUserId());
-      }
+      userProduct.setDeletedBy(userId);
       userProductRepository.save(userProduct);
     }
 	}
@@ -113,8 +115,9 @@ public class MyOhmBeadsController {
 
   @GetMapping(value = "/purchaseTransactions")
   // TODO: Security - use principal instead of passing in userId
-  public List<PurchaseTransaction> getTransactionsByUserId(@RequestParam("userId") String userId) {
-    List<UserProduct> userProductList = userProductRepository.findAllByUserUserIdAndDeletedTimeIsNullOrderByCreateTimeDesc(UUID.fromString(userId));
+  public List<PurchaseTransaction> getTransactionsByUserId(Principal principal) {
+    UUID userId = getUserId(principal);
+    List<UserProduct> userProductList = userProductRepository.findAllByUserUserIdAndDeletedTimeIsNullOrderByCreateTimeDesc(userId);
     List<PurchaseTransaction> resultList  = null;
     if (userProductList != null && !userProductList.isEmpty()) {
       resultList = new ArrayList(userProductList.size());
@@ -162,6 +165,18 @@ public class MyOhmBeadsController {
       transaction.setNote(userProduct.getNote());
     }
     return transaction;
-  }  
+  }
+
   
+  
+  private UUID getUserId(Principal principal) {
+    String userName = null;
+    if (environment.getActiveProfiles() != null && Arrays.asList(environment.getActiveProfiles()).contains("dev")) {
+      userName = testUserName;
+    } else {
+      userName = principal.getName();
+    }
+    User currentUser = userRepository.findOneByUsername(userName);
+    return currentUser.getUserId();    
+  }  
 }

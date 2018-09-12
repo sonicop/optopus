@@ -8,6 +8,7 @@ package com.sonicop.ohm.optopus.myohmbeads.model;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,6 +22,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  *
@@ -30,6 +33,8 @@ import javax.validation.constraints.Size;
 @Table(name = "images")
 @NamedQueries({
   @NamedQuery(name = "Image.findAll", query = "SELECT i FROM Image i")})
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Image implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -56,9 +61,11 @@ public class Image implements Serializable {
   @ManyToOne(optional = false)
   private Product sku;
   @JoinColumn(name = "created_by", referencedColumnName = "user_id")
-  @ManyToOne(optional = false)
-  private User createdBy;
-
+//  @ManyToOne(optional = false)
+//  private User createdBy;
+  @Column(name = "created_by")
+  private byte[] createdBy;
+  
   public Image() {
   }
 
@@ -112,11 +119,11 @@ public class Image implements Serializable {
     this.sku = sku;
   }
 
-  public User getCreatedBy() {
+  public byte[] getCreatedBy() {
     return createdBy;
   }
 
-  public void setCreatedBy(User createdBy) {
+  public void setCreatedBy(byte[] createdBy) {
     this.createdBy = createdBy;
   }
 

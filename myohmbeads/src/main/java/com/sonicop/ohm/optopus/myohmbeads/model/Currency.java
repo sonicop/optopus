@@ -7,6 +7,7 @@ package com.sonicop.ohm.optopus.myohmbeads.model;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,6 +16,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  *
@@ -24,6 +27,8 @@ import javax.validation.constraints.Size;
 @Table(name = "currencies")
 @NamedQueries({
   @NamedQuery(name = "Currency.findAll", query = "SELECT c FROM Currency c")})
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Currency implements Serializable {
 
   private static final long serialVersionUID = 1L;
