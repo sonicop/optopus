@@ -52,9 +52,15 @@ public class MyOhmBeadsController {
     UserProduct userProduct = new UserProduct();
     userProduct.setProduct(new Product(transaction.getSku()));
     userProduct.setUser(new User(userId));
-    userProduct.setCurrency(new Currency(transaction.getCurrencyCode()));
-    userProduct.setPurchasePrice(new BigDecimal(transaction.getPurchasePrice()));
-    userProduct.setPurchaseFrom(transaction.getPurchaseFrom());
+    if (!StringUtils.isEmpty(transaction.getCurrencyCode())) {
+      userProduct.setCurrency(new Currency(transaction.getCurrencyCode()));
+    }
+    if (!StringUtils.isEmpty(transaction.getPurchasePrice())) {
+      userProduct.setPurchasePrice(new BigDecimal(transaction.getPurchasePrice()));
+    }
+    if (!StringUtils.isEmpty(transaction.getPurchaseFrom())) {
+      userProduct.setPurchaseFrom(transaction.getPurchaseFrom());
+    }
     if (!StringUtils.isEmpty(transaction.getPurchaseDate())) {
       SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
       Date purchaseDate;
@@ -128,10 +134,14 @@ public class MyOhmBeadsController {
         transaction.setSku(userProduct.getProduct().getSku());
         transaction.setProductName(userProduct.getProduct().getName());
         transaction.setCreateTime(userProduct.getCreateTime());
-        transaction.setCurrencyCode(userProduct.getCurrency().getCurrencyCode());
-        transaction.setPurchasePrice(userProduct.getPurchasePrice().toString());
+        if (userProduct.getCurrency() != null) {
+          transaction.setCurrencyCode(userProduct.getCurrency().getCurrencyCode());
+        }
+        if (userProduct.getPurchasePrice() !=null) {
+          transaction.setPurchasePrice(userProduct.getPurchasePrice().toString());
+        }
         transaction.setPurchaseFrom(userProduct.getPurchaseFrom());
-        if (!StringUtils.isEmpty(userProduct.getPurchaseDate())) {
+        if (userProduct.getPurchaseDate() != null) {
           SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
           transaction.setPurchaseDate(sf.format(userProduct.getPurchaseDate()));
         }
@@ -155,10 +165,14 @@ public class MyOhmBeadsController {
       transaction = new PurchaseTransaction();
       transaction.setBrandId(userProduct.getProduct().getBrandId().getBrandId().toString());
       transaction.setSku(userProduct.getProduct().getSku());
-      transaction.setCurrencyCode(userProduct.getCurrency().getCurrencyCode());
-      transaction.setPurchasePrice(userProduct.getPurchasePrice().toString());
+      if (userProduct.getCurrency() != null) {
+        transaction.setCurrencyCode(userProduct.getCurrency().getCurrencyCode());
+      }
+      if (userProduct.getPurchasePrice() != null) {
+        transaction.setPurchasePrice(userProduct.getPurchasePrice().toString());
+      }
       transaction.setPurchaseFrom(userProduct.getPurchaseFrom());
-      if (!StringUtils.isEmpty(userProduct.getPurchaseDate())) {
+      if (userProduct.getPurchaseDate() != null) {
         SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
         transaction.setPurchaseDate(sf.format(userProduct.getPurchaseDate()));
       }

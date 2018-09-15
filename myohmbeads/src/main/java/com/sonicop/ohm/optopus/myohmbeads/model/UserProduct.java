@@ -58,12 +58,8 @@ public class UserProduct implements Serializable {
   @Column(name = "created_by", columnDefinition = "BINARY(16)", updatable = false)
   private UUID createdBy;
   // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-  @Basic(optional = false)
-  @NotNull
   @Column(name = "purchase_price")
   private BigDecimal purchasePrice;
-  @Basic(optional = false)
-  @NotNull
   @Size(min = 1, max = 100)
   @Column(name = "purchase_from")
   private String purchaseFrom;
@@ -82,7 +78,7 @@ public class UserProduct implements Serializable {
   @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
   private Product product;
   @JoinColumn(name = "currency_code", referencedColumnName = "currency_code")
-  @ManyToOne(optional = false)
+  @ManyToOne
   @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
   private Currency currency;
   
