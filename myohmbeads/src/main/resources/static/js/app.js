@@ -41,7 +41,6 @@ var app  = new Framework7({
     },
     saveUserProduct: function(record) {
       var promise = new Promise(function(resolve, reject) {
-        console.log(record);
         app.request.postJSON(
           host + 'purchaseTransactions',
           record,
@@ -57,7 +56,6 @@ var app  = new Framework7({
     },
     updateUserProduct: function(record, transactionId) {
       var promise = new Promise(function(resolve, reject) {
-        console.log(record);
         app.request({
           method: "PUT",
           url: host + 'purchaseTransactions/' + transactionId,
@@ -94,7 +92,6 @@ var app  = new Framework7({
         app.request.get(url, function (data) {
           if (data) {
             var transaction = JSON.parse(data);
-            console.log(transaction);
             resolve(transaction);
           }
         });
@@ -138,7 +135,7 @@ var app  = new Framework7({
     displayFormErrors: function(responseText) {
       var messages;
       if (responseText.startsWith("{") && responseText.endsWith("}")) {
-        messages = '';
+        messages = 'Invalid input(s):<br/>';
         var errors = JSON.parse(responseText).fieldErrors;
         errors.forEach(function(error) {
           var fieldName = error.field;
@@ -149,7 +146,7 @@ var app  = new Framework7({
         messages = responseText;
       }
       app.dialog.create({
-        title: 'Invalid input(s):',
+        title: 'Warning!',
         text: messages,
         buttons: [{text:'Retry'}]
       }).open();      
@@ -269,6 +266,20 @@ var app  = new Framework7({
           });
         },
       });
+    },
+    equalsObjects: function(object1, object2) {
+      if (typeof object1 === "undefined" || object1 === null ||
+          typeof object2 === "undefined" || object2 === null) {
+        return false;   
+      }
+      for (var property in object1) {
+        if (object1.hasOwnProperty(property)) {
+          if (object1[property] !== object2[property]) {
+            return false;
+          }
+        }
+      }
+      return true;
     }
   },
   // App routes
@@ -301,36 +312,54 @@ $$(document).on('page:afterin', '.page[data-name="home"]', function (e) {
 
 $$(document).on('page:init', '.page[data-name="new-item"]', function (e, page) {
   app.methods.prepareDropDowns();
+  app.data.initialFormData = app.form.convertToData('#new-item-form');
   $$('.page[data-name="new-item"] a#done').on('click', function() {
     $$('.error-field-wrapper').removeClass('error-field-wrapper');
     var formData = app.form.convertToData('#new-item-form');
-    var errors = app.methods.validatePurchaseTranstationForm(formData);
-    if (errors) {
+    if (app.methods.equalsObjects(app.data.initialFormData, formData)) {
+      page.router.back();
       return;
+    } else {
+      app.dialog.create({
+        title: 'Warning!',
+        text: 'You have entered some data.',
+        buttons: [{
+          text:'Dismiss',
+          onClick: function() {
+             page.router.back();
+             return;
+           }},{
+          text:'Save',
+          onClick: function() {
+            var errors = app.methods.validatePurchaseTranstationForm(formData);
+            if (errors) {
+              return;
+            }
+            app.methods.saveUserProduct(formData).then(
+              function() {
+                app.dialog.alert('Added successfully!', 'Infomation', function() {
+                  page.router.back();
+                });      
+              },
+              function(xhr) {
+                app.methods.displayFormErrors(xhr.responseText);
+              }
+            );
+          }
+        }]
+      }).open();
     }
-    console.log(JSON.stringify(formData));
-    app.methods.saveUserProduct(formData).then(
-      function() {
-        app.dialog.alert('Added successfully!', app.name, function() {
-          page.router.back();
-        });      
-      },
-      function(xhr) {
-        app.methods.displayFormErrors(xhr.responseText);
-      }
-    );
   });
-  $$('.page[data-name="new-item"] a#add-more').on('click', function() {
+  $$('.page[data-name="new-item"] a#save').on('click', function() {
     $$('.error-field-wrapper').removeClass('error-field-wrapper');
     var formData = app.form.convertToData('#new-item-form');
     var errors = app.methods.validatePurchaseTranstationForm(formData);
     if (errors) {
       return;
     }
-    console.log(JSON.stringify(formData));
     app.methods.saveUserProduct(formData).then(
       function() {
-        app.dialog.alert('Added successfully!', app.name, function() {
+        app.dialog.alert('Added successfully!', 'Information', function() {
           $$('#new-item-form')[0].reset();
         });      
       },
@@ -359,17 +388,25 @@ $$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, pag
     $$("input[name='purchaseFrom']").val(transaction.purchaseFrom);
     $$("input[name='purchaseDate']").val(transaction.purchaseDate);
     $$("textarea[name='note']").val(transaction.note);
+    app.data.initialFormData = app.form.convertToData('#edit-item-form');
   });
-  
+
   $$('.page[data-name="edit-item"] a#update').on('click', function() {
     $$('.error-field-wrapper').removeClass('error-field-wrapper');
     var formData = app.form.convertToData('#edit-item-form');
+    if (app.methods.equalsObjects(app.data.initialFormData, formData)) {
+      app.dialog.create({
+        title: 'Warning!',
+        text: 'No data has been changed.',
+        buttons: [{text:'Cancel'}]
+      }).open();
+      return;
+    }
     var errors = app.methods.validatePurchaseTranstationForm(formData);
     if (errors) {
       return;
     }
-    app.dialog.confirm('Are you sure?', function () {
-      console.log(JSON.stringify(formData));
+    app.dialog.confirm('Are you sure?', 'Confirm', function () {
       app.methods.updateUserProduct(formData, transactionId).then(
         function(data) {
           app.dialog.alert('Updated successfully!', app.name, function() {
