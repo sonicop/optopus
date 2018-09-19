@@ -8,6 +8,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface UserRepository extends CrudRepository<User, UUID> {
-  @Cacheable(value = "findOneByUsername", key = "#username")
+  @Cacheable(value = "UserRepository.findOneByUsername", key = "#username")
   public User findOneByUsername(String username);
 }

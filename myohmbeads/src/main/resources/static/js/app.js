@@ -48,7 +48,7 @@ var app  = new Framework7({
           function (data) {
             resolve(data);
           },
-          function(xhr, status) {
+          function(xhr) {
             reject(xhr);
           }
         );
@@ -66,7 +66,7 @@ var app  = new Framework7({
           success: function (data) {
             resolve(data);
           },
-          error: function(xhr, status) {
+          error: function(xhr) {
             reject(xhr);
           }
         });
@@ -101,6 +101,59 @@ var app  = new Framework7({
       });
       return promise;
     },
+    validatePurchaseTranstationForm: function(formData) {
+      var errors = [];
+      if (typeof formData.sku === "undefined" || formData.sku.length === 0) {
+        errors.push({field: "sku", message: "Product SKU is required."});
+      } else if (formData.sku.length > 48) {
+        errors.push({field: "sku", message: "Product SKU is invalid."});
+      }
+      
+      if (typeof formData.currencyCode !== "undefined" && formData.currencyCode.length > 3) {
+        errors.push({field: "currencyCode", message: "Currency code is invalid."});
+      }
+      
+      if (typeof formData.purchasePrice !== "undefined" && !(/^(\s*|\d*\.?\d+)$/.test(formData.purchasePrice))) {
+        errors.push({field: "purchasePrice", message: "Purchase price is invalid format."});
+      }
+      
+      if (typeof formData.purchasePrice !== "undefined" && formData.purchasePrice.length > 13) {
+        errors.push({field: "purchasePrice", message: "Purchase price exceed maximum length."});
+      }
+  
+      if (typeof formData.purchaseFrom !== "undefined" && formData.purchaseFrom.length > 100) {
+        errors.push({field: "purchaseFrom", message: "Purchase from is invalid."});
+      }
+
+      if (typeof formData.note !== "undefined" && formData.note.length > 500) {
+        errors.push({field: "note", message: "Note is invalid."});
+      }
+      if (errors.length > 0) {
+        app.methods.displayFormErrors(JSON.stringify({fieldErrors: errors}));
+        return errors;
+      } else {
+        return null;
+      }
+    },
+    displayFormErrors: function(responseText) {
+      var messages;
+      if (responseText.startsWith("{") && responseText.endsWith("}")) {
+        messages = '';
+        var errors = JSON.parse(responseText).fieldErrors;
+        errors.forEach(function(error) {
+          var fieldName = error.field;
+          $$('input[name="' + fieldName + '"]').parent('.item-input-wrap').addClass('error-field-wrapper');
+          messages = messages + error.message + '<br/>';
+        });
+      } else {
+        messages = responseText;
+      }
+      app.dialog.create({
+        title: 'Invalid input(s):',
+        text: messages,
+        buttons: [{text:'Retry'}]
+      }).open();      
+    },
     prepareDropDowns: function() {
       app.autocomplete.create({
         inputEl: '#product-autocomplete', //link that opens autocomplete
@@ -121,24 +174,18 @@ var app  = new Framework7({
           autocomplete.preloaderShow();
           // Do Ajax request to Autocomplete data
           app.request({
-            url: host + 'products',
+            url: host + 'products/search/getByKeywords',
             method: 'GET',
             dataType: 'json',
             //send "query" to server. Useful in case you generate response dynamically
             data: {
-              query: query
+              keywords: query
             },
             success: function (data) {
-              data = data._embedded.products;
-              // Find matched items
-              for (var i = 0; i < data.length; i++) {
-                displayText = data[i].sku + ': ' + data[i].name;
-                if (displayText.toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(data[i]);
-              }
               // Hide Preoloader
               autocomplete.preloaderHide();
               // Render items by passing array with result items
-              render(results);
+              render(data);
             }
           });
         },
@@ -222,7 +269,6 @@ var app  = new Framework7({
           });
         },
       });
-      
     }
   },
   // App routes
@@ -234,7 +280,9 @@ var mainView = app.views.create('.view-main', {
   url: '/',
   on: {
     pageInit: function (page) {
-      app.methods.getUserProducts();
+      if (page.name === 'home') {
+        app.methods.getUserProducts();
+      }
     },
     pageBeforeIn: function (page) {
       if (page.name === 'home') {
@@ -254,22 +302,42 @@ $$(document).on('page:afterin', '.page[data-name="home"]', function (e) {
 $$(document).on('page:init', '.page[data-name="new-item"]', function (e, page) {
   app.methods.prepareDropDowns();
   $$('.page[data-name="new-item"] a#done').on('click', function() {
+    $$('.error-field-wrapper').removeClass('error-field-wrapper');
     var formData = app.form.convertToData('#new-item-form');
+    var errors = app.methods.validatePurchaseTranstationForm(formData);
+    if (errors) {
+      return;
+    }
     console.log(JSON.stringify(formData));
-    app.methods.saveUserProduct(formData).then(function() {
-      app.dialog.alert('Added successfully!', app.name, function() {
-        page.router.back();
-      });      
-    });
+    app.methods.saveUserProduct(formData).then(
+      function() {
+        app.dialog.alert('Added successfully!', app.name, function() {
+          page.router.back();
+        });      
+      },
+      function(xhr) {
+        app.methods.displayFormErrors(xhr.responseText);
+      }
+    );
   });
   $$('.page[data-name="new-item"] a#add-more').on('click', function() {
+    $$('.error-field-wrapper').removeClass('error-field-wrapper');
     var formData = app.form.convertToData('#new-item-form');
+    var errors = app.methods.validatePurchaseTranstationForm(formData);
+    if (errors) {
+      return;
+    }
     console.log(JSON.stringify(formData));
-    app.methods.saveUserProduct(formData).then(function() {
-      app.dialog.alert('Added successfully!', app.name, function() {
-        $$('#new-item-form')[0].reset();
-      });      
-    });
+    app.methods.saveUserProduct(formData).then(
+      function() {
+        app.dialog.alert('Added successfully!', app.name, function() {
+          $$('#new-item-form')[0].reset();
+        });      
+      },
+      function(xhr) {
+        app.methods.displayFormErrors(xhr.responseText);
+      }
+    );
   });
 });
 
@@ -294,7 +362,12 @@ $$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, pag
   });
   
   $$('.page[data-name="edit-item"] a#update').on('click', function() {
+    $$('.error-field-wrapper').removeClass('error-field-wrapper');
     var formData = app.form.convertToData('#edit-item-form');
+    var errors = app.methods.validatePurchaseTranstationForm(formData);
+    if (errors) {
+      return;
+    }
     app.dialog.confirm('Are you sure?', function () {
       console.log(JSON.stringify(formData));
       app.methods.updateUserProduct(formData, transactionId).then(
@@ -304,8 +377,7 @@ $$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, pag
           });
         },
         function(xhr) {
-          app.dialog.alert('Failed to update!');
-          console.error(xhr);
+          app.methods.displayFormErrors(xhr.responseText);
         }
       );
     });
@@ -320,11 +392,11 @@ $$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, pag
           });
         },
         function(xhr) {
-          app.dialog.alert('Failed to update!');
-          console.error(xhr);
+          app.methods.displayFormErrors(xhr.responseText);
         }
       );
     });
   });
 });
+
 

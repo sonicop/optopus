@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ehcache>
   <diskStore path="java.io.tmpdir"/>
+
+  <cache name="UserRepository.findOneByUsername"
+    maxEntriesLocalHeap="10000"
+    eternal="false"
+    timeToIdleSeconds="3600"
+    timeToLiveSeconds="3600"
+    maxEntriesLocalDisk="10000000"
+    diskExpiryThreadIntervalSeconds="120"
+    memoryStoreEvictionPolicy="LRU"/>  
+  
+  <cache name="ProductRepository.findByKeyword"
+    maxEntriesLocalHeap="10000"
+    eternal="false"
+    timeToIdleSeconds="3600"
+    timeToLiveSeconds="3600"
+    maxEntriesLocalDisk="10000000"
+    diskExpiryThreadIntervalSeconds="120"
+    memoryStoreEvictionPolicy="LRU"/>
   
   <defaultCache
     maxEntriesLocalHeap="10000"

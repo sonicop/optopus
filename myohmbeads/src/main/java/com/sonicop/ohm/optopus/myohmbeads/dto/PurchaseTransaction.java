@@ -1,19 +1,35 @@
 package com.sonicop.ohm.optopus.myohmbeads.dto;
 
 import java.util.Date;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 public class PurchaseTransaction {
 
   private String transactionId;
-  private String brandId;
+  
+  @NotEmpty(message = "Product SKU is required.")
+  @Size(max = 48, message="Product SKU is invalid")
   private String sku;
+  
   private String productName;
-  private String userId;
+  
   private Date createTime;
+  
+  @Size(max = 3, message="Currency code is invalid.")
   private String currencyCode;
+  
+  @Pattern(regexp="^(\\s*|\\d*\\.?\\d+)$", message="Purchase price is invalid format.")
+  @Size(max = 13, message="Purchase price exceed maximum length.")
   private String purchasePrice;
+  
+  @Size(max = 100, message="Purchase from is invalid")
   private String purchaseFrom;
+  
   private String purchaseDate;
+  
+  @Size(max = 500, message="Note is invalid")
   private String note;
   private String imageReference;
 
@@ -23,14 +39,6 @@ public class PurchaseTransaction {
 
   public void setTransactionId(String transactionId) {
     this.transactionId = transactionId;
-  }
-
-  public String getBrandId() {
-    return brandId;
-  }
-
-  public void setBrandId(String brandId) {
-    this.brandId = brandId;
   }
 
   public String getSku() {
@@ -49,14 +57,6 @@ public class PurchaseTransaction {
     this.productName = productName;
   }
   
-  public String getUserId() {
-    return userId;
-  }
-
-  public void setUserId(String userId) {
-    this.userId = userId;
-  }
-
   public Date getCreateTime() {
     return createTime;
   }

@@ -5,6 +5,7 @@ import com.sonicop.ohm.optopus.myohmbeads.model.Currency;
 import com.sonicop.ohm.optopus.myohmbeads.model.Product;
 import com.sonicop.ohm.optopus.myohmbeads.model.User;
 import com.sonicop.ohm.optopus.myohmbeads.model.UserProduct;
+import com.sonicop.ohm.optopus.myohmbeads.repository.ProductRepository;
 import com.sonicop.ohm.optopus.myohmbeads.repository.UserProductRepository;
 import com.sonicop.ohm.optopus.myohmbeads.repository.UserRepository;
 import java.math.BigDecimal;
@@ -14,8 +15,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
+import javax.validation.ConstraintViolation;
+import javax.validation.Valid;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
@@ -28,6 +37,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,6 +48,9 @@ public class MyOhmBeadsController {
   private Environment environment;
   
 	@Autowired
+	private ProductRepository productRepository;
+  
+	@Autowired
 	private UserProductRepository userProductRepository;
   
   @Autowired
@@ -46,8 +59,33 @@ public class MyOhmBeadsController {
   @Value("${testUserName}")
   private String testUserName;
   
+  @GetMapping(value = "/products/search/getByKeywords")
+  public List<Map<String,String>> getProductsByKeyword(@RequestParam("keywords") String keywords) {
+    String regexKeyWords = keywords.trim().replaceAll(" +", "|");
+    List<Product> productList = productRepository.findByKeyword(regexKeyWords);
+    List<Map<String,String>> result = new ArrayList(productList.size());
+    for (Product product: productList) {
+      Map<String, String> option = new HashMap();
+      option.put("sku", product.getSku());
+      option.put("name", product.getName());
+      option.put("brandName", product.getBrandId().getName());
+      option.put("tags", product.getTags());
+      option.put("dropDownText", product.getBrandId().getName()  + " - " + product.getName() + " (" + product.getSku() + ")" + ((product.getTags() != null)? " " + product.getTags() :""));
+      result.add(option);
+    }
+    return result;
+  }
+  
 	@PostMapping(value = "/purchaseTransactions")
-	public ResponseEntity saveTransaction(@RequestBody PurchaseTransaction transaction, Principal principal) {
+	public ResponseEntity saveTransaction(@Valid @RequestBody PurchaseTransaction transaction, Principal principal) {
+    
+//    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+//    Validator validator = factory.getValidator();
+//    Set<ConstraintViolation<PurchaseTransaction>> errors = validator.validate(transaction);    
+//    if (errors != null && !errors.isEmpty()) {
+//      return new ResponseEntity(errors, HttpStatus.BAD_REQUEST);
+//    }
+    
     UUID userId = getUserId(principal);
     UserProduct userProduct = new UserProduct();
     userProduct.setProduct(new Product(transaction.getSku()));
@@ -81,12 +119,18 @@ public class MyOhmBeadsController {
   
   
   @RequestMapping(value = "/purchaseTransactions/{transactionId}", method = RequestMethod.PUT)
-	public ResponseEntity updateTransaction(@RequestBody PurchaseTransaction transaction, @PathVariable String transactionId, Principal principal) {
+	public ResponseEntity updateTransaction(@Valid @RequestBody PurchaseTransaction transaction, @PathVariable String transactionId, Principal principal) {
     UUID userId = getUserId(principal);
     UserProduct userProduct = userProductRepository.findById(UUID.fromString(transactionId)).orElse(null);
-    userProduct.setCurrency(new Currency(transaction.getCurrencyCode()));
-    userProduct.setPurchasePrice(new BigDecimal(transaction.getPurchasePrice()));
-    userProduct.setPurchaseFrom(transaction.getPurchaseFrom());
+    if (!StringUtils.isEmpty(transaction.getCurrencyCode())) {
+      userProduct.setCurrency(new Currency(transaction.getCurrencyCode()));
+    }
+    if (!StringUtils.isEmpty(transaction.getPurchasePrice())) {
+      userProduct.setPurchasePrice(new BigDecimal(transaction.getPurchasePrice()));
+    }
+    if (!StringUtils.isEmpty(transaction.getPurchaseFrom())) {
+      userProduct.setPurchaseFrom(transaction.getPurchaseFrom());
+    }
     if (!StringUtils.isEmpty(transaction.getPurchaseDate())) {
       SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
       Date purchaseDate;
@@ -130,7 +174,6 @@ public class MyOhmBeadsController {
       for (UserProduct userProduct: userProductList) {
         PurchaseTransaction transaction = new PurchaseTransaction();
         transaction.setTransactionId(userProduct.getTransactionId().toString());
-        transaction.setBrandId(userProduct.getProduct().getBrandId().getBrandId().toString());
         transaction.setSku(userProduct.getProduct().getSku());
         transaction.setProductName(userProduct.getProduct().getName());
         transaction.setCreateTime(userProduct.getCreateTime());
@@ -163,7 +206,6 @@ public class MyOhmBeadsController {
     PurchaseTransaction transaction = null;
     if (userProduct!= null) {
       transaction = new PurchaseTransaction();
-      transaction.setBrandId(userProduct.getProduct().getBrandId().getBrandId().toString());
       transaction.setSku(userProduct.getProduct().getSku());
       if (userProduct.getCurrency() != null) {
         transaction.setCurrencyCode(userProduct.getCurrency().getCurrencyCode());
