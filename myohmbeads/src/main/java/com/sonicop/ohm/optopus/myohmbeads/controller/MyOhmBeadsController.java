@@ -79,13 +79,6 @@ public class MyOhmBeadsController {
 	@PostMapping(value = "/purchaseTransactions")
 	public ResponseEntity saveTransaction(@Valid @RequestBody PurchaseTransaction transaction, Principal principal) {
     
-//    ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-//    Validator validator = factory.getValidator();
-//    Set<ConstraintViolation<PurchaseTransaction>> errors = validator.validate(transaction);    
-//    if (errors != null && !errors.isEmpty()) {
-//      return new ResponseEntity(errors, HttpStatus.BAD_REQUEST);
-//    }
-    
     UUID userId = getUserId(principal);
     UserProduct userProduct = new UserProduct();
     userProduct.setProduct(new Product(transaction.getSku()));
@@ -164,7 +157,6 @@ public class MyOhmBeadsController {
 
 
   @GetMapping(value = "/purchaseTransactions")
-  // TODO: Security - use principal instead of passing in userId
   public List<PurchaseTransaction> getTransactionsByUserId(Principal principal) {
     UUID userId = getUserId(principal);
     List<UserProduct> userProductList = userProductRepository.findAllByUserUserIdAndDeletedTimeIsNullOrderByCreateTimeDesc(userId);
@@ -176,6 +168,7 @@ public class MyOhmBeadsController {
         transaction.setTransactionId(userProduct.getTransactionId().toString());
         transaction.setSku(userProduct.getProduct().getSku());
         transaction.setProductName(userProduct.getProduct().getName());
+        transaction.setBrandName(userProduct.getProduct().getBrandId().getName());
         transaction.setCreateTime(userProduct.getCreateTime());
         if (userProduct.getCurrency() != null) {
           transaction.setCurrencyCode(userProduct.getCurrency().getCurrencyCode());

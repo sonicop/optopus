@@ -17,6 +17,7 @@ var app  = new Framework7({
   // App root methods
   methods: {
     getUserProducts: function() {
+      app.preloader.show();
       var url = host + 'purchaseTransactions'
       app.request.get(url, function (data) {
         if (data) {
@@ -29,14 +30,21 @@ var app  = new Framework7({
             var html = templateHtml.replace(/{{transactionId}}/g, transactionArray[i].transactionId)
                                    .replace(/{{sku}}/g, transactionArray[i].sku)
                                    .replace(/{{name}}/g, transactionArray[i].productName)
+                                   .replace(/{{brandName}}/g, transactionArray[i].brandName)
                                    .replace(/{{createTime}}/g, transactionArray[i].createTime.substring(0,10))
+                                   .replace(/{{price}}/g, transactionArray[i].purchasePrice)
+                                   .replace(/{{currency}}/g, transactionArray[i].currencyCode)
                                    .replace(/{{note}}/g, transactionArray[i].note)
                                    .replace(/{{reference}}/g, transactionArray[i].imageReference);
-            var li = document.createElement('li');
-            li.innerHTML = html;
-            productListUl.appendChild(li);
+            var div = document.createElement('div');
+            div.innerHTML = html;
+            productListUl.appendChild(div.firstElementChild);
           }
         }
+        $$('.deleted-callback').on('swipeout:deleted', function () {
+          app.methods.deleteUserProduct($$(this).attr('data-id'));
+        });  
+        app.preloader.hide();
       });
     },
     saveUserProduct: function(record) {

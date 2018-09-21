@@ -15,6 +15,8 @@ public class PurchaseTransaction {
   
   private String productName;
   
+  private String brandName;
+  
   private Date createTime;
   
   @Size(max = 3, message="Currency code is invalid.")
@@ -55,6 +57,14 @@ public class PurchaseTransaction {
 
   public void setProductName(String productName) {
     this.productName = productName;
+  }
+
+  public String getBrandName() {
+    return brandName;
+  }
+
+  public void setBrandName(String brandName) {
+    this.brandName = brandName;
   }
   
   public Date getCreateTime() {
