@@ -52,31 +52,42 @@ public class UserProduct implements Serializable {
   @Column(name = "create_time")
   @Temporal(TemporalType.TIMESTAMP)
   private Date createTime;
+
   // TODO: cannot be mapped with String
   //@Basic(optional = false)
   //@NotNull
   @Column(name = "created_by", columnDefinition = "BINARY(16)", updatable = false)
   private UUID createdBy;
+
   // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
   @Column(name = "purchase_price")
   private BigDecimal purchasePrice;
+
   @Size(min = 1, max = 100)
   @Column(name = "purchase_from")
   private String purchaseFrom;
+
   @Column(name = "purchase_date")
   @Temporal(TemporalType.DATE)
   private Date purchaseDate;
+
   @Size(max = 500)
   @Column(name = "note")
   private String note;
+
   @JoinColumn(name = "user_id", referencedColumnName = "user_id")
   @ManyToOne(optional = false)
   @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
   private User user;
+
   @JoinColumn(name = "sku", referencedColumnName = "sku")
   @ManyToOne(optional = false)
   @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
   private Product product;
+  
+  @Column(name = "serial_number")
+  private String serialNumber;
+  
   @JoinColumn(name = "currency_code", referencedColumnName = "currency_code")
   @ManyToOne
   @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -189,6 +200,14 @@ public class UserProduct implements Serializable {
 
   public void setProduct(Product product) {
     this.product = product;
+  }
+
+  public String getSerialNumber() {
+    return serialNumber;
+  }
+
+  public void setSerialNumber(String serialNumber) {
+    this.serialNumber = serialNumber;
   }
 
   public Currency getCurrency() {

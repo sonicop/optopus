@@ -114,6 +114,10 @@ var app  = new Framework7({
         errors.push({field: "sku", message: "Product SKU is invalid."});
       }
       
+      if (typeof formData.serialNumber !== "undefined" && formData.serialNumber.length > 48) {
+        errors.push({field: "serialNumber", message: "Serial number is invalid."});
+      }
+      
       if (typeof formData.currencyCode !== "undefined" && formData.currencyCode.length > 3) {
         errors.push({field: "currencyCode", message: "Currency code is invalid."});
       }
@@ -376,6 +380,14 @@ $$(document).on('page:init', '.page[data-name="new-item"]', function (e, page) {
       }
     );
   });
+  $$("input[name='sku']").on('keyup keydown change',function() {
+    var sku = $$("input[name='sku']").val();
+    if (sku !== '') {
+      $$('#save').removeClass('disabled');
+    } else {
+      $$('#save').addClass('disabled');
+    }
+  });
 });
 
 
@@ -391,6 +403,7 @@ $$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, pag
   app.methods.getUserProduct(transactionId).then(function(transaction) {
     $$("select[name='brandId']").val(transaction.brandId);
     $$("input[name='sku']").val(transaction.sku);
+    $$("input[name='serialNumber']").val(transaction.serialNumber);
     $$("input[name='currencyCode']").val(transaction.currencyCode);
     $$("input[name='purchasePrice']").val(transaction.purchasePrice);
     $$("input[name='purchaseFrom']").val(transaction.purchaseFrom);
@@ -442,6 +455,14 @@ $$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, pag
       );
     });
   });
+  $$("input,textarea").on('keyup keydown change',function() {
+    var formData = app.form.convertToData('#edit-item-form');
+    if (app.methods.equalsObjects(app.data.initialFormData, formData) === false) {
+      $$('#update').removeClass('disabled');
+    } else {
+      $$('#update').addClass('disabled');
+    }
+  });  
 });
 
 

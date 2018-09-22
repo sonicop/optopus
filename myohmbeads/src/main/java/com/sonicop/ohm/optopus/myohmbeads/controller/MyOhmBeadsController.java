@@ -83,6 +83,7 @@ public class MyOhmBeadsController {
     UserProduct userProduct = new UserProduct();
     userProduct.setProduct(new Product(transaction.getSku()));
     userProduct.setUser(new User(userId));
+    userProduct.setSerialNumber(transaction.getSerialNumber());
     if (!StringUtils.isEmpty(transaction.getCurrencyCode())) {
       userProduct.setCurrency(new Currency(transaction.getCurrencyCode()));
     }
@@ -115,6 +116,7 @@ public class MyOhmBeadsController {
 	public ResponseEntity updateTransaction(@Valid @RequestBody PurchaseTransaction transaction, @PathVariable String transactionId, Principal principal) {
     UUID userId = getUserId(principal);
     UserProduct userProduct = userProductRepository.findById(UUID.fromString(transactionId)).orElse(null);
+    userProduct.setSerialNumber(transaction.getSerialNumber());
     if (!StringUtils.isEmpty(transaction.getCurrencyCode())) {
       userProduct.setCurrency(new Currency(transaction.getCurrencyCode()));
     }
@@ -170,6 +172,7 @@ public class MyOhmBeadsController {
         transaction.setProductName(userProduct.getProduct().getName());
         transaction.setBrandName(userProduct.getProduct().getBrandId().getName());
         transaction.setCreateTime(userProduct.getCreateTime());
+        transaction.setSerialNumber(userProduct.getSerialNumber());
         if (userProduct.getCurrency() != null) {
           transaction.setCurrencyCode(userProduct.getCurrency().getCurrencyCode());
         }
@@ -200,6 +203,7 @@ public class MyOhmBeadsController {
     if (userProduct!= null) {
       transaction = new PurchaseTransaction();
       transaction.setSku(userProduct.getProduct().getSku());
+      transaction.setSerialNumber(userProduct.getSerialNumber());
       if (userProduct.getCurrency() != null) {
         transaction.setCurrencyCode(userProduct.getCurrency().getCurrencyCode());
       }

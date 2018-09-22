@@ -27,6 +27,16 @@
         <li>
           <div class="item-content item-input">
             <div class="item-inner">
+              <div class="item-title item-label">Serial Number</div>
+              <div class="item-input-wrap">
+                <input name="serialNumber" id="product-autocomplete" type="text" placeholder="Serial Number">
+              </div>              
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
               <label id="photo-label" for="photo-file" class="item-title item-label">Photo</label>
               <input id="photo-file" name="photo-file" type="file" accept="image/*"/>
             </div>
@@ -87,7 +97,7 @@
     </div>
     <div class="block">
       <p class="row">
-        <a href="#" class="col button button-big button-fill" id="update">Update</a>
+        <a href="#" class="col button button-big button-fill disabled" id="update">Update</a>
         <a href="#" class="col button button-big button-fill" id="remove">Remove</a>
       </p>
     </div>

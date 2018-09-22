@@ -17,6 +17,9 @@ public class PurchaseTransaction {
   
   private String brandName;
   
+  @Size(max = 48, message="Serial number is invalid")
+  private String serialNumber;
+  
   private Date createTime;
   
   @Size(max = 3, message="Currency code is invalid.")
@@ -65,6 +68,14 @@ public class PurchaseTransaction {
 
   public void setBrandName(String brandName) {
     this.brandName = brandName;
+  }
+
+  public String getSerialNumber() {
+    return serialNumber;
+  }
+
+  public void setSerialNumber(String serialNumber) {
+    this.serialNumber = serialNumber;
   }
   
   public Date getCreateTime() {
