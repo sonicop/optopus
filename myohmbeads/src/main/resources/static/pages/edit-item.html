@@ -45,9 +45,9 @@
         <li>
           <div class="item-content item-input">
             <div class="item-inner">
-              <div class="item-title item-label">Currency</div>
+              <div class="item-title item-label">Purchase Price</div>
               <div class="item-input-wrap">
-                <input name="currencyCode" id="currency-autocomplete" type="text" value="USD" />
+                <input name="purchasePrice" type="number" min="0.01" step="0.01" max="10000" placeholder="$"/>
               </div>
             </div>
           </div>
@@ -55,9 +55,9 @@
         <li>
           <div class="item-content item-input">
             <div class="item-inner">
-              <div class="item-title item-label">Purchase Price</div>
+              <div class="item-title item-label">Currency</div>
               <div class="item-input-wrap">
-                <input name="purchasePrice" type="number" min="0.01" step="0.01" max="10000" placeholder="$"/>
+                <input name="currencyCode" id="currency-autocomplete" type="text" value="USD" />
               </div>
             </div>
           </div>
@@ -85,9 +85,9 @@
         <li class="align-top">
           <div class="item-content item-input">
             <div class="item-inner">
-              <div class="item-title item-label">Notes</div>
+              <div class="item-title item-label">Personal Notes</div>
               <div class="item-input-wrap">
-                <textarea name="note" placeholder="Notes"></textarea>
+                <textarea name="note" placeholder="Notes" rows="3"></textarea>
               </div>
             </div>
           </div>

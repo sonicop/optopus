@@ -20,6 +20,15 @@
     diskExpiryThreadIntervalSeconds="120"
     memoryStoreEvictionPolicy="LRU"/>
   
+  <cache name="CurrencyRepository.findByKeyword"
+    maxEntriesLocalHeap="10000"
+    eternal="false"
+    timeToIdleSeconds="3600"
+    timeToLiveSeconds="3600"
+    maxEntriesLocalDisk="10000000"
+    diskExpiryThreadIntervalSeconds="120"
+    memoryStoreEvictionPolicy="LRU"/>
+  
   <defaultCache
     maxEntriesLocalHeap="10000"
     eternal="false"

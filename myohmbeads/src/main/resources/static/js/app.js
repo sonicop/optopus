@@ -169,7 +169,7 @@ var app  = new Framework7({
         openIn: 'dropdown', //open in page
         valueProperty: 'sku', //object's "value" property name
         textProperty: 'dropDownText', //object's "text" property name
-        typeahead: true,
+        typeahead: false,
         limit: 10,
         preloader: true, //enable preloader
         source: function (query, render) {
@@ -217,24 +217,17 @@ var app  = new Framework7({
           autocomplete.preloaderShow();
           // Do Ajax request to Autocomplete data
           app.request({
-            url: host + 'currencies',
+            url: host + 'currencies/search/findByKeyword',
             method: 'GET',
             dataType: 'json',
             //send "query" to server. Useful in case you generate response dynamically
             data: {
-              query: query
+              keyword: query
             },
             success: function (data) {
               data = data._embedded.currencies;
-              // Find matched items
-              for (var i = 0; i < data.length; i++) {
-                displayText = data[i].dropDownText;
-                if (displayText.toLowerCase().indexOf(query.toLowerCase()) >= 0) results.push(data[i]);
-              }
-              // Hide Preoloader
               autocomplete.preloaderHide();
-              // Render items by passing array with result items
-              render(results);
+              render(data);
             }
           });
         },
