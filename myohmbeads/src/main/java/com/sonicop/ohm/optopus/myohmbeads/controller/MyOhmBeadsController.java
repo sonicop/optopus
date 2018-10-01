@@ -65,7 +65,8 @@ public class MyOhmBeadsController {
       option.put("name", product.getName());
       option.put("brandName", product.getBrandId().getName());
       option.put("tags", product.getTags());
-      option.put("dropDownText", product.getBrandId().getName()  + " - " + product.getName() + " (" + product.getSku() + ")" + ((product.getTags() != null)? " " + product.getTags() :""));
+      option.put("valueProperty", product.getBrandId().getName()  + " - " + product.getName() + " (" + product.getSku() + ")");
+      option.put("textProperty", product.getBrandId().getName()  + " - " + product.getName() + " (" + product.getSku() + ")" + ((product.getTags() != null)? " " + product.getTags() :""));
       result.add(option);
     }
     return result;
@@ -73,10 +74,12 @@ public class MyOhmBeadsController {
   
 	@PostMapping(value = "/purchaseTransactions")
 	public ResponseEntity saveTransaction(@Valid @RequestBody PurchaseTransaction transaction, Principal principal) {
-    
+    int startPos = transaction.getSku().lastIndexOf("(") + 1;
+    int endPos = transaction.getSku().lastIndexOf(")");
+    String sku = transaction.getSku().substring(startPos, endPos);
     UUID userId = getUserId(principal);
     UserProduct userProduct = new UserProduct();
-    userProduct.setProduct(new Product(transaction.getSku()));
+    userProduct.setProduct(new Product(sku));
     userProduct.setUser(new User(userId));
     userProduct.setSerialNumber(transaction.getSerialNumber());
     if (!StringUtils.isEmpty(transaction.getCurrencyCode())) {
@@ -196,8 +199,11 @@ public class MyOhmBeadsController {
     UserProduct userProduct = userProductRepository.findById(UUID.fromString(transactionId)).orElse(null);
     PurchaseTransaction transaction = null;
     if (userProduct!= null) {
+      String textProperty = userProduct.getProduct().getBrandId().getName()  + 
+                            " - " + userProduct.getProduct().getName() + 
+                             " (" + userProduct.getProduct().getSku() + ")";
       transaction = new PurchaseTransaction();
-      transaction.setSku(userProduct.getProduct().getSku());
+      transaction.setSku(textProperty);
       transaction.setSerialNumber(userProduct.getSerialNumber());
       if (userProduct.getCurrency() != null) {
         transaction.setCurrencyCode(userProduct.getCurrency().getCurrencyCode());

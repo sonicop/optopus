@@ -43,7 +43,48 @@ var app  = new Framework7({
         }
         $$('.deleted-callback').on('swipeout:deleted', function () {
           app.methods.deleteUserProduct($$(this).attr('data-id'));
-        });  
+        });
+        var moreActions = app.actions.create({
+          buttons: [
+            [
+              {
+                text: 'Select a command to apply to your product.',
+                label: true,
+                color: 'white',
+                bg: 'black'
+              },
+              {
+                text: 'Comment',
+                color: 'white',
+                bg: 'blue',
+                onClick: function(){
+                  mainView.router.navigate('/comment/' + app.data.selectedProductId);
+                }                
+              },
+              {
+                text: 'Edit',
+                color: 'white',
+                bg: 'orange',
+                onClick: function(){
+                  mainView.router.navigate('/edit-item/' + app.data.selectedProductId);
+                }
+              }
+            ],
+            [
+              {
+                text: 'Cancel',
+                bold: true,
+                color: 'red'
+              }
+            ]
+          ],
+        });
+        $$('.open-more-actions').on('click', function () {
+          moreActions.open();
+          //var id = $$(this).parent('.deleted-callback').attr('data-id');
+          var id = $$(this).parents('.deleted-callback').attr('data-id');
+          app.data.selectedProductId = id;
+        });        
         app.preloader.hide();
       });
     },
@@ -167,8 +208,8 @@ var app  = new Framework7({
       app.autocomplete.create({
         inputEl: '#product-autocomplete', //link that opens autocomplete
         openIn: 'dropdown', //open in page
-        valueProperty: 'sku', //object's "value" property name
-        textProperty: 'dropDownText', //object's "text" property name
+        valueProperty: 'valueProperty', //object's "value" property name
+        textProperty: 'textProperty', //object's "text" property name
         typeahead: false,
         limit: 10,
         preloader: true, //enable preloader

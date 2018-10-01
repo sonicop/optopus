@@ -258,8 +258,4 @@ public class Product implements Serializable {
   public String toString() {
     return "com.sonicop.ohm.optopus.myohmbeads.model.Product[ sku=" + sku + " ]";
   }
-  
-  public String getDropDownText() {
-    return brandId.getName()  + " - " + name + " (" + sku + ")" + ((tags != null)? " " + tags:"");
-  }
 }
