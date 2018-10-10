@@ -11,7 +11,7 @@
       * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
           * Enable inline JS: add 'unsafe-inline' to default-src
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+<!--  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">-->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -80,12 +80,21 @@
     
     #photo-label {
       display: inline-block;
+      height: 171px;
+      margin-bottom: 5px;
+      background-image: url(images/photo-camera.svg);
+      background-size: 60px;
+      background-position: center;
+      background-repeat: no-repeat;
+
+/*      display: inline-block;
       height: 46px;
       margin-bottom: 5px;
       background-image: url("images/icons8-camera-50.png");
       background-size: 24px;
       background-position: left bottom;
-      background-repeat: no-repeat;
+      background-repeat: no-repeat;*/
+
     }
     
     #photo-file {
@@ -207,6 +216,8 @@
   <!--
   <script src="cordova.js"></script>
   -->
+  <script src="js/image-db.js"></script>
+  
 
   <!-- Framework7 library -->
   <script src="framework7/js/framework7.min.js"></script>
@@ -216,6 +227,7 @@
 
   <!-- Your custom app scripts -->
   <script src="js/app.js"></script>
+  
   <script id="product-template" type="text/template">
     <li class="swipeout deleted-callback" data-id="{{transactionId}}">
       <div class="swipeout-content">

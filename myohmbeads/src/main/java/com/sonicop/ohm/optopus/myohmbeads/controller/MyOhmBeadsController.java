@@ -1,5 +1,6 @@
 package com.sonicop.ohm.optopus.myohmbeads.controller;
 
+import com.sonicop.ohm.optopus.myohmbeads.dto.ProductInfo;
 import com.sonicop.ohm.optopus.myohmbeads.dto.PurchaseTransaction;
 import com.sonicop.ohm.optopus.myohmbeads.model.Currency;
 import com.sonicop.ohm.optopus.myohmbeads.model.Product;
@@ -67,19 +68,37 @@ public class MyOhmBeadsController {
       option.put("tags", product.getTags());
       option.put("valueProperty", product.getBrandId().getName()  + " - " + product.getName() + " (" + product.getSku() + ")");
       option.put("textProperty", product.getBrandId().getName()  + " - " + product.getName() + " (" + product.getSku() + ")" + ((product.getTags() != null)? " " + product.getTags() :""));
+//      if (product.getImageList() != null && product.getImageList().size() > 0) {
+//        option.put("image", product.getImageList().get(0).getReference());
+//      }
       result.add(option);
     }
     return result;
   }
   
+  
+  
+	@GetMapping(value = "/productInfo/{sku}")
+	public ProductInfo getProductInfo(@PathVariable String sku) {
+    Product product = productRepository.findById(sku).orElse(null);
+    ProductInfo productInfo = new ProductInfo();
+    if (product != null) {
+      productInfo.setSku(product.getSku());
+      productInfo.setName(product.getName());
+      if (product.getImageList() != null && product.getImageList().size() > 0) {
+        productInfo.setImageReference(product.getImageList().get(0).getReference());
+      }
+    }
+    return productInfo;
+  }
+  
+
+  
 	@PostMapping(value = "/purchaseTransactions")
 	public ResponseEntity saveTransaction(@Valid @RequestBody PurchaseTransaction transaction, Principal principal) {
-    int startPos = transaction.getSku().lastIndexOf("(") + 1;
-    int endPos = transaction.getSku().lastIndexOf(")");
-    String sku = transaction.getSku().substring(startPos, endPos);
     UUID userId = getUserId(principal);
     UserProduct userProduct = new UserProduct();
-    userProduct.setProduct(new Product(sku));
+    userProduct.setProduct(new Product(transaction.getSku()));
     userProduct.setUser(new User(userId));
     userProduct.setSerialNumber(transaction.getSerialNumber());
     if (!StringUtils.isEmpty(transaction.getCurrencyCode())) {
