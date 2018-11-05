@@ -16,6 +16,10 @@ routes = [
     url: './pages/edit-item.html',
   },
   {
+    path: '/photo-loader/',
+    url: './pages/photo-loader.html',
+  },
+  {
     path: '/comment/:transactionId',
     url: './pages/comment.html',
   },

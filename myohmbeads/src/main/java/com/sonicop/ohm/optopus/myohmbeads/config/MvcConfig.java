@@ -12,4 +12,11 @@ public class MvcConfig implements WebMvcConfigurer {
     registry.addViewController("/login").setViewName("login");
   }
 
+//  @Override
+//  public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//    registry.addResourceHandler("/fonts/**","/css/**")
+//            .addResourceLocations("/resources/")
+//            .setCacheControl(CacheControl.maxAge(365, TimeUnit.DAYS));
+//  }
+
 }

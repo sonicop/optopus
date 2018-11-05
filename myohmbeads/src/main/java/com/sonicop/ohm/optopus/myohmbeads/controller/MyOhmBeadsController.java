@@ -1,5 +1,12 @@
 package com.sonicop.ohm.optopus.myohmbeads.controller;
 
+import com.amazonaws.auth.BasicSessionCredentials;
+import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClient;
+import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClientBuilder;
+import com.amazonaws.services.securitytoken.model.Credentials;
+import com.amazonaws.services.securitytoken.model.GetSessionTokenRequest;
+import com.amazonaws.services.securitytoken.model.GetSessionTokenResult;
+import com.sonicop.ohm.optopus.myohmbeads.config.AwsConfig;
 import com.sonicop.ohm.optopus.myohmbeads.dto.ProductInfo;
 import com.sonicop.ohm.optopus.myohmbeads.dto.PurchaseTransaction;
 import com.sonicop.ohm.optopus.myohmbeads.model.Currency;
@@ -55,6 +62,10 @@ public class MyOhmBeadsController {
   @Value("${testUserName}")
   private String testUserName;
   
+  @Autowired
+  AwsConfig awsConfig;
+  
+  
   @GetMapping(value = "/products/search/getByKeywords")
   public List<Map<String,String>> getProductsByKeyword(@RequestParam("keywords") String keywords) {
     String regexKeyWords = keywords.trim().replaceAll(" +", "|");
@@ -96,7 +107,7 @@ public class MyOhmBeadsController {
   
 	@PostMapping(value = "/purchaseTransactions")
 	public ResponseEntity saveTransaction(@Valid @RequestBody PurchaseTransaction transaction, Principal principal) {
-    UUID userId = getUserId(principal);
+    UUID userId = getUser(principal).getUserId();
     UserProduct userProduct = new UserProduct();
     userProduct.setProduct(new Product(transaction.getSku()));
     userProduct.setUser(new User(userId));
@@ -131,7 +142,7 @@ public class MyOhmBeadsController {
   
   @RequestMapping(value = "/purchaseTransactions/{transactionId}", method = RequestMethod.PUT)
 	public ResponseEntity updateTransaction(@Valid @RequestBody PurchaseTransaction transaction, @PathVariable String transactionId, Principal principal) {
-    UUID userId = getUserId(principal);
+    UUID userId = getUser(principal).getUserId();
     UserProduct userProduct = userProductRepository.findById(UUID.fromString(transactionId)).orElse(null);
     userProduct.setSerialNumber(transaction.getSerialNumber());
     if (!StringUtils.isEmpty(transaction.getCurrencyCode())) {
@@ -164,7 +175,7 @@ public class MyOhmBeadsController {
   
   @RequestMapping(value = "/purchaseTransactions/{transactionId}", method = RequestMethod.DELETE)
 	public @ResponseBody void deleteTransaction(@PathVariable String transactionId, Principal principal) {
-    UUID userId = getUserId(principal);
+    UUID userId = getUser(principal).getUserId();
     UserProduct userProduct = userProductRepository.findById(UUID.fromString(transactionId)).orElse(null);
     if (userProduct != null) {
       userProduct.setDeletedTime(new Date());
@@ -177,7 +188,7 @@ public class MyOhmBeadsController {
 
   @GetMapping(value = "/purchaseTransactions")
   public List<PurchaseTransaction> getTransactionsByUserId(Principal principal) {
-    UUID userId = getUserId(principal);
+    UUID userId = getUser(principal).getUserId();
     List<UserProduct> userProductList = userProductRepository.findAllByUserUserIdAndDeletedTimeIsNullOrderByCreateTimeDesc(userId);
     List<PurchaseTransaction> resultList  = null;
     if (userProductList != null && !userProductList.isEmpty()) {
@@ -239,10 +250,31 @@ public class MyOhmBeadsController {
     }
     return transaction;
   }
+  
+  
+  
+  @GetMapping(value = "/awsParameters")
+  public Map<String, Object> getAwsParameters(Principal principal) {
+    String username = getUser(principal).getUsername();
+    GetSessionTokenRequest sessionTokenRequest = new GetSessionTokenRequest();
+    sessionTokenRequest.setDurationSeconds(60000);
+    GetSessionTokenResult sessionTokenResult = awsConfig.getStsClient().getSessionToken(sessionTokenRequest);
+    Credentials sessionCreds = sessionTokenResult.getCredentials();
+    Map<String, Object> params = new HashMap();
+    params.put("accessKeyId", sessionCreds.getAccessKeyId());
+    params.put("secretAccessKey", sessionCreds.getSecretAccessKey());
+    params.put("sessionToken", sessionCreds.getSessionToken());
+    params.put("region", awsConfig.getRegion());
+    params.put("s3bucket", awsConfig.getS3Bucket());
+    params.put("username", username);
+    SimpleDateFormat sf = new SimpleDateFormat("yyyyMMddHHmmss");
+    params.put("creationTime", sf.format(new Date()));
+    return params;
+  }  
 
   
   
-  private UUID getUserId(Principal principal) {
+  private User getUser(Principal principal) {
     String userName = null;
     if (environment.getActiveProfiles() != null && Arrays.asList(environment.getActiveProfiles()).contains("dev")) {
       userName = testUserName;
@@ -250,6 +282,6 @@ public class MyOhmBeadsController {
       userName = principal.getName();
     }
     User currentUser = userRepository.findOneByUsername(userName);
-    return currentUser.getUserId();    
+    return currentUser;    
   }  
 }

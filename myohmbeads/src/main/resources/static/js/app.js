@@ -330,11 +330,11 @@ var app  = new Framework7({
       return promise;
     },
     browseImages: function() {
-      imageDB.getFiles().then(function (files) {
-        console.log(files);
+      imageDB.getFiles().then(function (records) {
+        log(records);
         var images = [];
-        files.forEach(function(file) {
-            images.push({url: URL.createObjectURL(file), caption: file.name});
+        records.forEach(function(record) {
+            images.push({url: record.file, caption: record.caption});
           }
         );
         var imageBrowser = app.photoBrowser.create({
@@ -344,11 +344,65 @@ var app  = new Framework7({
         imageBrowser.open();
       });
     },
+    uploadImages: function(sku) {
+      app.request({
+        url: host + 'awsParameters',
+        method: 'GET',
+        dataType: 'json',
+        success: function (awsParams) {
+          AWS.config.credentials = new AWS.Credentials(awsParams.accessKeyId, awsParams.secretAccessKey, awsParams.sessionToken);
+          var s3 = new AWS.S3();
+          imageDB.getFiles().then(function (records) {
+            var imageDataRows = [];
+            records.forEach(function(record, index) {
+              // sku / username / datetime / index
+              var objectKey = encodeURIComponent(sku) + '/' +
+                              encodeURIComponent(awsParams.username) + '/' +
+                              awsParams.creationTime + '/' +
+                              index;
+              var blob = app.methods.b64toBlob(record.file, record.type);
+              var s3Params = {
+                Bucket: awsParams.s3bucket, 
+                Key: objectKey,
+                Body: blob, 
+                ContentEncoding: 'base64',
+                ContentType: record.type,
+                ContentLength: blob.size
+              };
+              s3.putObject(s3Params, function(err, data) {
+                if (err) {
+                  log(err);
+                  console.log(err, err.stack); // an error occurred
+                } else {
+                  console.log(data);
+                  imageDataRows[index] = {
+                    sku: sku,
+                    reference: objectKey,
+                    caption: record.caption,
+                  };
+                }
+                log(imageDataRows);
+              });
+            });
+          });          
+        }
+      });
+    },
     extractSku: function(productFullName) {
       var startPos = productFullName.lastIndexOf("(") + 1;
       var endPos = productFullName.lastIndexOf(")");
       var sku = productFullName.substring(startPos, endPos);
       return sku;
+    },
+    b64toBlob: function(dataURI, contentType) {
+      var byteString = atob(dataURI.split(',')[1]);
+      var ab = new ArrayBuffer(byteString.length);
+      var ia = new Uint8Array(ab);
+
+      for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+      }
+      return new Blob([ab], {type: contentType});
     },
     equalsObjects: function(object1, object2) {
       if (typeof object1 === "undefined" || object1 === null ||
@@ -393,160 +447,30 @@ $$(document).on('page:afterin', '.page[data-name="home"]', function (e) {
 
 
 
-$$(document).on('page:init', '.page[data-name="new-item"]', function (e, page) {
-  app.methods.prepareDropDowns();
-  app.data.initialFormData = app.form.convertToData('#new-item-form');
-  $$('.page[data-name="new-item"] a#done').on('click', function() {
-    $$('.error-field-wrapper').removeClass('error-field-wrapper');
-    var formData = app.form.convertToData('#new-item-form');
-    if (app.methods.equalsObjects(app.data.initialFormData, formData)) {
-      page.router.back();
-      return;
-    } else {
-      app.dialog.create({
-        title: 'Warning!',
-        text: 'You have entered some data.',
-        buttons: [{
-          text:'Dismiss',
-          onClick: function() {
-             page.router.back();
-             return;
-           }},{
-          text:'Save',
-          onClick: function() {
-            var errors = app.methods.validatePurchaseTranstationForm(formData);
-            if (errors) {
-              return;
-            }
-            formData.sku = app.methods.extractSku(formData.sku);
-            app.methods.saveUserProduct(formData).then(
-              function() {
-                app.dialog.alert('Added successfully!', 'Infomation', function() {
-                  page.router.back();
-                });      
-              },
-              function(xhr) {
-                app.methods.displayFormErrors(xhr.responseText);
-              }
-            );
-          }
-        }]
-      }).open();
-    }
-  });
-  $$('.page[data-name="new-item"] a#save').on('click', function() {
-    $$('.error-field-wrapper').removeClass('error-field-wrapper');
-    var formData = app.form.convertToData('#new-item-form');
-    var errors = app.methods.validatePurchaseTranstationForm(formData);
-    if (errors) {
-      return;
-    }
-    app.methods.saveUserProduct(formData).then(
-      function() {
-        app.dialog.alert('Added successfully!', 'Information', function() {
-          $$('#new-item-form')[0].reset();
-        });      
-      },
-      function(xhr) {
-        app.methods.displayFormErrors(xhr.responseText);
-      }
-    );
-  });
-  $$("input[name='sku']").on('keyup keydown change',function() {
-    var productFullName = $$("input[name='sku']").val();
-    if (productFullName !== '') {
-      $$('#save').removeClass('disabled');
-    } else {
-      $$('#save').addClass('disabled');
-    }
-  });
-  $$("input[name='sku']").on('change',function() {
-    var productFullName = $$("input[name='sku']").val();
-    if (productFullName !== '' && productFullName.indexOf('(') >= 0 && productFullName.indexOf(')') >= 0) {
-      var sku = app.methods.extractSku(productFullName);
-      app.methods.getProductInfo(sku).then(function(productInfo) {
-        $$('#photo-label').css('background-image','url(' + productInfo.imageReference + ')');
-        $$('#photo-label').css('background-size','contain');
-      });
-    }
-  });  
-  $$("#photo-file").on('change', function (e, page) {
-    console.log(e);
+
+
+
+
+
+$$('#resetDB').on('click', function() {
+  app.dialog.confirm('Are you sure?', function () {
+    imageDB.resetDatabase();
   });
 });
 
 
 
-$$(document).on('page:init', '.page[data-name="edit-item"]', function (e) {
-  app.methods.prepareDropDowns();
-});
+function log(txt) {
+  var now = new Date();
+  var nowStr = pad(now.getHours(), 2) + ":" + pad(now.getMinutes(),2) + ":" + pad(now.getSeconds(),2);
+  $$('#logger').prepend(nowStr + ' - ' + txt + '<br/>');
+  console.log(txt);
+}
 
 
 
-$$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, page) {
-  var transactionId = page.route.params.transactionId;
-  app.methods.getUserProduct(transactionId).then(function(transaction) {
-    $$("select[name='brandId']").val(transaction.brandId);
-    $$("input[name='sku']").val(transaction.sku);
-    $$("input[name='serialNumber']").val(transaction.serialNumber);
-    $$("input[name='currencyCode']").val(transaction.currencyCode);
-    $$("input[name='purchasePrice']").val(transaction.purchasePrice);
-    $$("input[name='purchaseFrom']").val(transaction.purchaseFrom);
-    $$("input[name='purchaseDate']").val(transaction.purchaseDate);
-    $$("textarea[name='note']").val(transaction.note);
-    app.data.initialFormData = app.form.convertToData('#edit-item-form');
-  });
-
-  $$('.page[data-name="edit-item"] a#update').on('click', function() {
-    $$('.error-field-wrapper').removeClass('error-field-wrapper');
-    var formData = app.form.convertToData('#edit-item-form');
-    if (app.methods.equalsObjects(app.data.initialFormData, formData)) {
-      app.dialog.create({
-        title: 'Warning!',
-        text: 'No data has been changed.',
-        buttons: [{text:'Cancel'}]
-      }).open();
-      return;
-    }
-    var errors = app.methods.validatePurchaseTranstationForm(formData);
-    if (errors) {
-      return;
-    }
-    app.dialog.confirm('Are you sure?', 'Confirm', function () {
-      app.methods.updateUserProduct(formData, transactionId).then(
-        function(data) {
-          app.dialog.alert('Updated successfully!', app.name, function() {
-            page.router.back();
-          });
-        },
-        function(xhr) {
-          app.methods.displayFormErrors(xhr.responseText);
-        }
-      );
-    });
-  });
-  
-  $$('.page[data-name="edit-item"] a#remove').on('click', function() {
-    app.dialog.confirm('Are you sure?', function () {
-      app.methods.deleteUserProduct(transactionId).then(
-        function(data) {
-          app.dialog.alert('Removed successfully!', app.name, function() {
-            page.router.back();
-          });
-        },
-        function(xhr) {
-          app.methods.displayFormErrors(xhr.responseText);
-        }
-      );
-    });
-  });
-  $$("input,textarea").on('keyup keydown change',function() {
-    var formData = app.form.convertToData('#edit-item-form');
-    if (app.methods.equalsObjects(app.data.initialFormData, formData) === false) {
-      $$('#update').removeClass('disabled');
-    } else {
-      $$('#update').addClass('disabled');
-    }
-  });  
-});
-
+function pad(num, size) {
+    var s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
+}
