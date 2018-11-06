@@ -1,0 +1,1851 @@
+"sku","name","brand_id","map"
+"AAA001","Whale's Tale",1,35
+"AAA002","Mighty Bear",1,40
+"AAA003","Halibut",1,35
+"AAA004","Alaska King Crab",1,35
+"AAA005","Husky",1,35
+"AAA006","Soaring Eagle",1,35
+"AAA007","Perfect Puffin",1,35
+"AAA008","Sand Dollar",1,35
+"AAA009","Platypus",1,35
+"AAA010","Alligator",1,35
+"AAA011","Conch Seashell",1,35
+"AAA012","Pelican",1,35
+"AAA013","Owl",1,35
+"AAA014","Killer Whale",1,40
+"AAA015","Manatee",1,40
+"AAA016","Shetland Sheepdog",1,40
+"AAA017","Pug",1,40
+"AAA018","Corgi",1,40
+"AAA019","Pomeranian",1,40
+"AAA020","Shih Tzu",1,40
+"AAA021","Cocker Spaniel",1,40
+"AAA022","Bulldog",1,40
+"AAA023","Yorkshire Terrier",1,40
+"AAA024","Maltese",1,40
+"AAA025","Golden Retriever",1,40
+"AAA026","Doberman Pinscher",1,40
+"AAA027","Great Dane",1,40
+"AAA029","Beagle",1,40
+"AAA030","Boxer",1,40
+"AAA031","Dachshund",1,40
+"AAA032","Rottweiler",1,40
+"AAA033","Cavalier King Charles Spaniel",1,40
+"AAA034","French Bulldog",1,40
+"AAA035","Labrador Retriever",1,40
+"AAA036","White Terrier",1,40
+"AAA037","Curly Sheep",1,40
+"AAA040","T-Rex Skull",1,60
+"AAA040N","T-Rex Skull Necklace",1,100
+"AAA041","Turkey Platter",1,40
+"AAD001","Derby Hat",1,35
+"AAF00101","Chocolate",1,45
+"AAF00102","Chocolate",1,45
+"AAF00103","Chocolate",1,45
+"DUMMY","Dummy",1,35
+"AAH001","Leprechaun",1,40
+"AAH001G","Leprechaun",1,50
+"AAH002","Arrr",1,40
+"AAL003","I Love You Mom",1,40
+"AAL004","I Love You Daughter",1,40
+"AAL005","I Love You Sister",1,40
+"AAL006","I Love You Aunt",1,40
+"AAL007","I Love You Niece",1,40
+"AAL008","I Love You Nana",1,40
+"AAL009","I Love You Grandma",1,40
+"AAL010","Daddy's Little Girl",1,45
+"AAL011","Trust Love",1,40
+"AAL012","Love Hurts",1,45
+"AAM001","Trumpet",1,45
+"AAM002","Sousaphone",1,45
+"AAM003","Cymbals",1,45
+"AAM004","Clarinet",1,45
+"AAM005","Flute",1,45
+"AAM006","Trombone",1,45
+"AAM007","Snare Drum",1,45
+"AAM008","Bass Drum",1,45
+"AAM009","Saxophone",1,45
+"AAM010","Drum Major",1,45
+"AAN001","Angel Nurse Cap",1,35
+"AAP001","Handcuffs",1,40
+"AAP002","Screw Me",1,25
+"AAP003","Get Nailed",1,25
+"AAP004","Feeling Knotty",1,25
+"AAP005","Go Nuts!",1,25
+"AAP007","Inner Peace",1,40
+"AAP008","Asana",1,40
+"AAR001","Drops of Life",1,45
+"AAR002","Cranium",1,45
+"AAR003","Widget",1,45
+"AAR004","Arachnid",1,45
+"AAR005","Finding Time",1,45
+"AAR006","Sacrifice",1,45
+"AAR007","Last Grasp",1,45
+"AAR008","Cameo",1,45
+"AAR009","Rest In Peace",1,45
+"AAS001","Snowshoes",1,40
+"AAS002","The Big Catch",1,40
+"AAS003","Scuba",1,35
+"AAS004","Skiing",1,35
+"AAS005","Trophy",1,35
+"AAS006","Soccer Mom",1,60
+"AAS007","Hockey Mom",1,60
+"AAS009","Figure Skating",1,40
+"AAS010","The Enforcer",1,40
+"AAS011","Color Guard",1,40
+"AAS012","Snowboarding",1,40
+"AAS013","Curling",1,40
+"AAS014","Bobsledding",1,40
+"AAT001","Igloo",1,35
+"AAT002","Seaplane",1,35
+"AAT003","Alaska Cruising",1,30
+"AAT004","Anchors Aweigh",1,35
+"AAT005","My Lifesaver",1,40
+"AAT006","Gold Rush",1,50
+"AAT007","Maine Cruising",1,30
+"AAT008","Around The World",1,40
+"AAT009","Desk Globe",1,45
+"AAT100","I Heart Vermont",1,40
+"AAT101","I Heart Florida",1,40
+"AAT102","I Heart Ohio",1,40
+"AAT103","I Heart Rhode Island",1,40
+"AAT104","I Heart Massachusetts",1,40
+"AAT105","I Heart New York",1,40
+"AAT106","I Heart New Hampshire",1,40
+"AAT107","I Heart Arizona",1,40
+"AAT108","I Heart Minnesota",1,40
+"AAT109","I Heart North Carolina",1,40
+"AAT110","I Heart Tennessee",1,40
+"AAT111","I Heart Connecticut",1,40
+"AAT112","I Heart Texas",1,40
+"AAT113","I Heart California",1,40
+"AAT114","I Heart Washington",1,40
+"AAT115","I Heart Pennsylvania",1,40
+"AAT116","I Heart Georgia",1,40
+"AAT117","I Heart Louisiana",1,40
+"AAT118","I Heart Michigan",1,40
+"AAT119","I Heart Missouri",1,40
+"AAT122","I Heart Virginia",1,40
+"AAT123","Bucket List",1,40
+"AAY001","Moose Xing",1,35
+"AAY002","Totem",1,35
+"AAY003","I Heart Alaska",1,40
+"AAY004","I Heart Maine",1,40
+"AAY005","Mortar & Pestle",1,35
+"AAY006","Budai",1,40
+"AAY006G","Budai",1,55
+"AAY007","Rock On",1,35
+"AAY008","Je Maindientrai",1,80
+"AAY009","Infinite Time",1,40
+"AAY010","Divine Providence",1,40
+"AAY011","Merkaba",1,40
+"AAY014","Life Force",1,40
+"AGB007","Bloom -14K Gold",1,700
+"AGB041","Butterfly Band -14K Gold",1,350
+"AGJ009A","Tear Drop -14K Gold",1,400
+"AGJ011B","Rhombus -14K Gold",1,550
+"AGLS003","Happy Hearts -14K Gold",1,550
+"AGS010","Folk Hearts -14K Gold",1,300
+"AGS012","Swirl Filigree -14K Gold",1,300
+"AGS018","Heart & Crown -14K Gold",1,400
+"AGS052","Hugs & Kisses -14K Gold",1,150
+"AHA001","Otter",1,40
+"AHB001","Australia Flag/Map",1,35
+"AHB002","Union Jack Flag/Map",1,35
+"AHB003","USA Flag",1,35
+"AHB005","World Peace",1,40
+"AHB007","Hawaiian Ukulele Girl",1,40
+"AHB008","Girl's Night Out",1,50
+"AHC001","Baby Blocks Love Family",1,40
+"AHD001","Watermelon",1,60
+"AHD002","Bluebird of Happiness",1,55
+"AHD00207","Spring Robin",1,60
+"AHD003","Three Butterflies",1,45
+"AHD004","Hugs & Kisses",1,45
+"AHD005","The Star",1,45
+"AHD00603","Dragonfly Teal Enamel",1,45
+"AHD00604","Dragonfly Green Enamel",1,45
+"AHD00605","Dragonfly Blue Enamel",1,45
+"AHD00608","Dragonfly Red Enamel",1,45
+"AHD007","Coils Black Enamel",1,40
+"AHD01501","Team Colors",1,55
+"AHE001","Karaoke Machine",1,40
+"AHE002","Movie Camera",1,40
+"AHE003","My Computer",1,35
+"AHF003","Take Out",1,30
+"AHF004","My Latte",1,30
+"AHF005","Coffee To Go",1,30
+"AHF006","Pretty Teapot",1,35
+"AHF007","Pretty Teacup",1,30
+"AHF008","Vacation Cocktail",1,35
+"AHF009","Cherry Cheesecake",1,45
+"AHH001","Books",1,35
+"AHH002","Lucky Hand",1,40
+"AHH003","Classic Camera",1,40
+"AHH004","Matryoshka Doll",1,35
+"AHH005","Basketball",1,35
+"AHH006","Martial Art",1,35
+"AHH007","Roller Derby Skate",1,40
+"AHH008","I Love Knitting",1,35
+"AHH009","Extreme Surfing",1,35
+"AHH010","Equestrian",1,35
+"AHH011","Ice Hockey",1,40
+"AHH012","Shuttlecock",1,30
+"AHH013","Skateboard",1,40
+"AHH014","Saxophone",1,35
+"AHH015","Trumpet",1,35
+"AHH016","Treble Clef",1,30
+"AHH017","I Love Quilting",1,40
+"AHH018","I Love Sewing",1,35
+"AHH019","Music",1,30
+"AHH020","Let's Go Camping!",1,30
+"AHH021","Baseball",1,35
+"AHH022","Pianist",1,35
+"AHH023","Cheerleader",1,35
+"AHI001","Guan Yin",1,40
+"AHI002","Venus Of Willendorf",1,40
+"AHI003","Our Lady of Guadalupe",1,40
+"AHI004","Braille Charms",1,40
+"AHI005","Caduceus",1,35
+"AHKS001","True Wish",1,40
+"AHKS012","Fleur De Lis",1,70
+"AHL001","Lighthouse",1,30
+"AHL003","Arc De Triomphe",1,50
+"AHM001","A Mother's Love",1,35
+"AHM002","Marry Me",1,80
+"AHM004","Super Mom",1,40
+"AHM005","Our World",1,45
+"AHN001","Earth Element",1,40
+"AHN002","Fire Element",1,40
+"AHN003","Water Element",1,40
+"AHN004","Air / Wind Element",1,40
+"AHN005","Acorn",1,35
+"AHN007","Woodland Tree",1,45
+"AHN010","Daisy Garden",1,30
+"AHN012","Flower Garden",1,50
+"AHN01308","Fiddle Head Fern",1,50
+"AHN01312","Fiddle Head Fern",1,50
+"AHN017","Butterfly Garden",1,40
+"AHN019","I Love Nature",1,45
+"AHN020","Orange Lightning",1,30
+"AHN02010","Pink Lightning",1,30
+"AHN021","Clouds",1,35
+"AHO001","Snowman",1,30
+"AHO00201","Jan. Birthday Cake",1,45
+"AHO00202","Feb. Birthday Cake",1,45
+"AHO00203","Mar. Birthday Cake",1,45
+"AHO00204","Apr. Birthday Cake",1,45
+"AHO00205","May Birthday Cake",1,45
+"AHO00206","Jun. Birthday Cake",1,45
+"AHO00207","Jul. Birthday Cake",1,45
+"AHO00208","Aug. Birthday Cake",1,45
+"AHO00209","Sep. Birthday Cake",1,45
+"AHO00210","Oct. Birthday Cake",1,45
+"AHO00211","Nov. Birthday Cake",1,45
+"AHO00212","Dec. Birthday Cake",1,45
+"AHO003","Carolers",1,45
+"AHO004","Rock & Roll Gingerbread",1,35
+"AHO005","St. Nick",1,40
+"AHO006","Mrs. Claus",1,30
+"AHO008","Gift Box",1,55
+"AHO009","Sleigh/Rudolf Flip Charm",1,45
+"AHO010","Pet Bunny",1,40
+"AHO011","Hatching Chick",1,35
+"AHO012","Faberge Egg",1,45
+"AHO01208","Faberge Egg",1,45
+"AHO013","Classic Easter Bunny",1,35
+"AHO014","Easter Bunny",1,35
+"AHO016","Happy Gift",1,40
+"AHO017","Flip Flops On The Beach",1,40
+"AHO018","Beach Trip",1,40
+"AHO02003","Baby Boy Peapod",1,40
+"AHO02010","Baby Girl Peapod",1,40
+"AHO021","Tom The Turkey",1,35
+"AHO022","Hamsa Star of David",1,35
+"AHO023","Cross",1,35
+"AHO024","Black Bird Pie",1,55
+"AHP001","Chef Hat",1,35
+"AHP003","Firefighter Hat",1,50
+"AHP004","Astronaut",1,35
+"AHP005","Police Cap",1,35
+"AHP006","Tractor",1,50
+"AHP007","Trailer Truck",1,50
+"AHP008","Graduation Cap",1,40
+"AHR001","Off-Road Vehicle",1,40
+"AHR002","Bug Classic Car",1,35
+"AHR003","Space Shuttle",1,35
+"AHR004","1960's Hippie Van",1,40
+"AHR005","Camper",1,40
+"AHR006","Police Car",1,40
+"AHR007","Little Car",1,40
+"AHR008","Blimp",1,30
+"AHR009","Fire Truck",1,40
+"AHR01007","Hot Air Balloon",1,45
+"AHR01012","Hot Air Balloon",1,45
+"AHR011","Cruise Ship",1,30
+"AHS001","Wizard Hat",1,35
+"AHS002","Knight",1,40
+"AHS004","Fairytale Castle",1,35
+"AHS005","Baby Alien",1,35
+"AHS006","Sock Monkey",1,35
+"AHS008","ICU Monster",1,35
+"AHS009","Arcade Game Ghost",1,35
+"AHS010","Pirate Rabbit",1,35
+"AHS011","Pirate Ship",1,35
+"AHS012","Ninja",1,35
+"AHS013","Mushroom House",1,35
+"AHS014","Mr. Gnome",1,35
+"AHS016","Alien",1,35
+"AHS017","Google-Eyed Monster",1,35
+"AHS018","Dinosaur Egg",1,40
+"AHS019","Sock Monster",1,35
+"AHS020","Magic Lamp",1,30
+"AHS021","Fairy Princess Snail",1,35
+"AHS022","Good Witch & Cat",1,35
+"AHS023","Tribal Unicorn",1,40
+"AHS024","TV",1,40
+"AHS025","Retired Robot",1,40
+"AHS026","Alien Twins",1,40
+"AHS029","UFO",1,35
+"AHS030","Butterfly Fairy",1,35
+"AHS031","Lil' Devil",1,30
+"AHS032","Lil' Angel",1,30
+"AHS033","Fall Fairy",1,40
+"AHS034","Winter Fairy",1,40
+"AHS035","Spring Fairy",1,40
+"AHS036","Summer Fairy",1,40
+"AHS038","Forest Fairy",1,30
+"AHS039","Evil Rubber Duckie",1,35
+"AHS040","Female Vampire",1,35
+"AHS041","Bride Of Frankenstein",1,35
+"AHS042","Drama",1,60
+"AHS043","Halloween",1,50
+"AHT001","Tooth Fairy",1,45
+"AHT002","Happy Tooth",1,40
+"AHT008","Joy De Vivre Knot",1,45
+"AHT008SG","Joy De Vivre Knot",1,60
+"AHT009","Prosperity Knot",1,45
+"AHT009SG","Prosperity Knot",1,60
+"AHT010","All Squared Knot",1,40
+"AHT010SG","All Squared Knot",1,50
+"AHT011","Fit To Be Tied",1,60
+"AHT011SG","Fit To Be Tied",1,75
+"AHT012","Knot A Care In The World",1,85
+"AHT012SG","Knot A Care In The World",1,95
+"AHT013","Stones and Squares",1,60
+"AHT013SG","Stones and Squares",1,70
+"AHV001","Fish Bowl",1,40
+"AHV002","Pond Frog",1,35
+"AHV003","Dolphin",1,40
+"AHV005","Poodle",1,45
+"AHV006","Cute Kitty",1,35
+"AHV007","Turtle Honu",1,35
+"AHV008","Wild Piggie",1,30
+"AHV010","Pretty Peacock",1,40
+"AHV011","Gone Fishing",1,35
+"AHV012","Peace on Earth Dove",1,35
+"AMU101","Aster",1,40
+"AMU102","Lotus",1,40
+"AMU103","Tiger Lily",1,40
+"AMU104","Iris",1,40
+"AMU105","Agave",1,40
+"AMU111","Cody",1,40
+"AMU112","Kiana",1,40
+"AMU113","Venice",1,40
+"AMU114","Astoria",1,40
+"AMU115","Eden",1,40
+"AMU121","Barracuda",1,40
+"AMU122","Wahoo",1,40
+"AMU123","Dorado",1,40
+"AMU124","Chinook",1,40
+"AMU125","Pompano",1,40
+"AMU131","Caramel",1,40
+"AMU132","Taffy",1,40
+"AMU133","Candied Apple",1,40
+"AMU134","Snow Cone",1,40
+"AMU141","Polwygle",1,40
+"AMU201","Orange/Black Paw Print",1,35
+"AMU202","Orange/White Paw Print",1,35
+"AMU203","Black/Yellow Paw Print",1,35
+"AMU204","Blue/White Paw Print",1,35
+"AMU205","Blue/Yellow Paw Print",1,35
+"AMU211","Black/Orange Paw Print",1,35
+"AMU212","White/Orange Paw Print",1,35
+"AMU213","Yellow/Black Paw Print",1,35
+"AMU214","White/Blue Paw Print",1,35
+"AMU215","Yellow/Blue Paw Print",1,35
+"AMU301","SHS Paw Print",1,40
+"AMV00101","Aurora Borealis - Luminous",1,40
+"AMV00102","Aurora Borealis - Flames",1,40
+"AMV00103","Aurora Borealis - Forest Echo",1,40
+"AMV00104","Aurora Borealis - Reflections",1,40
+"AMV00201","Amazon",1,35
+"AMV00202","Mossman",1,35
+"AMV00203","Rio Grande",1,35
+"AMV00204","Colorado",1,35
+"AMV00205","Yangtze",1,35
+"AMV00206","Mekong",1,35
+"AMV00207","Seine",1,35
+"AMV00208","Rhone",1,35
+"AMV00209","Ganges",1,35
+"AMV00210","Thames",1,35
+"AMV00211","Wheaton",1,35
+"AMV00212","Memuru",1,35
+"AMV00213","Daintree",1,35
+"AMV00301","Delphinium",1,35
+"AMV00302","Crocus",1,35
+"AMV00303","Primrose",1,35
+"AMV00304","Forsythia",1,35
+"AMV00305","Thunderstorms",1,35
+"AMV00401","Northern Lights",1,35
+"AMV00402","Sunshine",1,35
+"AMV00403","Sky Fire",1,35
+"AMV00501","The Last Blooms",1,35
+"AMV00502","Nuts & Berries",1,35
+"AMV00503","In the Koi Pond",1,35
+"AMV00504","Across the Lake",1,35
+"AMV00601","Dark Soul",1,40
+"AMV00602","Broken Heart",1,40
+"AMV00603","Royal Blood",1,40
+"AMV00701","Eggnog",1,35
+"AMV00702","Mulled Cider",1,35
+"AMV00703","Hot Chocolate",1,35
+"AMV00704","Cold Milk",1,35
+"AMV008","Year of the Horse",1,40
+"AMV009","Lilac Memories",1,40
+"AMW00101","Ohm Swirls",1,35
+"AMW00102","Ohm Swirls",1,35
+"AMW00201","Fleur De Lis",1,35
+"AMW00202","Fleur De Lis",1,35
+"AMW00203","Fleur De Lis",1,35
+"AMW00204","Fleur De Lis",1,35
+"APY201","Orange/Black Paw Pave",1,50
+"APY202","Orange/White Paw Pave",1,50
+"APY203","Black/White Paw Pave",1,50
+"APY204","White/Black Paw Pave",1,50
+"APY205","Pink/Black Paw Pave",1,50
+"ATX001","Zolotaya Ribka",1,55
+"ATX001G","Zolotaya Ribka (Gold Vermeil)",1,
+"BGL00108","Bangle Green",1,140
+"BGL00110","Bangle Pink",1,140
+"BGL00112","Bangle Blue",1,140
+"BGL00208","Bangle Twist Green",1,120
+"BGL00210","Bangle Twist Pink",1,120
+"BGL00212","Bangle Twist Blue",1,120
+"BHA00101","Passion Red",1,45
+"BHA00102","Deep Lilac",1,45
+"BHA00104","Ice",1,45
+"BHA00106","Meteorite",1,45
+"BHA00108","Fresh Green",1,45
+"BHA00110","Rose Bloom",1,45
+"BHA00113","Ginger Spice",1,45
+"BHA00114","Coal Mine",1,45
+"BHA00115","Gold Mine",1,45
+"CA001","Summer Garden",1,50
+"CA002","Spring Bloom",1,50
+"CA003","Autumn Fire",1,50
+"CA004","Winter Frost",1,50
+"CA005","Seattle",1,50
+"CA006","Santa Fe",1,50
+"CA007","Orlando",1,50
+"CA008","Pacific Octopus",1,50
+"CA009","Marshmallow",1,50
+"CA010","Cherry Sauce",1,50
+"CA011","Blue Raspberry",1,50
+"CA012","Mojave",1,50
+"CA013","Everglades",1,50
+"CA014","Lemon Drop",1,50
+"CA015","Fresh Apple",1,50
+"CA016","Blueberry Pie",1,50
+"CA017","Plum Pudding",1,50
+"CA018","Martini Olive",1,50
+"CA019","Anasazi",1,50
+"CA020","Greenwich",1,50
+"CA021","Portofino",1,50
+"CA022","Orbit",1,50
+"CA023","Nodosaurus",1,50
+"CA024","Tentacle",1,50
+"CA025","Del Mar",1,50
+"CA026","Westwood",1,50
+"CA027","Laguna",1,50
+"CA028","Argonaut",1,50
+"CE001","Ruby Lux",1,40
+"CE002","Royal Purple Lux",1,40
+"CE003","Pearl Lux",1,40
+"CE004","Aqua Lux",1,40
+"CE005","Cobalt Lux",1,40
+"CE006","Ice Lux",1,40
+"CE007","Silver Lux",1,40
+"CE008","Bronze Lux",1,40
+"CE009","Coral Lux",1,40
+"CE010","Emerald Lux",1,40
+"CF001","Living Red",1,35
+"CF002","Wine",1,35
+"CF003","Emerald Forest",1,35
+"CF004","Fresh Lime",1,35
+"CF005","Lake",1,35
+"CF006","Tender Pink",1,35
+"CF007","Amber",1,35
+"CF008","On the Rocks",1,35
+"CM001","Sweet Dream",1,40
+"CM002","Secret Crush",1,40
+"CM003","Admirer",1,40
+"CM004","Make A Wish",1,40
+"CM005","Day Dream",1,40
+"CM006","Affirmation",1,40
+"CM007","Up In The Air",1,40
+"CM008","Classic",1,40
+"CM009","Vacation",1,40
+"CM010","Across the Ice",1,40
+"CM011","Cotton Candy",1,40
+"CM012","Siesta",1,40
+"CM013","Hot Air Balloon",1,40
+"CM014","Pine",1,40
+"CM015","Lilac Bloom",1,40
+"CM016","Fuchsia",1,40
+"CM017","Blue Bell",1,40
+"CM018","Favorite Dream",1,40
+"CM019","Pool",1,40
+"CM020","Forest",1,40
+"CM021","Spring Garden",1,40
+"CM022","Giggle",1,40
+"CM023","Manhattan",1,40
+"CM024","Sanur",1,40
+"CM025","Anuppur",1,40
+"CM026","Sydney",1,40
+"CM027","Desert Island",1,40
+"CM028","Tropical Island",1,40
+"CM029","Oceanic",1,40
+"DG-0010","Football Helmet",1,55
+"DG-1000","Football Helmet",1,55
+"DG-1001","Football Helmet",1,55
+"DG-1002","Football Helmet",1,55
+"DG-1003","Football Helmet",1,55
+"DG-1004","Football Helmet",1,55
+"DG-1005","Football Helmet",1,55
+"DG-1006","Football Helmet",1,55
+"DG-1007","Football Helmet",1,55
+"DG-1008","Football Helmet",1,55
+"EAR-001","Lobster",1,35
+"JA001","Steadfast",1,30
+"JA002","Illustrious",1,30
+"JA003","Blossoming",1,30
+"JA004","Ascension",1,30
+"JA005","Champion",1,30
+"OER001","Drop Earrings",1,40
+"OER002","Drop Earrings",1,35
+"WHA002","Skulls",1,30
+"WHA004","Skull",1,25
+"WHA010","Peaceful Face",1,35
+"WHA011","Pirate Crest",1,35
+"WHA012","Girls Rule",1,45
+"WHB002","Address Symbol @",1,30
+"WHB003","Love Hearts",1,25
+"WHB004","Star Universe",1,25
+"WHB005","Buttercup",1,35
+"WHB005SG","Buttercup",1,45
+"WHB006","Tribal Filigree",1,35
+"WHB006SG","Tribal Filigree",1,45
+"WHB007","Flower Garden",1,40
+"WHB008","4-Leaf Clover",1,30
+"WHB010","Spiral Wheel",1,30
+"WHB020","Woven Hearts",1,30
+"WHB022","Celtic Heart",1,25
+"WHB023","Greek",1,35
+"WHB024","Wrapped",1,35
+"WHB025","Spiral Flowers",1,25
+"WHB026","Celtic Knot",1,30
+"WHB028","Celtic Promise",1,30
+"WHB029","Candy Ribbon",1,30
+"WHB029SG","Candy Ribbon",1,40
+"WHB031","Happy Boys & Girls",1,30
+"WHB032","Christmas Tree",1,35
+"WHB034","Heart Print",1,25
+"WHB037","Eye Of Horus",1,35
+"WHB038","Gear",1,25
+"WHB039","Roman Filigree",1,25
+"WHB040","Flower",1,25
+"WHB041","Butterfly Band",1,25
+"WHB047","Cupcake",1,35
+"WHB050","Olive Branch",1,30
+"WHB054","Snowman",1,40
+"WHB055","Santa",1,40
+"WHB059","Jungle",1,30
+"WHB061","Kissing (2 pieces)",1,35
+"WHB062","Gingerbread House",1,40
+"WHB063","Gingerbread Boy",1,35
+"WHB064","Mother Nature",1,30
+"WHB065","Jack-O-Lantern",1,40
+"WHB066","Mailbox",1,30
+"WHB067","Laser Gun",1,35
+"WHB068","Ice Skate",1,35
+"WHB069","Fortune Cookie",1,30
+"WHB070","Baby Carriage",1,35
+"WHB071","Classic Scooter",1,35
+"WHB072","Picnic Basket",1,30
+"WHB073","Wedding Cake",1,30
+"WHB074","Circus Tent",1,30
+"WHB075","Cat In A Basket",1,30
+"WHB076","Space Rocket",1,35
+"WHB078","Vampire",1,35
+"WHB079","Werewolf",1,35
+"WHB080","Easter Egg",1,35
+"WHB081","Frankenstein",1,35
+"WHB082","Palace Guard",1,30
+"WHB084","The Chainsaw Dude",1,35
+"WHB085","Golf Bag",1,35
+"WHB088","Rocking Pegasus",1,35
+"WHB089","Scarlet Macaw",1,30
+"WHB090","Burger",1,30
+"WHB092","Robot",1,35
+"WHB093","Football Helmet",1,30
+"WHB094","Pumpkin Ring",1,25
+"WHB095","Trolley",1,35
+"WHB096","Slot Machine",1,40
+"WHB097","Twin Flower",1,30
+"WHB098","Typewriter",1,40
+"WHB100","Sydney Opera House",1,35
+"WHB101","Elf",1,30
+"WHB102","Angel",1,30
+"WHB104","Pot of Gold",1,40
+"WHB104SG","Pot of Gold (2-Tone)",1,45
+"WHB105","Windmill",1,35
+"WHB106","Big Ben",1,40
+"WHB109","Billowing Cloud",1,35
+"WHB110","Sewing Machine",1,40
+"WHB111","Wizard",1,30
+"WHB115","Mermaid",1,30
+"WHB116","Gingko Leaves",1,30
+"WHB118","Pincushion",1,35
+"WHB119","Oak Leaf",1,30
+"WHB120","Maple Leaf",1,30
+"WHB121","Eucalyptus Leaf",1,30
+"WHB122","Boombox",1,45
+"WHB124","Sushi",1,40
+"WHB126","Queen",1,35
+"WHB127","Snowflake",1,40
+"WHB128","Wishing Well",1,40
+"WHB131","Biplane",1,40
+"WHB132","Castle",1,30
+"WHB134","Fern Gully",1,30
+"WHB135","Tree of Life",1,35
+"WHB136","Statue of Liberty",1,35
+"WHD00701","Jan. Spinner - Discontinued",1,30
+"WHD00702","Feb. Spinner - Discontinued",1,30
+"WHD00703","Mar. Spinner - Discontinued",1,30
+"WHD00704","Apr. Spinner - Discontinued",1,30
+"WHD00705","May Spinner - Discontinued",1,30
+"WHD00706","Jun. Spinner - Discontinued",1,30
+"WHD00707","Jul. Spinner - Discontinued",1,30
+"WHD00708","Aug. Spinner - Discontinued",1,30
+"WHD00709","Sep. Spinner - Discontinued",1,30
+"WHD00710","Oct. Spinner - Discontinued",1,30
+"WHD00711","Nov. Spinner - Discontinued",1,30
+"WHD00712","Dec. Spinner - Discontinued",1,30
+"WHD01109","Rope",1,35
+"WHD01304","Wave",1,35
+"WHD01410","Eye",1,30
+"WHD01504","Drum",1,45
+"WHD01801","Jan. Celebration",1,35
+"WHD01802","Feb. Celebration",1,35
+"WHD01803","Mar. Celebration",1,35
+"WHD01804","Apr. Celebration",1,35
+"WHD01805","May Celebration",1,35
+"WHD01806","Jun. Celebration",1,35
+"WHD01807","Jul. Celebration",1,35
+"WHD01808","Aug. Celebration",1,35
+"WHD01809","Sep. Celebration",1,35
+"WHD01810","Oct. Celebration",1,35
+"WHD01811","Nov. Celebration",1,35
+"WHD01812","Dec. Celebration",1,35
+"WHD02206","Seaweed",1,30
+"WHD02403","Swirl",1,30
+"WHD03707","Mom Heart",1,35
+"WHD04003","Crystal Bird",1,30
+"WHD04804","Lucky Horseshoe",1,40
+"WHD04804G","Lucky Horseshoe",1,
+"WHD05113","Christmas Pine Tree",1,40
+"WHD05711","Vines",1,30
+"WHD05801","Heart Crown",1,30
+"WHD060","Triple Threat",1,40
+"WHD06307","Love Letter Red",1,30
+"WHD06310","Love Letter Pink",1,30
+"WHD06603","Love Basket",1,35
+"WHD06904","Crystal Heart",1,40
+"WHD070","Lucky Dice",1,50
+"WHD07203","Leaf",1,30
+"WHD074","Forever Twist",1,35
+"WHD075","Garden of Hearts",1,30
+"WHD07711","Crab",1,40
+"WHD07904","Cute Squid",1,30
+"WHD08003","Sleepy Octopus",1,30
+"WHD081","Pink Buttercup",1,40
+"WHD08205","Frog Prince",1,40
+"WHD08305","Penguin Chick",1,35
+"WHD08404","Flame",1,30
+"WHD08713","Turquoise",1,40
+"WHD08714","Pacific Opal",1,40
+"WHD08715","Montana Crystal",1,40
+"WHD08802","Wave Crystal",1,40
+"WHD089","Sweet 16 Cupcake",1,40
+"WHD090","Rainbow Spinner",1,35
+"WHD091","Flower",1,50
+"WHD09203S","Blue Triangle",1,45
+"WHD09205S","Green Triangle",1,45
+"WHD09210S","Pink Triangle",1,45
+"WHD094","Love, Love, Love",1,50
+"WHD095S","Sparkling Flower",1,40
+"WHD096S","Discovery",1,40
+"WHD097S","Sparkling Heart",1,40
+"WHD098S","Treasure",1,40
+"WHD100","La Femme",1,45
+"WHD101","Sisters",1,50
+"WHD102","Pumpkin Carriage",1,45
+"WHD10210","Princess Carriage",1,45
+"WHD10403","Aqua - Discontinued",1,45
+"WHD10404","Sparkle - Discontinued",1,45
+"WHD10405","Emerald - Discontinued",1,45
+"WHD10407","Chili - Discontinued",1,45
+"WHD10410","Girl - Discontinued",1,45
+"WHD10411","Lemon - Discontinued",1,45
+"WHD10413","Olive - Discontinued",1,45
+"WHD10414","Sable - Discontinued",1,45
+"WHD10415","Hickory - Discontinued",1,45
+"WHD10416","Lavender - Discontinued",1,45
+"WHD10418","Gold - Discontinued",1,45
+"WHD10508","Green Tea Muffin",1,50
+"WHD10512","Blueberry Muffin",1,50
+"WHD10705","Team Colors",1,55
+"WHD10706","Team Colors",1,55
+"WHD10708","Team Colors",1,55
+"WHD10713","Team Colors",1,55
+"WHD10717","Team Colors",1,55
+"WHD10721","Team Colors",1,55
+"WHD109","Artist Palette",1,40
+"WHD11001","January",1,45
+"WHD11002","February",1,45
+"WHD11003","March",1,45
+"WHD11004","April",1,45
+"WHD11005","May",1,45
+"WHD11006","June",1,45
+"WHD11007","July",1,45
+"WHD11008","August",1,45
+"WHD11009","September",1,45
+"WHD11010","October",1,45
+"WHD11011","November",1,45
+"WHD11012","December",1,45
+"WHD11013","Olive",1,45
+"WHD11014","Sable",1,45
+"WHD11015","Hickory",1,45
+"WHD11016","Lavender",1,45
+"WHD11018","Lemon",1,45
+"WHE001","Laced",1,40
+"WHE002","Buckled",1,40
+"WHE003","Roped",1,40
+"WHE005","Banded",1,40
+"WHE006","Charmed",1,40
+"WHF016","Pearl Shell",1,40
+"WHF018","Baby Lion",1,30
+"WHF019","Growling Hippo",1,30
+"WHF020","Baby Rhinoceros",1,30
+"WHF021","Crocodile Nile",1,30
+"WHF022","Happy Whale",1,30
+"WHF023","Cute Chameleon",1,30
+"WHF025","Baby Reindeer",1,35
+"WHF026","Starfish",1,30
+"WHF027","Henry the Hexapus",1,30
+"WHF028","Surprised Octopus",1,30
+"WHF030","Ram",1,30
+"WHF032","Striped Sailfish",1,30
+"WHF036","Smart Rat",1,30
+"WHF038","Polar Bear",1,40
+"WHF039","Little Fox",1,40
+"WHF044","Hugging Kitties",1,35
+"WHF044SG","Hugging Kitties",1,45
+"WHF045","Swallows",1,30
+"WHF046","Schnauzer",1,30
+"WHF047","Seal",1,35
+"WHF049","Mama Kangaroo",1,30
+"WHF051","Flying Dragon",1,35
+"WHF052","Chihuahua",1,30
+"WHF053","Koala Family",1,40
+"WHF056","Possum",1,35
+"WHF057","Love Birds",1,35
+"WHF058","Flying Elephant",1,35
+"WHF059","Echidna",1,45
+"WHF060","Budgie Pet Bird",1,30
+"WHF061","See No Evil Sock Monkeys",1,40
+"WHF068","Cat In Love",1,35
+"WHF069","Baby Dragon",1,30
+"WHF070","Dog & Bone",1,30
+"WHF073","Guinea Pig",1,30
+"WHF074","Cat & Dog",1,40
+"WHF075","Unicorn",1,40
+"WHG001","A",1,30
+"WHG002","B",1,30
+"WHG003","C",1,30
+"WHG004","D",1,30
+"WHG005","E",1,30
+"WHG006","F",1,30
+"WHG007","G",1,30
+"WHG008","H",1,30
+"WHG009","I",1,30
+"WHG010","J",1,30
+"WHG011","K",1,30
+"WHG012","L",1,30
+"WHG013","M",1,30
+"WHG014","N",1,30
+"WHG015","O",1,30
+"WHG016","P",1,30
+"WHG017","Q",1,30
+"WHG018","R",1,30
+"WHG019","S",1,30
+"WHG020","T",1,30
+"WHG021","U",1,30
+"WHG022","V",1,30
+"WHG023","W",1,30
+"WHG024","X",1,30
+"WHG025","Y",1,30
+"WHG026","Z",1,30
+"WHH001","1",1,30
+"WHH002","2",1,30
+"WHH003","3",1,30
+"WHH004","4",1,30
+"WHH005","5",1,30
+"WHH006","6",1,30
+"WHH007","7",1,30
+"WHH008","8",1,30
+"WHH009","9",1,30
+"WHH010","0",1,30
+"WHI001","Recycle",1,30
+"WHI029","Khanda",1,30
+"WHI030","""OHM"" Symbol",1,30
+"WHI032","Live Long And Prosper",1,35
+"WHI033","Hang Loose",1,35
+"WHI034","Peace",1,35
+"WHI035","Good Luck",1,35
+"WHI036","Fleur De Lis",1,35
+"WHI037","Aries",1,40
+"WHI038","Taurus",1,40
+"WHI039","Gemini",1,40
+"WHI040","Cancer",1,40
+"WHI041","Leo",1,40
+"WHI042","Virgo",1,40
+"WHI043","Libra",1,40
+"WHI044","Scorpio",1,40
+"WHI045","Sagittarius",1,40
+"WHI046","Capricorn",1,40
+"WHI047","Aquarius",1,40
+"WHI048","Pisces",1,40
+"WHJ011C","Rhombus",1,45
+"WHJ01404","Decor",1,45
+"WHJ015A","Tear Drop",1,45
+"WHJ016","Balance",1,45
+"WHJ01701","Jan. Spinner",1,35
+"WHJ01702","Feb. Spinner",1,35
+"WHJ01703","Mar. Spinner",1,35
+"WHJ01704","Apr. Spinner",1,35
+"WHJ01705","May Spinner",1,35
+"WHJ01706","Jun. Spinner",1,35
+"WHJ01707","Jul. Spinner",1,35
+"WHJ01708","Aug. Spinner",1,35
+"WHJ01709","Sep. Spinner",1,35
+"WHJ01710","Oct. Spinner",1,35
+"WHJ01711","Nov. Spinner",1,35
+"WHJ01712","Dec. Spinner",1,35
+"WHJ01810","Butterfly",1,35
+"WHJ02301","Love & Happiness",1,45
+"WHJ02604SG","Flower",1,45
+"WHJ02712","Blue Princess",1,55
+"WHJ02713","Olive Princess",1,55
+"WHJ02802","Domestic Violence Awareness",1,40
+"WHJ02810","Breast Cancer Awareness",1,40
+"WHJ02905","Green Ferris Wheel",1,50
+"WHJ02909","Blue Ferris Wheel",1,50
+"WHJ03310","Geometry",1,40
+"WHJ03501","Jan. Abundance",1,60
+"WHJ03502","Feb. Abundance",1,60
+"WHJ03503","Mar. Abundance",1,60
+"WHJ03504","Apr. Abundance",1,60
+"WHJ03505","May Abundance",1,60
+"WHJ03506","Jun. Abundance",1,60
+"WHJ03507","Jul. Abundance",1,60
+"WHJ03508","Aug. Abundance",1,60
+"WHJ03509","Sep. Abundance",1,60
+"WHJ03510","Oct. Abundance",1,60
+"WHJ03511","Nov. Abundance",1,60
+"WHJ03512","Dec. Abundance",1,60
+"WHJ036","Rococo",1,55
+"WHJ03710","Sweet Heart",1,45
+"WHJ03801","Jan. Shimmering",1,55
+"WHJ03802","Feb. Shimmering",1,55
+"WHJ03803","Mar. Shimmering",1,55
+"WHJ03804","Apr. Shimmering",1,55
+"WHJ03805","May Shimmering",1,55
+"WHJ03806","Jun. Shimmering",1,55
+"WHJ03807","Jul. Shimmering",1,55
+"WHJ03808","Aug. Shimmering",1,55
+"WHJ03809","Sep. Shimmering",1,55
+"WHJ03810","Oct. Shimmering",1,55
+"WHJ03811","Nov. Shimmering",1,55
+"WHJ03812","Dec. Shimmering",1,55
+"WHKS008","Filigree Flower",1,35
+"WHKS012","Fleur De Lis",1,35
+"WHKS01304","Classic Film",1,45
+"WHKS01309","Hollywood Sky",1,45
+"WHKS01310","Sunset Boulevard",1,45
+"WHLS00110","Pink Crystal Flower",1,35
+"WHLS00204","Clear Crystal Vine",1,35
+"WHLS00204PG","Vine",1,45
+"WHLS003","Happy Hearts",1,35
+"WHLS003PG","Hearts",1,45
+"WHLS004","The Power of Love",1,35
+"WHLS005","Heart Vine",1,35
+"WHO003","Sumo Wrestler",1,40
+"WHO004","Kimono",1,40
+"WHO006","Lucky Cat Maneki Neko",1,35
+"WHO008","Teruterubozu Good Weather Doll",1,30
+"WHP001","Lady's Purse",1,30
+"WHP003","Lady's Clutch",1,30
+"WHP004","Let's Go Dancing!",1,30
+"WHP004SG","Let's Go Dancing!",1,40
+"WHP005","Ballet Shoes",1,40
+"WHP00610","The Cowgirl",1,40
+"WHP007","Cowboy Hat",1,40
+"WHP008","Tango Shoe",1,30
+"WHQ003","Acorn",1,30
+"WHQ017","Boy & Girl",1,30
+"WHQ021","Crab",1,30
+"WHQ023","Heart Key",1,30
+"WHQ024","Ribbon Heart",1,30
+"WHQ026","Bo Leaf",1,30
+"WHQ027","Maple Leaf",1,30
+"WHQ028","Oak Leaf",1,30
+"WHQ029","Eucalyptus Leaf",1,30
+"WHQ030","Ginkgo Leaf",1,30
+"WHQ031","Scissors",1,30
+"WHQ032","Dragonfly",1,30
+"WHQ033","King's Crown",1,30
+"WHQ035","4-Leaf Clover",1,30
+"WHQ037","Lady Bug",1,30
+"WHR001","Ring Around My Heart",1,35
+"WHR001SG","Ring Around My Heart",1,45
+"WHR002","Heart Rings",1,30
+"WHR003","""LOVE""",1,30
+"WHR003SG","""LOVE""",1,40
+"WHR004","Take A Chance On Love",1,30
+"WHR005","I LOVE YOU",1,35
+"WHR010","Love & Loyalty",1,30
+"WHR013","Winged Heart",1,30
+"WHR014","Care Ribbon Heart",1,30
+"WHR015","Mother Embraces Child",1,40
+"WHR017","Heart & Thorns",1,35
+"WHR019","BFF Best Friends Forever",1,80
+"WHR020","Sisters",1,80
+"WHR022","Love Mom",1,40
+"WHR023","Heart  Lock",1,35
+"WHR024","Chinese Letter ""Love""",1,30
+"WHR025","Best Niece",1,50
+"WHR030","Cute Little Girl",1,35
+"WHR031","Cute Little Boy",1,35
+"WHT00117","Hand-Woven Viking Chain (6.7""/17cm) (Discontinued)",1,40
+"WHT00118","Hand-Woven Viking Chain (7.1""/18cm) (Discontinued)",1,40
+"WHT00119","Hand-Woven Viking Chain (7.5""/19cm) (Discontinued)",1,40
+"WHT00120","Hand-Woven Viking Chain (7.9""/20cm) (Discontinued)",1,40
+"WHT00121","Hand-Woven Viking Chain (8.3""/21cm) (Discontinued)",1,40
+"WHT00518","Lobster Clasp Sterling Silver Bracelet (7.1""/18cm)",1,55
+"WHT00519","Lobster Clasp Sterling Silver Bracelet (7.5""/19cm)",1,55
+"WHT00520","Lobster Clasp Sterling Silver Bracelet (7.9""/20cm)",1,55
+"WHT00521","Lobster Clasp Sterling Silver Bracelet (8.3""/21cm)",1,55
+"WHT00617","Snap Clasp Sterling Silver Bracelet (6.7""/17cm)",1,60
+"WHT00618","Snap Clasp Sterling Silver Bracelet (7.1""/18cm)",1,60
+"WHT00619","Snap Clasp Sterling Silver Bracelet (7.5""/19cm)",1,60
+"WHT00620","Snap Clasp Sterling Silver Bracelet (7.9""/20cm)",1,60
+"WHT00621","Snap Clasp Sterling Silver Bracelet (8.3""/21cm)",1,60
+"WHT00718","Sterling Silver Bracelet with Vermeil Clasp (7.1""/18cm)",1,70
+"WHT00719","Sterling Silver Bracelet with Vermeil Clasp (7.5""/19cm)",1,70
+"WHT00720","Sterling Silver Bracelet with Vermeil Clasp (7.9""/20cm)",1,70
+"WHT00721","Sterling Silver Bracelet with Vermeil Clasp (8.3""/21cm)",1,70
+"WHT00818","Gold Vermeil Snap Clasp Bracelet (7.1""/18cm)",1,90
+"WHT00819","Gold Vermeil Snap Clasp Bracelet (7.5""/19cm)",1,90
+"WHT00820","Gold Vermeil Snap Clasp Bracelet (7.9""/20cm)",1,90
+"WHT00821","Gold Vermeil Snap Clasp Bracelet (8.3""/21cm)",1,90
+"WHU001","I Love You Mother",1,40
+"WHU002","Be My Valentine",1,50
+"WHV00118","Pink CZ Bracelet (7.1""/18cm)",1,70
+"WHV00119","Pink CZ Bracelet (7.5""/19cm)",1,70
+"WHV00120","Pink CZ Bracelet (7.9""/20cm)",1,70
+"WHV00121","Pink CZ Bracelet (8.3""/21cm)",1,70
+"WHV00216","Clear CZ Bracelet (6.3""/16cm)",1,70
+"WHV00218","Clear CZ Bracelet (7.1""/18cm)",1,70
+"WHV00219","Clear CZ Bracelet (7.5""/19cm)",1,70
+"WHV00220","Clear CZ Bracelet (7.9""/20cm)",1,70
+"WHV00221","Clear CZ Bracelet (8.3""/21cm)",1,70
+"WHV00318","Blue CZ Bracelet (7.1""/18cm)",1,70
+"WHV00319","Blue CZ Bracelet (7.5""/19cm)",1,70
+"WHV00320","Blue CZ Bracelet (7.9""/20cm)",1,70
+"WHV00321","Blue CZ Bracelet (8.3""/21cm)",1,70
+"WHV00418","Red CZ Bracelet (7.1""/18cm) ",1,75
+"WHV00419","Red CZ Bracelet (7.5""/19cm) ",1,75
+"WHV00420","Red CZ Bracelet (7.9""/20cm) ",1,75
+"WHV00421","Red CZ Bracelet (8.3""/21cm) ",1,75
+"WHW00146","Lobster Clasp Necklace (18""/46cm)",1,120
+"WHW00242","Hand-woven Viking Chain (16.5""/42cm)",1,90
+"WHW00245","Hand-woven Viking Chain (17.7""/45cm)",1,100
+"WHW00250","Hand-woven Viking Chain (20""/50cm)",1,110
+"WHW00345","Braided Leather Necklace (18""/45cm)",1,40
+"WHW00350","Braided Leather Necklace (20""/50cm)",1,40
+"WHW00445","Braided Leather Necklace (18""/45cm)",1,40
+"WHW00450","Braided Leather Necklace (20""/50cm)",1,40
+"WHW00516","Sterling Silver Chain (16""/40cm)",1,20
+"WHW00518","Sterling Silver Chain (18""/45cm)",1,20
+"WHW00638","Lobster Clasp Leather Wrap Bracelet (15""/38cm)",1,35
+"WHW00640","Lobster Clasp Leather Wrap Bracelet (16""/40cm)",1,35
+"WHW00657","Lobster Clasp Leather Wrap Bracelet (23""/57cm)",1,40
+"WHW00660","Lobster Clasp Leather Wrap Bracelet (24""/60cm)",1,40
+"WHW00738","Lobster Clasp Leather Wrap Bracelet (15""/38cm)",1,35
+"WHW00740","Lobster Clasp Leather Wrap Bracelet (16""/40cm)",1,35
+"WHW00757","Lobster Clasp Leather Wrap Bracelet (23""/57cm)",1,40
+"WHW00760","Lobster Clasp Leather Wrap Bracelet (24""/60cm)",1,40
+"WHW00838","Lobster Clasp Leather Wrap Bracelet (15""/38cm)",1,35
+"WHW00840","Lobster Clasp Leather Wrap Bracelet (16""/40cm)",1,35
+"WHW00857","Lobster Clasp Leather Wrap Bracelet (23""/57cm)",1,40
+"WHW00860","Lobster Clasp Leather Wrap Bracelet (24""/60cm)",1,40
+"WHW00938","Lobster Clasp Leather Wrap Bracelet (15""/38cm)",1,35
+"WHW00940","Lobster Clasp Leather Wrap Bracelet (16""/40cm)",1,35
+"WHW00957","Lobster Clasp Leather Wrap Bracelet (23""/57cm)",1,40
+"WHW00960","Lobster Clasp Leather Wrap Bracelet (24""/60cm)",1,40
+"WHW01038","Lobster Clasp Leather Wrap Bracelet (15""/38cm)",1,35
+"WHW01040","Lobster Clasp Leather Wrap Bracelet (16""/40cm)",1,35
+"WHW01057","Lobster Clasp Leather Wrap Bracelet (23""/57cm)",1,40
+"WHW01060","Lobster Clasp Leather Wrap Bracelet (24""/60cm)",1,40
+"WHW01138","Lobster Clasp Leather Wrap Bracelet (15""/38cm)",1,35
+"WHW01140","Lobster Clasp Leather Wrap Bracelet (16""/40cm)",1,35
+"WHW01157","Lobster Clasp Leather Wrap Bracelet (23""/57cm)",1,40
+"WHW01160","Lobster Clasp Leather Wrap Bracelet (24""/60cm)",1,40
+"WHW01260","Drop Necklace (24""/60cm)",1,50
+"WHW01270","Drop Necklace (28""/70cm)",1,50
+"WHW01280","Drop Necklace (32""/80cm)",1,50
+"WHW01470","Ball Necklace (28""/70cm)",1,40
+"WHZ011","Bubbles",1,50
+"WHZ012","Butterfly",1,50
+"WHZ013","Tropical Forest",1,50
+"WHZ014","Lion",1,50
+"WHZ015","Green Crystal",1,50
+"WHZ016","Rose Crystal",1,50
+"WHZ017","Fancy Emerald",1,50
+"WHZ020","Flying Dragon",1,50
+"WNS001","Wheel",1,20
+"WNS002","Irish",1,20
+"WNS006","Flower",1,20
+"WNS009","Love Heart",1,20
+"WNS010","Folk Hearts",1,20
+"WNS011","Wave Heart",1,20
+"WNS012","Swirl Filigree",1,20
+"WNS014","Dot Ridge",1,20
+"WNS018","Heart Ring",1,20
+"WNS027","Life In Bloom",1,25
+"WNS052","Hugs & Kisses",1,20
+"BGL003S","Plain Bangle (S)",1,60
+"BGL003M","Plain Bangle (M)",1,60
+"BGL003L","Plain Bangle (L)",1,60
+"BGL004S","Twisted Bangle (S)",1,80
+"BGl004M","Twisted Bangle (M)",1,80
+"BGL004L","Twisted Bangle (L)",1,80
+"AMV011","Bacon",1,40
+"AAP012","Screw You",1,25
+"AAP013","Get Hammered",1,25
+"AAP014","Stuck Together",1,25
+"AAP015","Loosen Up",1,25
+"AAL014","SHS Animal Rescue",1,45
+"BHA00111","Flame",1,45
+"WHT00616","Snap Clasp Sterling Silver Bracelet (6.3""/16cm)",1,60
+"WHT00622","Snap Clasp Sterling Silver Bracelet (8.7""/22cm)",1,60
+"WHT00623","Snap Clasp Sterling Silver Bracelet (9.1""/23cm)",1,60
+"AAH003","Same Same but Eaten",1,40
+"AAF003","Flying Spaghetti Monster",1,40
+"AAF002","Assaulted Pretzel",1,40
+"AAF004","Dangling Wieners",1,40
+"AMV01001","Hipster Hops",1,40
+"AMV01002","Bar Brawl",1,40
+"AAH013","Ahoy",1,40
+"AAR100","Rita Mortis",1,55
+"AAR101","Redmond Gore",1,55
+"AAR102","Granger Evermore",1,55
+"AAR103","Mazey Podge",1,55
+"AAH004","Sugar Sleigh Ride",1,50
+"AAH005","Bah Humbug",1,45
+"AAH006","Jingle Balls",1,45
+"AAH007","Get Your Nog On",1,45
+"AAS016","Go for Broke",1,40
+"AAH009","Holiday Break",1,40
+"AAS015","Wholly Trust",1,40
+"AAH010","You Melt Me",1,45
+"AAH011","Sip Happens",1,40
+"AAH012","Flakes for Friends",1,40
+"AMR100","Tartan Gore",1,40
+"AMR101","Death Paint",1,40
+"AMR102","Striped Suit",1,40
+"AMR103","Confetti Upchuck",1,40
+"AMR104","Cracked Coagulation",1,40
+"AAR104","Edwin Morose",1,55
+"AMV01201","Fire Hole",1,40
+"AMV01202","Ice Hole",1,40
+"AMV01203","Blue Hole",1,40
+"AMV01204","Ash Hole",1,40
+"AAA042","Triceratops Skull",1,60
+"AAA043","Parasaurolophus Skull",1,60
+"AAA044","Velociraptor Skull",1,60
+"AAA039","Year of the Ram",1,45
+"AAA039G","Year of the Ram (2-Tone)",1,60
+"AAP016","Short Circuit",1,50
+"AAP017","Pi Pie",1,40
+"AAP018","Brainiac",1,45
+"AAP019","Atomic",1,40
+"AAP020","Typo",1,70
+"AAP021","Player 1",1,55
+"AAP022","Drag and Drop",1,45
+"AMV01501","Secretions",1,40
+"AMV01503","Neolithic",1,40
+"AMV01502","Humerus",1,40
+"AAA039GG","Year of the Ram (14K Gold)",1,650
+"AAL020","Love Really Hurts",1,555
+"AAL021","Love Stinks",1,40
+"AMV01301","Play Doctor ",1,40
+"AMV01302","Live Your Fantasy ",1,40
+"AMV01303","Do You ",1,40
+"AMV01304","Feel Bangin'",1,40
+"AMV01305","Get In Shape",1,40
+"AMV01306","Make a Joke ",1,40
+"AAY013","One World",1,65
+"AAY015","Crown of Thorns",1,35
+"AAR011","Drops of life (2E)",1,45
+"AAR012","Cranium (2E)",1,40
+"AAR013","Widget (2E)",1,45
+"AAR014","Arachnid (2E)",1,40
+"AAR015","Finding Time (2E)",1,40
+"AAR016","Sacrifice (2E)",1,40
+"AAR017","Last Grasp (2E)",1,40
+"AAR018","Cameo (2E)",1,45
+"AAR019","Rest In Peace (2E)",1,40
+"AMV00611","Dark Soul (2E)",1,40
+"AMV00612","Broken Heart (2E)",1,40
+"AMV00613","Royal Blood (2E)",1,40
+"AAY018","Je Maintiendrai (2E)",1,55
+"AAY015GG","Crown of Thorns (14K Gold)",1,300
+"AAY018GG","Je Maintiendrai (14K Gold 2E)",1,800
+"WHT00517","Lobster Clasp Sterling Silver Bracelet (6.7""/17cm)",1,55
+"WHLS006","Bare",1,25
+"WHLS007","Earth-ness",1,40
+"WHLS008","Fire-ness",1,40
+"WHLS009","Water-ness",1,40
+"WHLS010","Wood-ness",1,40
+"WHLS011","Metal-ness",1,40
+"WHC001","Earth-ish",1,25
+"WHC002","Fire-ish",1,25
+"WHC003","Water-ish",1,25
+"WHC004","Wood-ish",1,25
+"WHC005","Metal-ish",1,25
+"AMV014","Latte ",1,40
+"AMV01601","Morning",1,30
+"AMV01602","Tiger",1,30
+"AMV01603","Holly",1,30
+"AMV01604","Bolly",1,30
+"AAR105","Eli Wretch",1,55
+"AAR106","Annabelle Wraithia",1,55
+"AAR107","Hester Golem",1,55
+"AAR108","Abnormal Cyrus",1,55
+"AAR109","Mundy Drudge",1,55
+"AAR110","Sheldon Grogg",1,55
+"AMR105","Rolled Over",1,40
+"AMR106","Strangulation Veil",1,40
+"AMR107","Poisoned Apple",1,40
+"AMR108","Toxic Pox",1,40
+"AMR109","Zombie Attack",1,40
+"AMR110","Tropical Fever",1,40
+"AMV020","Cave In",1,40
+"AAY017","Merlion",1,40
+"AAP023","Sound Circle",1,40
+"AAP024","Freedom Machine",1,40
+"AAP025","Magic Sight",1,40
+"AAY028","Ohmily",1,40
+"AKN001","hOHM",1,25
+"AMV017","Smoke On The Water",1,35
+"AAA047","Black Sheep",1,45
+"AAH014","Argh",1,155
+"AAY019","Tetrahedron",1,35
+"AAY020","Cube",1,35
+"AAY021","Octahedron",1,35
+"AAY022","Dodecahedron",1,40
+"AAY023","Icosahedron",1,50
+"ACS000","Love Quote",1,45
+"AAU001","Wage",1,45
+"AAU002","Babo",1,45
+"AAU003","OX",1,45
+"AAU004","Ice-Bat",1,45
+"AAH031","Deadhead",1,55
+"AAH015","Chase Skinner",1,55
+"AAH016","Lucy Lifeless",1,55
+"AAH017","Killer Kitty",1,45
+"AAH018","Decappuccino",1,45
+"AAH019","Vicious Vapors",1,35
+"AAH020","Flesh Tenderizer",1,25
+"AAH021","Plasma Juicer",1,25
+"AAH022","Body Slicer",1,25
+"AAY025","Strength of Humanity",1,45
+"AAH027","Same Same, But Different",1,45
+"AAH028","Holey Ham",1,45
+"WHT01816","Dirty Bracelet (6.3""/16cm)",1,65
+"WHT01817","Dirty Bracelet (6.7""/17cm)",1,65
+"WHT01818","Dirty Bracelet (7.1""/18cm)",1,65
+"WHT01819","Dirty Bracelet (7.5""/19cm)",1,65
+"WHT01820","Dirty Bracelet (7.9""/20cm)",1,65
+"WHT01821","Dirty Bracelet (8.3""/21cm)",1,65
+"WHT01822","Dirty Bracelet (8.7""/22cm)",1,65
+"WHT01823","Dirty Bracelet (9.1""/23cm)",1,65
+"AAA051","Tidlom",1,50
+"AAA052","Jumpa",1,50
+"AAA053","Chawien",1,45
+"AMV01801","Country Tartan",1,35
+"AMV01802","Pink Blossom",1,35
+"AAX008","OHMmygod",1,45
+"AAH023","Beadmas Bell",1,50
+"AAH024","Beadmas Tree",1,45
+"AAH025","Beadmas Wreath",1,45
+"AAH026","Rockin'",1,35
+"AAA039SG","Year of the Ram (14K 2-Tone)",1,250
+"AAY024","The Weeping Warrior",1,55
+"AAL024","Love Cage",1,60
+"AAN003","Lucky Moves",1,120
+"AAA050","Year of The Monkey",1,45
+"AAA050B","Dirty Monkey",1,45
+"AAA050GG","Year of The Monkey (14K)",1,800
+"AAX005","Kitix",1,45
+"AAX004","Skullgnome",1,45
+"AAX003","Skygor",1,45
+"AAX002","Scantron",1,45
+"AAX001","Zuggs",1,45
+"AAX100","Bu",1,45
+"AAX101","Niño",1,45
+"AAX102","Shivz",1,45
+"AAX103","Momo",1,45
+"AAX104","Jay C",1,45
+"AAX105","Beel",1,45
+"AAI001","Leg Lamp",1,45
+"AAP026","Skûtsjesilen",1,55
+"AAP027","Ride Me",1,50
+"AAN002","Life's A Beach",1,40
+"ACS001","Life Quote",1,45
+"ACS002","Family Quote",1,45
+"ACS002G","Family Quote (2-Tone)",1,55
+"OHM-TIDLOM","Tidlom Collection",1,170
+"BGL004XS","Twisted Bangle (XS)",1,80
+"ACS000G","Love Quote (2-Tone)",1,55
+"AAL012GG","Love Hurts (14K)",1,800
+"AAH029","Blessed with Wealth",1,50
+"WHT00516","Lobster Clasp Sterling Silver Bracelet (6.3""/16cm)",1,55
+"WHT00522","Lobster Clasp Sterling Silver Bracelet (8.7""/22cm)",1,55
+"WHT00523","Lobster Clasp Sterling Silver Bracelet (9.1""/23cm)",1,55
+"AAL025","Mama Terra",1,45
+"AAL030","Motherhood",1,45
+"AAL029","Special Delivery",1,45
+"AAL028","Mouthful",1,45
+"AAL027","Shake Rattle Roll",1,45
+"AAL026","Cradle Me",1,45
+"AAY026","Liquid Time",1,45
+"AAN004","Luna",1,65
+"AAL031","Hug Me",1,45
+"AAP006","Ambulance",1,50
+"AAX11101S","Oneness",1,120
+"AAX11101L","Oneness",1,120
+"AAX11102S","Belief",1,120
+"AAX11102L","Belief",1,120
+"AAX11103S","Beyond",1,120
+"AAX11103L","Beyond",1,120
+"AMV01900","Animal Aptitude",1,100
+"BGL004BXS","Dirty Twist (XS)",1,80
+"BGL004BS","Dirty Twist (S)",1,80
+"BGL004BM","Dirty Twist (M)",1,80
+"BGL004BL","Dirty Twist (L)",1,80
+"WHW01950","OHM Ball Necklace (20""/50cm)",1,70
+"WHW01970","OHM Ball Necklace (28""/70cm)",1,80
+"WHW01950B","Dirty OHM Ball Necklace (20""/50cm)",1,70
+"WHW01970B","Dirty OHM Ball Necklace (28""/70cm)",1,80
+"AMV01901","Dalmatian Dactylogram",1,35
+"AMV01902","Frog Fantasticism",1,35
+"AMV01903","Salamander Schnozberry",1,35
+"AAH030","Moon Me",1,45
+"AAX006","My Precious",1,50
+"AAA062","OHM? HORRIBLE.",1,50
+"AAA063","OHM? NO.",1,50
+"AAA064","OHM? TERRIBLE.",1,50
+"AHKS002","Locked Down",1,55
+"AHKS003","Pinned Up",1,55
+"AHKS004","No Escape",1,55
+"AMV02001","Crossed",1,35
+"AMV02002","Wrapped",1,35
+"AMV02003","Touched",1,35
+"AMV02000","Courage and Loyalty",1,100
+"AAA056","Ernie The Badger",1,45
+"AAA057","Saul The Narwhal",1,45
+"AAA058","Paula The Red Panda",1,45
+"AAA059","Ava The Aye Aye",1,45
+"AAA060","Honey The Sugar Glider",1,45
+"AAA061","Barb The Bilby",1,45
+"AMX998","Randohm",1,0
+"AMV021D","Caramel Latte",1,85
+"ACS003","Gratitude Quote",1,45
+"ACS003G","Gratitude Quote (2-Tone)",1,55
+"AAR111D","Teddy Scares Skull - 2016 SDCC",1,50
+"EAR101","Teddy Scares Earrings",1,50
+"EAR101D","Teddy Scares Earrings (Dirty)",1,50
+"EAR101R","Teddy Scares Earrings (Blush)",1,100
+"AAA065","Live Free",1,45
+"AAA066","Please Survive",1,40
+"AAE001","Work Together",1,35
+"AAA067","Thank You",1,35
+"AAE002","Make Room",1,25
+"AMV023","Incremental Change",1,35
+"AMV022","Hive Mind",1,70
+"AMV022D","Hive Mind (Dirty)",1,70
+"AMV022G","Hive Mind (Vermeil)",1,90
+"AMV022R","Hive Mind (Blush)",1,95
+"OHM-BEEOHM","BEE OHM",1,180
+"OHM-CLSP-PL","OHM Clasp Opener",1,0
+"AAY027","Chi Chi Sticks",1,50
+"AAP032","Gouda",1,55
+"AAP032G","Gouda (2-Tone)",1,65
+"AMV032","Erie Rocks",1,45
+"AAL032","Open Your Heart",1,120
+"AMV033","Purple Haze",1,40
+"AAH032","Sugar Sleigh Ride 2.0",1,85
+"AAJ001","Alot",1,30
+"AAJ002","Barbacue",1,30
+"AAJ003","Ceasar",1,30
+"AAJ004","Dissapoint",1,30
+"AAJ005","Ecstacy",1,30
+"AAJ006","Fettucini",1,30
+"AAJ007","Glamourous",1,30
+"AAJ008","Humourous",1,30
+"AAJ009","Irresistable",1,30
+"AAJ010","Jewlery",1,30
+"AAJ011","Knowlege",1,30
+"AAJ012","Lollypop",1,30
+"AAJ013","Millenium",1,30
+"AAJ014","Neandertal",1,30
+"AAJ015","Omlette",1,30
+"AAJ016","Portugese",1,30
+"AAJ017","Quicky",1,30
+"AAJ018","Religous",1,30
+"AAJ019","Sandwhich",1,30
+"AAJ020","Truely",1,30
+"AAJ021","Unfortunatly",1,30
+"AAJ022","Vegitarian",1,30
+"AAJ023","Wierd",1,30
+"AAJ024","Xygoma",1,30
+"AAJ025","Youre",1,30
+"AAJ026","Zuchini",1,30
+"AAP028","Non Violence",1,40
+"AAP029","Spread Love",1,40
+"AAP030","Love Is The Answer",1,50
+"AAP031","Peace Is Priceless",1,50
+"CE011","Make Peace",1,40
+"CE012","Make Love",1,40
+"CE013","Make Out",1,40
+"AAE101","Phobia",1,30
+"AAE102","Mech Tech",1,30
+"AAE103","Corvus",1,30
+"AAE104","Catacombs",1,30
+"AAE105","Hot Topic",1,30
+"AAE106","Chained",1,30
+"AAX201","Blade",1,50
+"AAX202","Jester",1,50
+"AAX203","Tunneler",1,50
+"AAX204","Torch",1,50
+"AAX205","Six Shooter",1,50
+"AHS101","Jiangshi",1,50
+"AAT125","Tuk Tuk",1,55
+"AMV036","As Above",1,35
+"AMV037","So Below",1,35
+"AMV025","Dreamscape",1,40
+"AAN005","Tulip",1,45
+"AAR021","Drops of Life (3E)",1,45
+"AAR022","Cranium (3E)",1,40
+"AAR023","Widget (3E)",1,45
+"AAR024","Arachnid (3E)",1,40
+"AAR025","Finding Time (3E)",1,40
+"AAR026","Sacrifice (3E)",1,40
+"AAR027","Last Grasp (3E)",1,40
+"AAR028","Cameo (3E)",1,45
+"AAR029","Rest In Peace (3E)",1,40
+"AMV00621","Dark Soul (3E)",1,40
+"AMV00622","Broken Heart (3E)",1,40
+"AMV00623","Royal Blood (3E)",1,40
+"AAA070","HO! HO! No.",1,50
+"AMV10701","Eggnog",1,35
+"AMV10702","Mulled Cider",1,35
+"AMV10703","Hot Chocolate",1,35
+"AMV10704","Cold Milk",1,35
+"AAY029","Wheelchair",1,45
+"AAA069","Tom The Dead",1,70
+"AAA071","Royal Elephant",1,55
+"AAA072","Hatching",1,80
+"AAA074","Baby Megalodon",1,30
+"AMV039","Waterfall",1,35
+"AMV040","Fireball",1,35
+"AAE003","Boned",1,20
+"AAR201","Love Kills",1,155
+"AAR202","Love Wounds",1,50
+"AAA077","Birdie",1,25
+"AAA077D","Birdie (Dirty)",1,25
+"AAA077R","Birdie (Blush)",1,45
+"AAA077GG","Birdie (14K)",1,350
+"AAA077B","Birdie (Brass)",1,20
+"AAA077C","Birdie (Copper)",1,20
+"AAM011","Woodstock",1,95
+"AAM911","Grow",1,20
+"AAM912","Expand",1,20
+"AAM913","Live",1,20
+"AAM914","Star",1,20
+"AAM915","Music",1,20
+"AAM916","Peace",1,20
+"AAM917","Fly",1,20
+"AAM918","Love",1,20
+"AAM919","Free",1,20
+"AHZ001","Octopus",1,70
+"AHZ002","Dragon",1,70
+"AHZ003","Chameleon",1,55
+"AAE111","Phobia (2E)",1,30
+"AAE112","Mech Tech (2E)",1,30
+"AAE113","Corvus (2E)",1,30
+"AAE114","Catacombs (2E)",1,30
+"AAE115","Hot Topic (2E)",1,30
+"AAE116","Chained (2E)",1,30
+"AAA073","Bunny Reaper",1,50
+"AAA076","Year Of The Cock",1,55
+"AAA075","Silver Fleece",1,45
+"AAP033","Grand Prix",1,50
+"AAA075G","Golden Fleece (Gold Vermeil)",1,90
+"AAA075GG","Golden Fleece (14K)",1,700
+"AAA076D","Year Of The Cock (Dirty)",1,55
+"AAA076G","Year Of The Cock (Gold Vermeil)",1,110
+"WHLS013","Fossil-ness",1,40
+"WHLS014","Impression-ness",1,40
+"AHKS003D","Dirty Laundry",1,55
+"AAN301","PRAY",1,70
+"AAN302","LOVE",1,70
+"AAN303","LIVE",1,70
+"AAN304","HOPE",1,70
+"AAN305","F#@K",1,70
+"AAR201D","Love Kills (Dirty)",1,155
+"AAH014D","Argh (Dirty)",1,155
+"AAF006","Ohm Jar",1,45
+"AAT141","Italian Artists",1,55
+"AAT142","Romance In Venice",1,55
+"AAT143","Mouth Of Truth",1,55
+"AAT144","Tour Italy",1,55
+"AAT145","Volcanoes",1,55
+"AAA075D","Dirty Fleece",1,45
+"AMV041","Trees",1,35
+"AAN007","Rose",1,45
+"AAN008","Iris",1,45
+"AAN009","Lotus",1,45
+"AAY030","New Star",1,45
+"AAY030G","New Star (2-Tone)",1,160
+"AAX009","OHMmygod 2.0",1,45
+"AAF005","Pizza",1,35
+"AAX501","Alien: Egg",1,90
+"AAX502","Alien: Facehugger",1,45
+"AAX503","Alien: Chestburster",1,40
+"PRC001","Typodont",1,
+"PRC002","Brush & Paste",1,
+"AAN003D","Dirty Moves",1,45
+"AAN010","Wings Of Protection",1,222
+"AAN011","Butterflies",1,55
+"AAN012","Chrysalis",1,40
+"AMV042","Strawberry",1,35
+"AAN301D","PRAY",1,70
+"AAN302D","LOVE",1,70
+"AAN303D","LIVE",1,70
+"AAN304D","HOPE",1,70
+"AAN305D","F#@K",1,70
+"WHF057D","Dirty Birds",1,35
+"AHH003D","Dirty Pictures",1,40
+"AHH001D","Dirty Books",1,35
+"AAL040","Fretful-nag",1,40
+"AAL041","Anxiety",1,40
+"AAL042","Bad Dream",1,40
+"AAL043","Self Conscious",1,40
+"AAL044","Worry",1,40
+"AAL045","The Feelings Set",1,160
+"AAN003D2","Moving On",1,45
+"AMX997","Ohmnique",1,35
+"AAL033","Heart Of Stone",1,140
+"AMV043","Rainbowed",1,40
+"AAX010","Gnome Home",1,70
+"AAX011","Aunt Gnome",1,45
+"AAX012","Mankini Gnome",1,55
+"AAX013","Magic Books",1,65
+"AHM004G","Super Mom (2-Tone)",1,50
+"RAA00104","Work Together Ring (Sz. 4)",1,95
+"RAA00105","Work Together Ring (Sz. 5)",1,95
+"RAA00106","Work Together Ring (Sz. 6)",1,95
+"RAA00107","Work Together Ring (Sz. 7)",1,95
+"RAA00108","Work Together Ring (Sz. 8)",1,95
+"RAA00109","Work Together Ring (Sz. 9)",1,120
+"RAA00110","Work Together Ring (Sz. 10)",1,120
+"RAA00111","Work Together Ring (Sz. 11)",1,120
+"RAA00112","Work Together Ring (Sz. 12)",1,120
+"RAA00113","Work Together Ring (Sz. 13)",1,120
+"RAA00204","Boned Ring (Sz. 4)",1,85
+"RAA00205","Boned Ring (Sz. 5)",1,85
+"RAA00206","Boned Ring (Sz. 6)",1,85
+"RAA00207","Boned Ring (Sz. 7)",1,85
+"RAA00208","Boned Ring (Sz. 8)",1,85
+"RAA00209","Boned Ring (Sz. 9)",1,95
+"RAA00210","Boned Ring (Sz. 10)",1,95
+"RAA00211","Boned Ring (Sz. 11)",1,95
+"RAA00212","Boned Ring (Sz. 12)",1,95
+"RAA00213","Boned Ring (Sz. 13)",1,95
+"RAN00104","Wood-ing (Sz. 4)",1,160
+"RAN00105","Wood-ing (Sz. 5)",1,160
+"RAN00106","Wood-ing (Sz. 6)",1,160
+"RAN00107","Wood-ing (Sz. 7)",1,160
+"RAN00108","Wood-ing (Sz. 8)",1,160
+"RAN00109","Wood-ing (Sz. 9)",1,180
+"RAN00110","Wood-ing (Sz. 10)",1,180
+"RAN00111","Wood-ing (Sz. 11)",1,180
+"RAN00112","Wood-ing (Sz. 12)",1,180
+"RAN00113","Wood-ing (Sz. 13)",1,180
+"RAP00104","Stuck Together Ring (Sz. 4)",1,130
+"RAP00105","Stuck Together Ring (Sz. 5)",1,130
+"RAP00106","Stuck Together Ring (Sz. 6)",1,130
+"RAP00107","Stuck Together Ring (Sz. 7)",1,130
+"RAP00108","Stuck Together Ring (Sz. 8)",1,130
+"RAP00109","Stuck Together Ring (Sz. 9)",1,140
+"RAP00110","Stuck Together Ring (Sz. 10)",1,140
+"RAP00111","Stuck Together Ring (Sz. 11)",1,140
+"RAP00112","Stuck Together Ring (Sz. 12)",1,140
+"RAP00113","Stuck Together Ring (Sz. 13)",1,140
+"RAP00204","Typo Ring (Sz. 4)",1,95
+"RAP00205","Typo Ring (Sz. 5)",1,95
+"RAP00206","Typo Ring (Sz. 6)",1,95
+"RAP00207","Typo Ring (Sz. 7)",1,95
+"RAP00208","Typo Ring (Sz. 8)",1,95
+"RAP00209","Typo Ring (Sz. 9)",1,110
+"RAP00210","Typo Ring (Sz. 10)",1,110
+"RAP00211","Typo Ring (Sz. 11)",1,110
+"RAP00212","Typo Ring (Sz. 12)",1,110
+"RAP00213","Typo Ring (Sz. 13)",1,110
+"RAP00304","Freedom Machine Ring (Sz. 4)",1,110
+"RAP00305","Freedom Machine Ring (Sz. 5)",1,110
+"RAP00306","Freedom Machine Ring (Sz. 6)",1,110
+"RAP00307","Freedom Machine Ring (Sz. 7)",1,110
+"RAP00308","Freedom Machine Ring (Sz. 8)",1,110
+"RAP00309","Freedom Machine Ring (Sz. 9)",1,120
+"RAP00310","Freedom Machine Ring (Sz. 10)",1,120
+"RAP00311","Freedom Machine Ring (Sz. 11)",1,120
+"RAP00312","Freedom Machine Ring (Sz. 12)",1,120
+"RAP00313","Freedom Machine Ring (Sz. 13)",1,120
+"RAP00404","Feeling Knotty Ring (Sz. 4)",1,95
+"RAP00405","Feeling Knotty Ring (Sz. 5)",1,95
+"RAP00406","Feeling Knotty Ring (Sz. 6)",1,95
+"RAP00407","Feeling Knotty Ring (Sz. 7)",1,95
+"RAP00408","Feeling Knotty Ring (Sz. 8)",1,95
+"RAR00104","Chained Ring (Sz. 4)",1,95
+"RAR00105","Chained Ring (Sz. 5)",1,95
+"RAR00106","Chained Ring (Sz. 6)",1,95
+"RAR00107","Chained Ring (Sz. 7)",1,95
+"RAR00108","Chained Ring (Sz. 8)",1,95
+"RAR00109","Chained Ring (Sz. 9)",1,110
+"RAR00110","Chained Ring (Sz. 10)",1,110
+"RAR00111","Chained Ring (Sz. 11)",1,110
+"RAR00112","Chained Ring (Sz. 12)",1,110
+"RAR00113","Chained Ring (Sz. 13)",1,110
+"RAR00204","Metal-ing (Sz. 4)",1,110
+"RAR00205","Metal-ing (Sz. 5)",1,110
+"RAR00206","Metal-ing (Sz. 6)",1,110
+"RAR00207","Metal-ing (Sz. 7)",1,110
+"RAR00208","Metal-ing (Sz. 8)",1,110
+"RAR00209","Metal-ing (Sz. 9)",1,120
+"RAR00210","Metal-ing (Sz. 10)",1,120
+"RAR00211","Metal-ing (Sz. 11)",1,120
+"RAR00212","Metal-ing (Sz. 12)",1,120
+"RAR00213","Metal-ing (Sz. 13)",1,120
+"RAT00104","Emerald City Ring (Sz. 4)",1,95
+"RAT00105","Emerald City Ring (Sz. 5)",1,95
+"RAT00106","Emerald City Ring (Sz. 6)",1,95
+"RAT00107","Emerald City Ring (Sz. 7)",1,95
+"RAT00108","Emerald City Ring (Sz. 8)",1,95
+"RAT00109","Emerald City Ring (Sz. 9)",1,110
+"RAT00110","Emerald City Ring (Sz. 10)",1,110
+"RAT00111","Emerald City Ring (Sz. 11)",1,110
+"RAT00112","Emerald City Ring (Sz. 12)",1,110
+"RAT00113","Emerald City Ring (Sz. 13)",1,110
+"RAT00204","City Of Angels Ring (Sz. 4)",1,95
+"RAT00205","City Of Angels Ring (Sz. 5)",1,95
+"RAT00206","City Of Angels Ring (Sz. 6)",1,95
+"RAT00207","City Of Angels Ring (Sz. 7)",1,95
+"RAT00208","City Of Angels Ring (Sz. 8)",1,95
+"RAT00209","City Of Angels Ring (Sz. 9)",1,110
+"RAT00210","City Of Angels Ring (Sz. 10)",1,110
+"RAT00211","City Of Angels Ring (Sz. 11)",1,110
+"RAT00212","City Of Angels Ring (Sz. 12)",1,110
+"RAT00213","City Of Angels Ring (Sz. 13)",1,110
+"RAY00104","Divine Providence Ring (Sz. 4)",1,95
+"RAY00105","Divine Providence Ring (Sz. 5)",1,95
+"RAY00106","Divine Providence Ring (Sz. 6)",1,95
+"RAY00107","Divine Providence Ring (Sz. 7)",1,95
+"RAY00108","Divine Providence Ring (Sz. 8)",1,95
+"RAY00109","Divine Providence Ring (Sz. 9)",1,110
+"RAY00110","Divine Providence Ring (Sz. 10)",1,110
+"RAY00111","Divine Providence Ring (Sz. 11)",1,110
+"RAY00112","Divine Providence Ring (Sz. 12)",1,110
+"RAY00113","Divine Providence Ring (Sz. 13)",1,110
+"AHS002D","Dark Knight",1,40
+"AAT126","The Big Apple",1,85
+"AAT127","Big Smoke",1,85
+"AAT128","Formosa",1,85
+"AAT129","Down Under",1,85
+"AAT130","The Eternal City",1,85
+"AAT131","Emerald City",1,85
+"AAT132","XXX",1,85
+"AAT133","City Of Angels",1,85
+"AMV044","Green Crack",1,40
+"AAX014","UFO",1,70
+"WHC003R","Water-ish (Blush)",1,50
+"AAF010A","To Go",1,45
+"AAF010B","To Stay",1,45
+"AAF010","Coffee Collection",1,95
+"AAT009G","Desk Globe (2-Tone)",1,70
+"AAY031","Sun Dragon",1,70
+"AAA078","Caterpillar",1,70
+"AAA079","Grasshopper",1,50
+"AAA080","Crickets",1,65
+"AAA081","Scarab",1,65
+"AAA082","Ants With Glitter",1,65
+"AMV045","Lemon",1,35
+"AMV052","SOL",1,55
+"AAF008G","Potato Potato",1,85
+"AAY032","Kamasutra",1,95
+"AMV046","Unicorny",1,40
+"AAA083","Dancing Coyotes",1,70
+"AAA084","Moosing Around",1,70
+"AAA085","Brave Bison",1,95
+"AAH035","Baby Argh",1,85
+"AAY033","Chi Chi Sticks 2.0",1,333
+"AAY036","Lucky Stars",1,50
+"AAY036G","Lucky Stars (2-Tone)",1,160
+"AAX601","Dirty Magic",1,65
+"AAX602","Quill",1,30
+"AAX603","Eye",1,30
+"AAX604","Mandrake",1,30
+"AAX605","Hock",1,30
+"AAX606","Shroom",1,30
+"AAX607","Sweep",1,30
+"AAX608","Magic",1,30
+"AAL034","Rotten Heart",1,85
+"AAY006GG","Budai (18K)",1,1200
+"AAH036","Trick Or Treat",1,95
+"AAR401","Mummy",1,45
+"AAR402","Invisible Man",1,45
+"AAR403","Medusa",1,65
+"AAY034","Sacred Heart",1,65
+"AAY034B","(Dirty Sacred Heart)",1,65
+"AAX015","Paper Bag",1,50
+"AAP038","The Feast",1,95
+"AAP038B","The Dirty Feast",1,95
+"AAP039","Time Flies",1,95
+"AAJ027","Exlumation",1,30
+"AAJ028","Too",1,30
+"AAJ029","Heshtag",1,30
+"AAJ030","Dolar",1,30
+"AAJ031","Purcent",1,30
+"AAJ032","Carrot",1,30
+"AAJ033","Ampursand",1,30
+"AAJ034","Asstericks",1,30
+"AAJ035","Nien",1,30
+"AAJ036","Ziro",1,30
+"AAJ037","Hyfen",1,30
+"AAJ038","Ecuals",1,30
+"AAJ039","Colun",1,30
+"AAJ040","Cumma",1,30
+"AAJ041","Pierod",1,30
+"AAJ042","Backslush",1,30
+"AHKS005","Prayer Flags",1,95
+"AAY037","My Precious Guardian",1,85
+"AAY035","Stardust",1,70
+"AMV049","Night Sky",1,40
+"RAT00304","Around The World Ring (Sz. 4)",1,210
+"RAT00305","Around The World Ring (Sz. 5)",1,210
+"RAT00306","Around The World Ring (Sz. 6)",1,210
+"RAT00307","Around The World Ring (Sz. 7)",1,210
+"RAT00308","Around The World Ring (Sz. 8)",1,210
+"RAT00309","Around The World Ring (Sz. 9)",1,240
+"RAT00310","Around The World Ring (Sz. 10)",1,240
+"RAT00311","Around The World Ring (Sz. 11)",1,240
+"RAT00312","Around The World Ring (Sz. 12)",1,240
+"RAT00313","Around The World Ring (Sz. 13)",1,240
+"RAT00404","XXX Ring (Sz. 4)",1,95
+"RAT00405","XXX Ring (Sz. 5)",1,95
+"RAT00406","XXX Ring (Sz. 6)",1,95
+"RAT00407","XXX Ring (Sz. 7)",1,95
+"RAT00408","XXX Ring (Sz. 8)",1,95
+"RAT00409","XXX Ring (Sz. 9)",1,110
+"RAT00410","XXX Ring (Sz. 10)",1,110
+"RAT00411","XXX Ring (Sz. 11)",1,110
+"RAT00412","XXX Ring (Sz. 12)",1,110
+"RAT00413","XXX Ring (Sz. 13)",1,110
+"AAX015B","Dirty Paper Bag",1,50
+"AAY034GG","Sacred Heart (18K)",1,0
+"AAX018","Stupid Cupid",1,55
+"AAX016","Year Of The Dog",1,85
+"AAX016G","Year Of The Dog (2-Tone)",1,90
+"AAO001","Aquarius",1,65
+"AAA086","Pteranodon Skull",1,55
+"AAX017","Nian Nian You Yu",1,65
+"AAX017D","Nian Nian You Yu (Dirty)",1,65
+"AAX017G","Nian Nian You Yu (2-Tone)",1,80
+"AAF011","Tea Bag",1,70
+"AAO002","Pisces",1,65
+"AAL03501","Melting Heart",1,80
+"AAX702","Gnomeo",1,55
+"AAX703","Juliet",1,55
+"AAX701","Sherlock",1,55
+"AMV053","Less Than Three",1,55
+"AMG50201","Mint-wish",1,40
+"AMG50202","Pink-wish",1,40
+"AMG50203","Blue-wish",1,40
+"AMG50204","Purple-wish",1,40
+"WHB007D","Flower Garden (Dirty)",1,40
+"AAX017GG","Nian Nian You Yu (14K)",1,2400
+"AAX018D","Stupid Cupid (Dirty)",1,55
+"AAX027","Bunny Angel",1,50
+"AAO003","Aries",1,65
+"AAN017","Big Luna",1,555
+"AAA087","No Evil: Sheep",1,50
+"AAX020","Trainwreck ",1,50
+"AAL037","Motherhood 2.0",1,45
+"AAO004","Taurus",1,65
+"AAX019","Soul Warrior",1,55
+"AAL036","Love Grows",1,95
+"AAT135S","True OHM: Moscow Set",1,120
+"AAN014","Sunflowers",1,45
+"AAL039","Love Whirls",1,50
+"AAL038","Love Whirls (LE)",1,65
+"AAX021","Pumpkin Billy",1,55
+"AAX022","Squiggie",1,55
+"AAX023","Cricker",1,55
+"AAX024","Charlie Black",1,55
+"AAX025","MarshMello",1,55
+"AAX026","Mummoo",1,55
+"AMV060","Dragon's Breath",1,45
+"AAX028","Forbidden Fruit",1,200
+"AAO005","Gemini",1,65
+"AAX031","OHMmygod 3.0",1,50
+"AAX008D","Dirty OHMmygod",1,45
+"AAL047","Bear With Me",1,85
+"AAL046","Love Yourself",1,50
+"AAX019G","Soul Warrior (2-Tone)",1,65
+"AMG050","Spring Refractions",1,50
+"1OHM-CASE01","OHM2GO Travel Case",1,5
+"AAX029","Wood-ent",1,60
+"AMG50102","Clovers",1,50
+"AAX030","Deadhead Moth",1,70
+"AAA089","Suzy The Sloth",1,90
+"RAY00204","Eartth-ing (Sz. 4)",1,110
+"RAY00205","Eartth-ing (Sz. 5)",1,110
+"RAY00206","Eartth-ing (Sz. 6)",1,110
+"RAY00207","Eartth-ing (Sz. 7)",1,110
+"RAY00208","Eartth-ing (Sz. 8)",1,110
+"RAY00209","Eartth-ing (Sz. 9)",1,120
+"RAY00210","Eartth-ing (Sz. 10)",1,120
+"RAY00211","Eartth-ing (Sz. 11)",1,120
+"RAY00212","Eartth-ing (Sz. 12)",1,120
+"RAY00213","Eartth-ing (Sz. 13)",1,120
+"RAY00404","Water-ing (Sz. 4)",1,110
+"RAY00405","Water-ing (Sz. 5)",1,110
+"RAY00406","Water-ing (Sz. 6)",1,110
+"RAY00407","Water-ing (Sz. 7)",1,110
+"RAY00408","Water-ing (Sz. 8)",1,110
+"RAY00409","Water-ing (Sz. 9)",1,120
+"RAY00410","Water-ing (Sz. 10)",1,120
+"RAY00411","Water-ing (Sz. 11)",1,120
+"RAY00412","Water-ing (Sz. 12)",1,120
+"RAY00413","Water-ing (Sz. 13)",1,120
+"RAY00304","Fire-ing (Sz. 4)",1,110
+"RAY00305","Fire-ing (Sz. 5)",1,110
+"RAY00306","Fire-ing (Sz. 6)",1,110
+"RAY00307","Fire-ing (Sz. 7)",1,110
+"RAY00308","Fire-ing (Sz. 8)",1,110
+"RAY00309","Fire-ing (Sz. 9)",1,120
+"RAY00310","Fire-ing (Sz. 10)",1,120
+"RAY00311","Fire-ing (Sz. 11)",1,120
+"RAY00312","Fire-ing (Sz. 12)",1,120
+"RAY00313","Fire-ing (Sz. 13)",1,120
+"AAO006","Cancer",1,65
+"AAX040","Flying Dutchman",1,95
+"AAL048","Lovely Hearts",1,50
+"AAX021D","Dirty Pumpkin Billy",1,55
+"AAX022D","Dirty Squiggie",1,55
+"AAX023D","Dirty Cricker",1,55
+"AAX024D","Dirty Charlie Black",1,55
+"AAX025D","Dirty MarshMello",1,55
+"AAX030D","Dirty Deadhead Moth",1,70
+"AAL046D","Dirty Love Yourself",1,50
+"AAF012","Peach",1,90
+"AAX032","Bead Fairy",1,90
+"AMG508","Black Coffee",1,45
+"AAL049","Hug Me 2.0",1,333
+"AAL048G","Lovely Hearts (2-Tone)",1,160
+"AMG530","Lakes",1,45
+"AMG544","Fern Ridge",1,45
+"AMG50403","Optimistic",1,45
+"AMG50404","Bustling",1,45
+"AMG50405","Prudent",1,45
+"AMG50701","Seeded Salad",1,45
+"AMG50702","Seeded Papaya",1,45
+"AMG50703","Seeded Blue",1,45
+"AMG50704","Seeded Dragon Fruit",1,45
+"AMG50705","Seeded Rollinia",1,45
+"AMG50706","Seeded Fig",1,45
+"AMG520","Star Burst",1,45
+"AMG548","Chocolate Ribbons",1,45
+"AMG509","Serendipity",1,50
+"AAO007","Leo",1,65
+"AMG521","Celebrate",1,50
+"AAR301","Rita Mortis",1,45
+"AAL050A","Love Hurts 2.5",1,95
+"AMG021","Seattle Fog",1,50
+"AAH030D","Dirty Moon Me",1,45
+"AAX801","The Office",1,110
+"AAX802","Hard Product",1,75
+"AAX803","Soft Product",1,75
+"AAX804","Meeting Notes",1,70
+"AMG505","Five Ideas",1,45
+"AAL050","Love Hurts 2.0",1,95
+"AAO008","Virgo",1,65
+"WHW01990","Ohm Ball Necklace (36""/90cm)",1,90
+"WHW01990B","Dirty Ohm Ball Necklace (36""/90cm)",1,90
+"AAS019","Darlie The Robot",1,50
+"AMG535","Leafy",1,50
+"AAT151","Kitty Carry On",1,60
+"AAT152","50mm Mutt",1,60
+"AAT153","Bus Stop Bunny",1,60
+"AAX100G","Golden Bu",1,60
+"AAX105D","Dirty Beel",1,60
+"AAH037","NOLA",1,70
+"AAH038","Bead Mail",1,60
+"AMG551","Fleur De Lis",1,50
+"AAN004GG","Luna (18K Gold)",1,2400
+"AAL050B","Love Hurts 2.8",1,95
+"AMG51001","(cushion)",1,55
+"AMG51002","(cushion)",1,55
+"AMG51003","(cushion)",1,55
+"AMG51004","(cushion)",1,55
+"AMG51005","(cushion)",1,55
+"AAH039","Astronargh",1,180
+"AAO009","Libra",1,65
+"AMG522","Galaxy",1,60
+"AMG52901","Coins",1,50
+"AMG52902","Cups",1,50

@@ -1,0 +1,32 @@
+To import CSV
+
+1. Export CSV from Google Sheet by "Download As.."  -> Comma-separated Value (.csv, current sheet)
+
+2. Copy downloaded file to /var/lib/mysql/optopus.poc
+
+2. Add the following to /etc/mysql/my.cnf
+   # sudo vi /etc/mysql/my.cnf
+
+   Add the following to the end of the file.
+   [mysqld]
+   secure-file-priv = ""
+
+3. Restart mysqld
+   sudo /etc/init.d/mysql restart
+
+4. Run mysql -p login as root@localhost
+
+5. connect optopus.poc
+
+6. Load data by enter the following command
+mysql> LOAD DATA INFILE 'product_data3.csv' INTO TABLE products FIELDS TERMINATED BY ','  IGNORE 1 LINES (sku,name,map) SET created_by = UNHEX('6c7acae9994111e8ab1c080027d981a5'), release_type_code = 'WW', brand_id = 1;
+Query OK, 1850 rows affected, 8 warnings (0.04 sec)
+Records: 1850  Deleted: 0  Skipped: 0  Warnings: 8
+
+mysql> LOAD DATA INFILE 'images_data.csv' INTO TABLE images FIELDS TERMINATED BY ','  IGNORE 1 LINES (sku,reference) SET created_by = UNHEX('6c7acae9994111e8ab1c080027d981a5'),  image_id = UNHEX(REPLACE(UUID(), "-",""));
+Query OK, 1850 rows affected (0.03 sec)
+Records: 1850  Deleted: 0  Skipped: 0  Warnings: 0
+
+
+7. If it complain for foreign key for no reason, use
+SET foreign_key_checks = 1;
