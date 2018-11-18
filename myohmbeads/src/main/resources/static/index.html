@@ -90,7 +90,7 @@
       height: calc(100vh - 200px);
     }
     
-    #photo-label {
+    #photo-label, #stock-photo {
       width: 100%;
       margin-bottom: 5px;
       background-image: url(images/photo-camera.svg);
@@ -151,7 +151,7 @@
     
     #item-photo .swiper-container {
       width: 150px;
-      min-height: 176px; 
+      height: 169px; 
     }
     
     #item-photo .swiper-slide {
@@ -161,16 +161,24 @@
       background-size: 100%;
       background-position: center;
       background-repeat: no-repeat;
-      box-shadow: 0 0 2px 2px rgba(0,0,0,.2) inset;
+      //box-shadow: 0 0 2px 2px rgba(0,0,0,.2) inset;
     }
 
     #item-photo .swiper-wrapper img {
       height: 150px;
     }
+    
+    .pagination-nav {
+      bottom: 0px !important;
+    }
+    
+    #zoom-in-icon {
+      cursor: pointer;
+      display: none;
+    }
 
     #zoom-in-icon i {
-      color: #cccccc;
-      text-shadow: 2px 2px #666666;
+      text-shadow: 2px 2px #eeeeee;
       font-size: 40px;     
     }
   </style>
@@ -278,29 +286,7 @@
         </div>
     </div>
   </div>
-  <!-- Cordova -->
-  <!--
-  <script src="cordova.js"></script>
-  -->
-  <script src="js/image-db.js"></script>
-  <script src="js/exif.min.js"></script>
-  
 
-  <!-- Framework7 library -->
-  <script src="framework7/js/framework7.min.js"></script>
-
-  <!-- App routes -->
-  <script src="js/routes.js"></script>
-
-  <!-- Your custom app scripts -->
-  <script src="js/aws-sdk-2.348.0.min.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/new-item.js"></script>
-  <script src="js/edit-item.js"></script>
-  <script src="js/photo-loader.js"></script>
-  <script src="js/aws-sdk-2.348.0.min.js"></script>
-    
-  
   <script id="product-template" type="text/template">
     <li class="swipeout deleted-callback" data-id="{{transactionId}}">
       <div class="swipeout-content">
@@ -323,5 +309,27 @@
       </div>
     </li>
   </script>
+
+  <!-- Cordova -->
+  <!--
+  <script src="cordova.js"></script>
+  -->
+  <script src="js/image-db.js"></script>
+  <script src="js/exif.min.js"></script>
+  
+
+  <!-- Framework7 library -->
+  <script src="framework7/js/framework7.min.js"></script>
+
+  <!-- App routes -->
+  <script src="js/routes.js"></script>
+
+  <!-- Your custom app scripts -->
+  <script src="js/aws-sdk-2.348.0.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/new-item.js"></script>
+  <script src="js/edit-item.js"></script>
+  <script src="js/photo-loader.js"></script>
+  <script src="js/aws-sdk-2.348.0.min.js"></script>
 </body>
 </html>

@@ -17,6 +17,34 @@ $$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, pag
     $$("textarea[name='note']").val(transaction.note);
     app.data.initialFormData = app.form.convertToData('#edit-item-form');
     
+    $$('#stock-photo').css('background-image','url(' + transaction.imageReference + ')');
+    $$('#stock-photo').css('background-size','contain');
+    
+    var wrapper = document.getElementById('swiper-wrapper');
+    wrapper.innerHTML = "";
+    if (transaction.userImages) {
+      var records = transaction.userImages;
+      records.reverse();
+      records.forEach(function(record) {
+        var div = $$('<div>');
+        div.addClass('swiper-slide');
+        div.css('background-image', 'url(' + record.reference + ')');
+        wrapper.appendChild(div[0]);
+      });
+      $$('#stock-photo').css('background-image','none');
+      var swiper = app.swiper.create('.swiper-container', {
+        speed: 900,
+        spaceBetween: 50,
+        pagination: {"el": ".swiper-pagination"}
+      });    
+      if (records && records.length > 0) {
+        $$('#my-photo-wrapper').on('click', function() {
+          app.methods.browseImages();
+        });
+      }
+    }
+
+
     var initialDateTxt = $$('input[name="purchaseDate"]').val();
     var initialDates;
     if (initialDateTxt === '') {

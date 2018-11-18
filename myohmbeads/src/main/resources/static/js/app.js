@@ -90,16 +90,19 @@ var app  = new Framework7({
     },
     saveUserProduct: function(record) {
       var promise = new Promise(function(resolve, reject) {
-        app.request.postJSON(
-          host + 'purchaseTransactions',
-          record,
-          function (data) {
-            resolve(data);
-          },
-          function(xhr) {
-            reject(xhr);
-          }
-        );
+        app.methods.uploadImages(record.sku).then(function(imageDataRows) {
+          record.userImages = imageDataRows;
+          app.request.postJSON(
+            host + 'purchaseTransactions',
+            record,
+            function (data) {
+              resolve(data);
+            },
+            function(xhr) {
+              reject(xhr);
+            }
+          );
+        });
       });
       return promise;
     },
@@ -333,6 +336,7 @@ var app  = new Framework7({
       imageDB.getFiles().then(function (records) {
         log(records);
         var images = [];
+        records.reverse();
         records.forEach(function(record) {
             images.push({url: record.file, caption: record.caption});
           }
@@ -345,53 +349,75 @@ var app  = new Framework7({
       });
     },
     uploadImages: function(sku) {
-      app.request({
-        url: host + 'awsParameters',
-        method: 'GET',
-        dataType: 'json',
-        success: function (awsParams) {
-          AWS.config.credentials = new AWS.Credentials(awsParams.accessKeyId, awsParams.secretAccessKey, awsParams.sessionToken);
-          var s3 = new AWS.S3();
-          imageDB.getFiles().then(function (records) {
-            var imageDataRows = [];
-            records.forEach(function(record, index) {
-              // sku / username / datetime / index
-              var objectKey = encodeURIComponent(sku) + '/' +
-                              encodeURIComponent(awsParams.username) + '/' +
-                              awsParams.creationTime + '/' +
-                              index;
-              var blob = app.methods.b64toBlob(record.file, record.type);
-              var s3Params = {
-                Bucket: awsParams.s3bucket, 
-                Key: objectKey,
-                Body: blob, 
-                ContentEncoding: 'base64',
-                ContentType: record.type,
-                ContentLength: blob.size
-              };
-              s3.putObject(s3Params, function(err, data) {
-                if (err) {
-                  log(err);
-                  console.log(err, err.stack); // an error occurred
-                } else {
+      var promise = new Promise(function(resolve, reject) {
+        app.request({
+          url: host + 'awsParameters',
+          method: 'GET',
+          dataType: 'json',
+          success: function (awsParams) {
+            AWS.config.credentials = new AWS.Credentials(awsParams.accessKeyId, awsParams.secretAccessKey, awsParams.sessionToken);
+            var s3 = new AWS.S3();
+            imageDB.getFiles().then(function (records) {
+              var imageDataRows = [];
+              var requestArray = [];
+              records.forEach(function(record, index) {
+                // sku / username / datetime / index
+                var objectKey = encodeURIComponent(sku) + '/' +
+                                encodeURIComponent(awsParams.username) + '/' +
+                                awsParams.creationTime + '/' +
+                                index;
+                var blob = app.methods.b64toBlob(record.file, record.type);
+                var s3Params = {
+                  Bucket: awsParams.s3bucket, 
+                  Key: objectKey,
+                  Body: blob, 
+                  ContentEncoding: 'base64',
+                  ContentType: record.type,
+                  ContentLength: blob.size
+                };
+                requestArray[index] = s3.putObject(s3Params).promise();
+                requestArray[index].then(function(data) {
                   console.log(data);
+                  var make = null;
+                  var model = null;
+                  if (record.exifData) {
+                    make = record.exifData.Make;
+                    model = record.exifData.Model;
+                  }
                   imageDataRows[index] = {
-                    sku: sku,
+                    sortNumber: index,
                     reference: objectKey,
                     caption: record.caption,
+                    originalFileName: record.name,
+                    takenByMake: make,
+                    takenByModel: model
                   };
-                }
+                  imageDB.deleteFile(record.id);
+                }).catch(function(err) {
+                  log(err);
+                  console.log(err, err.stack); // an error occurred
+                });
+              });
+              Promise.all(requestArray).then(function() {
                 log(imageDataRows);
+                resolve(imageDataRows);
               });
             });
-          });          
-        }
+            log('upload');
+          }
+        });
       });
+      return promise;
     },
     extractSku: function(productFullName) {
       var startPos = productFullName.lastIndexOf("(") + 1;
       var endPos = productFullName.lastIndexOf(")");
-      var sku = productFullName.substring(startPos, endPos);
+      var sku;
+      if (startPos >= 0 && endPos >= 0) {
+        sku = productFullName.substring(startPos, endPos);
+      } else {
+        sku = '';
+      }
       return sku;
     },
     b64toBlob: function(dataURI, contentType) {

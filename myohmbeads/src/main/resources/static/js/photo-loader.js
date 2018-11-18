@@ -16,34 +16,13 @@ $$(document).on('page:init', '.page[data-name="photo-loader"]', function (e) {
             size: blobFile.size,
             lastModified: blobFile.lastModified,
             lastModifiedDate: blobFile.lastModifiedDate,
-            exifData: blobFile.exifData
+            exifData: blobFile.exifdata
           };
           imageDB.saveFile(record);
         });
       });
     } else {
       app.methods.displayFormErrors('Invalid image file');
-    }
-  });
-  $$('.page[data-name="photo-loader"] a#use123').on('click', function() {
-    if ($$('#photo-file')[0].files[0]) {
-      var blobFile = $$('#photo-file')[0].files[0];
-      var reader = new FileReader();
-      reader.readAsDataURL(blobFile); 
-      reader.onloadend = function() {
-        var base64data = reader.result;                
-        var record = {
-          file: base64data,
-          caption: $$('#photo-caption').val(),
-          type: blobFile.type,
-          name: blobFile.name,
-          size: blobFile.size,
-          lastModified: blobFile.lastModified,
-          lastModifiedDate: blobFile.lastModifiedDate,
-          exifData: blobFile.exifData
-        };
-        imageDB.saveFile(record);
-      }
     }
   });
   $$('.page[data-name="photo-loader"] a#retake').on('click', function() {

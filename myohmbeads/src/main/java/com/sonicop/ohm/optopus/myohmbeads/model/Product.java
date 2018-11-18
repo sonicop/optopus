@@ -84,7 +84,7 @@ public class Product implements Serializable {
   @Size(max = 500)
   @Column(name = "note")
   private String note;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "sku")
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
   @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
   private List<Image> imageList;
 //  @OneToMany(cascade = CascadeType.ALL, mappedBy = "sku")

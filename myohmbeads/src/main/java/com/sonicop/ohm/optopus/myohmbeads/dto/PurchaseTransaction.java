@@ -1,6 +1,7 @@
 package com.sonicop.ohm.optopus.myohmbeads.dto;
 
 import java.util.Date;
+import java.util.List;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -36,8 +37,11 @@ public class PurchaseTransaction {
   
   @Size(max = 500, message="Note is invalid")
   private String note;
+  
   private String imageReference;
 
+  private List<ImageMetaData> userImages;
+  
   public String getTransactionId() {
     return transactionId;
   }
@@ -132,5 +136,13 @@ public class PurchaseTransaction {
 
   public void setImageReference(String imageReference) {
     this.imageReference = imageReference;
+  }
+
+  public List<ImageMetaData> getUserImages() {
+    return userImages;
+  }
+
+  public void setUserImages(List<ImageMetaData> userImages) {
+    this.userImages = userImages;
   }
 }

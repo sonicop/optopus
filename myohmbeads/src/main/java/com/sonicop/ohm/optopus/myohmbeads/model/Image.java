@@ -7,13 +7,14 @@ package com.sonicop.ohm.optopus.myohmbeads.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 import javax.persistence.Basic;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -24,6 +25,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
@@ -38,34 +40,56 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 public class Image implements Serializable {
 
   private static final long serialVersionUID = 1L;
+  
   @Id
   @Basic(optional = false)
   @NotNull
-  @Lob
-  @Column(name = "image_id")
+  @GeneratedValue(generator = "uuid2")
+  @GenericGenerator(name = "uuid2", strategy = "uuid2")
+  @Column(name = "image_id", columnDefinition = "BINARY(16)")
   private byte[] imageId;
+  
   @Basic(optional = false)
   @NotNull
   @Size(min = 1, max = 1024)
   @Column(name = "reference")
   private String reference;
-  @Basic(optional = false)
-  @NotNull
+  
   @Column(name = "create_time")
   @Temporal(TemporalType.TIMESTAMP)
   private Date createTime;
+  
   @Size(max = 500)
   @Column(name = "caption")
   private String caption;
+  
   @JoinColumn(name = "sku", referencedColumnName = "sku")
   @ManyToOne(optional = false)
-  private Product sku;
-  @JoinColumn(name = "created_by", referencedColumnName = "user_id")
-//  @ManyToOne(optional = false)
-//  private User createdBy;
-  @Column(name = "created_by")
-  private byte[] createdBy;
+  private Product product;
   
+  @JoinColumn(name = "created_by", referencedColumnName = "user_id")
+  @Column(name = "created_by", columnDefinition = "BINARY(16)", updatable = false)
+  private UUID createdBy;
+  
+  @JoinColumn(name = "used_in_transaction_id", referencedColumnName = "transaction_id")
+  @Column(name = "used_in_transaction_id", columnDefinition = "BINARY(16)", updatable = false)
+  private UUID usedInTransactionId;
+
+  @Column(name = "sort_number")
+  private Integer sortNumber;
+  
+  @Size(max = 255)
+  @Column(name = "original_file_name")
+  private String originalFileName;
+  
+  @Size(max = 100)
+  @Column(name = "taken_by_make")
+  private String takenByMake;
+  
+  @Size(max = 100)
+  @Column(name = "taken_by_model")
+  private String takenByModel;
+ 
   public Image() {
   }
 
@@ -111,21 +135,64 @@ public class Image implements Serializable {
     this.caption = caption;
   }
 
-  public Product getSku() {
-    return sku;
+  public Product getProduct() {
+    return product;
   }
 
-  public void setSku(Product sku) {
-    this.sku = sku;
+  public void setProduct(Product sku) {
+    this.product = sku;
   }
 
-  public byte[] getCreatedBy() {
+  public UUID getCreatedBy() {
     return createdBy;
   }
 
-  public void setCreatedBy(byte[] createdBy) {
+  public void setCreatedBy(UUID createdBy) {
     this.createdBy = createdBy;
   }
+
+  public UUID getUsedInTransactionId() {
+    return usedInTransactionId;
+  }
+
+  public void setUsedInTransactionId(UUID usedInTransactionId) {
+    this.usedInTransactionId = usedInTransactionId;
+  }
+
+  public Integer getSortNumber() {
+    return sortNumber;
+  }
+
+  public void setSortNumber(Integer sortNumber) {
+    this.sortNumber = sortNumber;
+  }
+
+  public String getOriginalFileName() {
+    return originalFileName;
+  }
+
+  public void setOriginalFileName(String originalFileName) {
+    this.originalFileName = originalFileName;
+  }
+
+  public String getTakenByMake() {
+    return takenByMake;
+  }
+
+  public void setTakenByMake(String takenByMake) {
+    this.takenByMake = takenByMake;
+  }
+
+  public String getTakenByModel() {
+    return takenByModel;
+  }
+
+  public void setTakenByModel(String takenByModel) {
+    this.takenByModel = takenByModel;
+  }
+  
+
+  
 
   @Override
   public int hashCode() {

@@ -1,22 +1,25 @@
 package com.sonicop.ohm.optopus.myohmbeads.controller;
 
-import com.amazonaws.auth.BasicSessionCredentials;
-import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClient;
-import com.amazonaws.services.securitytoken.AWSSecurityTokenServiceClientBuilder;
+import com.amazonaws.HttpMethod;
+import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.amazonaws.services.securitytoken.model.Credentials;
 import com.amazonaws.services.securitytoken.model.GetSessionTokenRequest;
 import com.amazonaws.services.securitytoken.model.GetSessionTokenResult;
 import com.sonicop.ohm.optopus.myohmbeads.config.AwsConfig;
+import com.sonicop.ohm.optopus.myohmbeads.dto.ImageMetaData;
 import com.sonicop.ohm.optopus.myohmbeads.dto.ProductInfo;
 import com.sonicop.ohm.optopus.myohmbeads.dto.PurchaseTransaction;
 import com.sonicop.ohm.optopus.myohmbeads.model.Currency;
+import com.sonicop.ohm.optopus.myohmbeads.model.Image;
 import com.sonicop.ohm.optopus.myohmbeads.model.Product;
 import com.sonicop.ohm.optopus.myohmbeads.model.User;
 import com.sonicop.ohm.optopus.myohmbeads.model.UserProduct;
+import com.sonicop.ohm.optopus.myohmbeads.repository.ImageRepository;
 import com.sonicop.ohm.optopus.myohmbeads.repository.ProductRepository;
 import com.sonicop.ohm.optopus.myohmbeads.repository.UserProductRepository;
 import com.sonicop.ohm.optopus.myohmbeads.repository.UserRepository;
 import java.math.BigDecimal;
+import java.net.URL;
 import java.security.Principal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -59,13 +62,17 @@ public class MyOhmBeadsController {
   @Autowired
   private UserRepository userRepository;
   
-  @Value("${testUserName}")
-  private String testUserName;
+  @Autowired
+  private ImageRepository imageRepository;
   
   @Autowired
   AwsConfig awsConfig;
+
+  @Value("${testUserName}")
+  private String testUserName;
   
-  
+
+
   @GetMapping(value = "/products/search/getByKeywords")
   public List<Map<String,String>> getProductsByKeyword(@RequestParam("keywords") String keywords) {
     String regexKeyWords = keywords.trim().replaceAll(" +", "|");
@@ -79,9 +86,10 @@ public class MyOhmBeadsController {
       option.put("tags", product.getTags());
       option.put("valueProperty", product.getBrandId().getName()  + " - " + product.getName() + " (" + product.getSku() + ")");
       option.put("textProperty", product.getBrandId().getName()  + " - " + product.getName() + " (" + product.getSku() + ")" + ((product.getTags() != null)? " " + product.getTags() :""));
-//      if (product.getImageList() != null && product.getImageList().size() > 0) {
-//        option.put("image", product.getImageList().get(0).getReference());
-//      }
+      List<Image> stockImage = imageRepository.findLastByProductSkuAndUsedInTransactionIdIsNull(product.getSku());
+      if (stockImage != null && stockImage.size() > 0) {
+        option.put("image", stockImage.get(0).getReference());
+      }
       result.add(option);
     }
     return result;
@@ -96,8 +104,9 @@ public class MyOhmBeadsController {
     if (product != null) {
       productInfo.setSku(product.getSku());
       productInfo.setName(product.getName());
-      if (product.getImageList() != null && product.getImageList().size() > 0) {
-        productInfo.setImageReference(product.getImageList().get(0).getReference());
+      List<Image> stockImage = imageRepository.findLastByProductSkuAndUsedInTransactionIdIsNull(product.getSku());
+      if (stockImage != null && stockImage.size() > 0) {
+        productInfo.setImageReference(stockImage.get(0).getReference());
       }
     }
     return productInfo;
@@ -135,6 +144,21 @@ public class MyOhmBeadsController {
     userProduct.setCreateTime(new Date());
     userProduct.setCreatedBy(userId);
     userProductRepository.save(userProduct);
+    if (transaction.getUserImages() != null && transaction.getUserImages().size() > 0) {
+      for (ImageMetaData imageMetaData: transaction.getUserImages()) {
+        Image image = new Image();
+        image.setSortNumber(imageMetaData.getSortNumber());
+        image.setProduct(userProduct.getProduct());
+        image.setReference(imageMetaData.getReference());
+        image.setCaption(imageMetaData.getCaption());
+        image.setOriginalFileName(imageMetaData.getOriginalFileName());
+        image.setTakenByMake(imageMetaData.getTakenByMake());
+        image.setTakenByModel(imageMetaData.getTakenByModel());
+        image.setUsedInTransactionId(userProduct.getTransactionId());
+        image.setCreatedBy(userId);
+        imageRepository.save(image);
+      }
+    }
 		return new ResponseEntity(transaction, HttpStatus.OK);
 	}
   
@@ -213,8 +237,9 @@ public class MyOhmBeadsController {
           transaction.setPurchaseDate(sf.format(userProduct.getPurchaseDate()));
         }
         transaction.setNote(userProduct.getNote());
-        if (userProduct.getProduct().getImageList() != null && userProduct.getProduct().getImageList().size() > 0) {
-          transaction.setImageReference(userProduct.getProduct().getImageList().get(0).getReference());
+        List<Image> stockImage = imageRepository.findLastByProductSkuAndUsedInTransactionIdIsNull(userProduct.getProduct().getSku());
+        if (stockImage != null && stockImage.size() > 0) {
+          transaction.setImageReference(stockImage.get(0).getReference());
         }
         resultList.add(transaction);
       }
@@ -247,6 +272,35 @@ public class MyOhmBeadsController {
         transaction.setPurchaseDate(sf.format(userProduct.getPurchaseDate()));
       }
       transaction.setNote(userProduct.getNote());
+
+      List<Image> stockImage = imageRepository.findLastByProductSkuAndUsedInTransactionIdIsNull(userProduct.getProduct().getSku());
+      if (stockImage != null && stockImage.size() > 0) {
+        transaction.setImageReference(stockImage.get(0).getReference());
+      }
+      
+      List<Image> imageList = imageRepository.findAllByProductSkuAndCreatedByOrderBySortNumber(userProduct.getProduct().getSku(), userProduct.getCreatedBy());
+      if (imageList != null & imageList.size() > 0) {
+        List<ImageMetaData> userImages = new ArrayList(imageList.size());
+        // Set the presigned URL to expire after one hour.
+        java.util.Date expiration = new java.util.Date();
+        long expTimeMillis = expiration.getTime();
+        expTimeMillis += 1000 * 60 * 60;
+        expiration.setTime(expTimeMillis);
+        for (Image image: imageList) {
+          ImageMetaData metaData = new ImageMetaData();
+          metaData.setReference(image.getReference());
+          metaData.setCaption(image.getCaption());
+          metaData.setSortNumber(image.getSortNumber());
+
+          GeneratePresignedUrlRequest generatePresignedUrlRequest
+                  = new GeneratePresignedUrlRequest(awsConfig.getS3Bucket(), image.getReference())
+                          .withMethod(HttpMethod.GET)
+                          .withExpiration(expiration);
+          metaData.setReference(awsConfig.getS3Client().generatePresignedUrl(generatePresignedUrlRequest).toString());
+          userImages.add(metaData);
+        }
+        transaction.setUserImages(userImages);
+      }
     }
     return transaction;
   }
@@ -272,6 +326,18 @@ public class MyOhmBeadsController {
     return params;
   }  
 
+  
+
+	@PostMapping(value = "/images")
+	public ResponseEntity saveImages(@Valid @RequestBody List<Image> images, Principal principal) {
+    UUID userId = getUser(principal).getUserId();
+    for (Image image: images) {
+      image.setCreatedBy(userId);
+      imageRepository.save(image);
+    }
+		return new ResponseEntity(images, HttpStatus.OK);
+  }
+  
   
   
   private User getUser(Principal principal) {

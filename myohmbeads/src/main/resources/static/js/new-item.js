@@ -47,7 +47,7 @@ $$(document).on('page:init', '.page[data-name="new-item"]', function (e, page) {
             formData.sku = app.methods.extractSku(formData.sku);
             app.methods.saveUserProduct(formData).then(
               function() {
-                app.dialog.alert('Added successfully!', 'Infomation', function() {
+                app.dialog.alert('Added successfully!', 'Information', function() {
                   page.router.back();
                 });      
               },
@@ -67,6 +67,7 @@ $$(document).on('page:init', '.page[data-name="new-item"]', function (e, page) {
     if (errors) {
       return;
     }
+    formData.sku = app.methods.extractSku(formData.sku);
     app.methods.saveUserProduct(formData).then(
       function() {
         app.dialog.alert('Added successfully!', 'Information', function() {
@@ -105,19 +106,24 @@ $$(document).on('page:afterin', '.page[data-name="new-item"]', function () {
     log(records);
     var wrapper = document.getElementById('swiper-wrapper');
     wrapper.innerHTML = "";
-    records.forEach(function(record) {
-        var div = $$('<div>');
-        div.addClass('swiper-slide');
-        div.css('background-image','url(' + record.file + ')');
-        wrapper.appendChild(div[0]);
-      }
-    );
+    if (records) {
+      records.reverse();
+      records.forEach(function(record) {
+          var div = $$('<div>');
+          div.addClass('swiper-slide');
+          div.css('background-image','url(' + record.file + ')');
+          wrapper.appendChild(div[0]);
+        }
+      );
+      $$('#stock-photo').css('background-image','none');
+    }
     var swiper = app.swiper.create('.swiper-container', {
         speed: 900,
         spaceBetween: 50,
         pagination: {"el": ".swiper-pagination"}
     });    
     if (records && records.length > 0) {
+      $$('#zoom-in-icon').css('display','inherit');
       $$('#my-photo-wrapper').on('click', function() {
         app.methods.browseImages();
       });
