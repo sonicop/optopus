@@ -13,6 +13,25 @@ $$(document).on('page:init', '.page[data-name="new-item"]', function (e, page) {
   });  
   app.data.initialFormData = app.form.convertToData('#new-item-form');
   
+  var addNewItem = function(formData) {
+    $$('.error-field-wrapper').removeClass('error-field-wrapper');
+    var errors = app.methods.validatePurchaseTranstationForm(formData);
+    if (errors) {
+      return;
+    }
+    formData.sku = app.methods.extractSku(formData.sku);
+    app.methods.saveUserProduct(formData).then(
+      function() {
+        app.methods.flashMessage('Item added').then(function() {
+          page.router.back();
+        });
+      },
+      function(xhr) {
+        app.methods.displayFormErrors(xhr.responseText);
+      }
+    );
+  };
+  
   $$('#item-photo .swiper-container').on('click', function() {
     mainView.router.navigate('/photo-loader/');
   });
@@ -22,7 +41,7 @@ $$(document).on('page:init', '.page[data-name="new-item"]', function (e, page) {
     event.stopPropagation();
   });
   
-  $$('.page[data-name="new-item"] a#done').on('click', function() {
+  $$('a.check-and-back').on('click', function() {
     $$('.error-field-wrapper').removeClass('error-field-wrapper');
     var formData = app.form.convertToData('#new-item-form');
     if (app.methods.equalsObjects(app.data.initialFormData, formData)) {
@@ -33,51 +52,55 @@ $$(document).on('page:init', '.page[data-name="new-item"]', function (e, page) {
         title: 'Warning!',
         text: 'You have entered some data.',
         buttons: [{
-          text:'Dismiss',
+          text:'Save',
+          onClick: function() {
+            addNewItem(formData);
+//            var errors = app.methods.validatePurchaseTranstationForm(formData);
+//            if (errors) {
+//              return;
+//            }
+//            formData.sku = app.methods.extractSku(formData.sku);
+//            app.methods.saveUserProduct(formData).then(
+//              function() {
+//                app.methods.flashMessage('Item added').then(function() {
+//                  page.router.back();
+//                });
+//              },
+//              function(xhr) {
+//                app.methods.displayFormErrors(xhr.responseText);
+//              }
+//            );
+          }
+        },
+        {
+          text:'Discard',
           onClick: function() {
              page.router.back();
              return;
-           }},{
-          text:'Save',
-          onClick: function() {
-            var errors = app.methods.validatePurchaseTranstationForm(formData);
-            if (errors) {
-              return;
-            }
-            formData.sku = app.methods.extractSku(formData.sku);
-            app.methods.saveUserProduct(formData).then(
-              function() {
-                app.dialog.alert('Added successfully!', 'Information', function() {
-                  page.router.back();
-                });      
-              },
-              function(xhr) {
-                app.methods.displayFormErrors(xhr.responseText);
-              }
-            );
-          }
-        }]
+           }}      
+        ]
       }).open();
     }
   });
   $$('.page[data-name="new-item"] a#save').on('click', function() {
-    $$('.error-field-wrapper').removeClass('error-field-wrapper');
     var formData = app.form.convertToData('#new-item-form');
-    var errors = app.methods.validatePurchaseTranstationForm(formData);
-    if (errors) {
-      return;
-    }
-    formData.sku = app.methods.extractSku(formData.sku);
-    app.methods.saveUserProduct(formData).then(
-      function() {
-        app.dialog.alert('Added successfully!', 'Information', function() {
-          $$('#new-item-form')[0].reset();
-        });      
-      },
-      function(xhr) {
-        app.methods.displayFormErrors(xhr.responseText);
-      }
-    );
+    addNewItem(formData);
+//    $$('.error-field-wrapper').removeClass('error-field-wrapper');
+//    var errors = app.methods.validatePurchaseTranstationForm(formData);
+//    if (errors) {
+//      return;
+//    }
+//    formData.sku = app.methods.extractSku(formData.sku);
+//    app.methods.saveUserProduct(formData).then(
+//      function() {
+//        app.methods.flashMessage('Item added').then(function() {
+//          page.router.back();
+//        });
+//      },
+//      function(xhr) {
+//        app.methods.displayFormErrors(xhr.responseText);
+//      }
+//    );
   });
   $$("input[name='sku']").on('keyup keydown change',function() {
     var productFullName = $$("input[name='sku']").val();
@@ -129,7 +152,6 @@ $$(document).on('page:afterin', '.page[data-name="new-item"]', function () {
       });
     }
   });
-  
 });
 
 

@@ -206,6 +206,7 @@ public class MyOhmBeadsController {
       userProduct.setDeletedBy(userId);
       userProductRepository.save(userProduct);
     }
+    // TODO: Error handling
 	}
 
 
@@ -278,7 +279,7 @@ public class MyOhmBeadsController {
         transaction.setImageReference(stockImage.get(0).getReference());
       }
       
-      List<Image> imageList = imageRepository.findAllByProductSkuAndCreatedByOrderBySortNumber(userProduct.getProduct().getSku(), userProduct.getCreatedBy());
+      List<Image> imageList = imageRepository.findAllByProductSkuAndUsedInTransactionIdOrderBySortNumber(userProduct.getProduct().getSku(), userProduct.getTransactionId());
       if (imageList != null & imageList.size() > 0) {
         List<ImageMetaData> userImages = new ArrayList(imageList.size());
         // Set the presigned URL to expire after one hour.

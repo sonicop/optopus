@@ -81,33 +81,27 @@ $$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, pag
     if (errors) {
       return;
     }
-    app.dialog.confirm('Are you sure?', 'Confirm', function () {
-      app.methods.updateUserProduct(formData, transactionId).then(
-        function(data) {
-          app.dialog.alert('Updated successfully!', app.name, function() {
-            page.router.back();
-          });
-        },
-        function(xhr) {
-          app.methods.displayFormErrors(xhr.responseText);
-        }
-      );
-    });
+    app.methods.updateUserProduct(formData, transactionId).then(
+      function(data) {
+        app.methods.flashMessage('Item updated').then(function() {
+          page.router.back();
+        });        
+      },
+      function(xhr) {
+        app.methods.displayFormErrors(xhr.responseText);
+      }
+    );
   });
   
   $$('.page[data-name="edit-item"] a#remove').on('click', function() {
-    app.dialog.confirm('Are you sure?', function () {
-      app.methods.deleteUserProduct(transactionId).then(
-        function(data) {
-          app.dialog.alert('Removed successfully!', app.name, function() {
-            page.router.back();
-          });
-        },
-        function(xhr) {
-          app.methods.displayFormErrors(xhr.responseText);
-        }
-      );
-    });
+    app.methods.deleteUserProduct(transactionId).then(
+      function(data) {
+        page.router.back();
+      },
+      function(xhr) {
+        app.methods.displayFormErrors(xhr.responseText);
+      }
+    );
   });
   $$("input,textarea").on('keyup keydown change',function() {
     var formData = app.form.convertToData('#edit-item-form');

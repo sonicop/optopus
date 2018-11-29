@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ImageRepository extends CrudRepository<Image, UUID> {
   
-  List<Image> findAllByProductSkuAndCreatedByOrderBySortNumber(@Param("sku") String sku, @Param("userId") UUID userId);
+  List<Image> findAllByProductSkuAndUsedInTransactionIdOrderBySortNumber(@Param("sku") String sku, @Param("usedInTransactionId") UUID usedInTransactionId);
   
   @Cacheable(value = "ImageRepository.findLastByProductSkuAndUsedInTransactionIdIsNull", key = "#sku")
   List<Image> findLastByProductSkuAndUsedInTransactionIdIsNull(@Param("sku") String sku);  

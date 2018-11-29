@@ -2,7 +2,7 @@
   <div class="navbar">
     <div class="navbar-inner sliding">
       <div class="left">
-        <a href="#" class="link back">
+        <a href="#" class="link check-and-back">
           <i class="icon icon-back"></i>
           <span class="ios-only">Back</span>
         </a>
@@ -17,9 +17,9 @@
         <li>
           <div class="item-content item-input">
             <div class="item-inner">
-              <div class="item-title item-label">Product</div>
+              <div class="item-title item-label required"><label class="required">Product</label></div>
               <div class="item-input-wrap">
-                <input name="sku" id="product-autocomplete" type="text" placeholder="SKU">
+                <input name="sku" id="product-autocomplete" type="text" placeholder="SKU / Name">
               </div>              
             </div>
           </div>
@@ -80,15 +80,6 @@
             </div>
           </div>
         </li>
-<!--        <li>
-          <div class="item-content item-input">
-            <div class="item-inner">
-              <div class="item-title item-label">My item photo</div>
-              <div class="item-input-wrap" id="my-photo-wrapper">
-              </div>
-            </div>
-          </div>
-        </li>-->
         <li>
           <div class="item-content item-input">
             <div class="item-inner">
@@ -115,7 +106,6 @@
     <div class="block">
       <p class="row">
         <a href="#" class="col button color-orange button-big button-fill disabled" id="save">Save</a>
-        <a href="#" class="col button color-blue button-big button-fill" id="done">Done</a>
       </p>
     </div>
   </div>

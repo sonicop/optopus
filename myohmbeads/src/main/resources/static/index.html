@@ -59,6 +59,15 @@
       height: inherit !important;
     }
     
+    .required label {
+      font-weight: bold;
+    }
+    .required label:after {
+      color: #ff0000;
+      content: ' *';
+      display:inline;
+    }
+
     .item-label {
       color: #000000 !important;
     }
@@ -97,15 +106,6 @@
       background-size: 60px;
       background-position: center;
       background-repeat: no-repeat;
-
-/*      display: inline-block;
-      height: 46px;
-      margin-bottom: 5px;
-      background-image: url("images/icons8-camera-50.png");
-      background-size: 24px;
-      background-position: left bottom;
-      background-repeat: no-repeat;*/
-
     }
     
     #photo-file {
@@ -155,13 +155,12 @@
     }
     
     #item-photo .swiper-slide {
-      width: 100%px;
+      width: 100%;
       height: 150px;
       margin-bottom: 26px;
       background-size: 100%;
       background-position: center;
-      background-repeat: no-repeat;
-      //box-shadow: 0 0 2px 2px rgba(0,0,0,.2) inset;
+      background-repeat: no-repeat
     }
 
     #item-photo .swiper-wrapper img {
@@ -305,7 +304,7 @@
       <div class="swipeout-actions-right">
         <a href="#" class="open-more-actions">More</a>
         <a href="/edit-item/{{transactionId}}" class="color-orange alert-mark">Edit</a>
-        <a href="#" data-confirm="Are you sure you want to remove this item?" class="swipeout-delete">Remove</a>
+        <a href="#" class="my-swipeout-delete color-red">Remove</a>
       </div>
     </li>
   </script>

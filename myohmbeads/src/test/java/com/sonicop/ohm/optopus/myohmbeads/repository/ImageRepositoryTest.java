@@ -32,7 +32,7 @@ public class ImageRepositoryTest {
   
   @Test
   public void test() {
-    List<Image> imageList = imageRepository.findAllByProductSkuAndCreatedByOrderBySortNumber("AAA074", UUID.fromString("6c7acae9-9941-11e8-ab1c-080027d981a5"));
+    List<Image> imageList = imageRepository.findAllByProductSkuAndUsedInTransactionIdOrderBySortNumber("AAA074", UUID.fromString("6c7acae9-9941-11e8-ab1c-080027d981a5"));
     assertNotNull(imageList);
   }
   

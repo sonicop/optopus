@@ -5,6 +5,8 @@ if (window.location.hostname === "localhost" && window.location.port === "8383")
   host = "http://localhost:8080/";
 }
 
+
+
 // Framework7 App main instance
 var app  = new Framework7({
   root: '#app', // App root element
@@ -41,8 +43,11 @@ var app  = new Framework7({
             productListUl.appendChild(div.firstElementChild);
           }
         }
-        $$('.deleted-callback').on('swipeout:deleted', function () {
-          app.methods.deleteUserProduct($$(this).attr('data-id'));
+        $$('.my-swipeout-delete').on('click', function () {
+          var swipeEl = $$(this.parentElement.parentElement);
+          app.methods.deleteUserProduct(swipeEl.attr('data-id')).then(function() {
+            app.swipeout.delete(swipeEl);
+          });
         });
         var moreActions = app.actions.create({
           buttons: [
@@ -81,7 +86,6 @@ var app  = new Framework7({
         });
         $$('.open-more-actions').on('click', function () {
           moreActions.open();
-          //var id = $$(this).parent('.deleted-callback').attr('data-id');
           var id = $$(this).parents('.deleted-callback').attr('data-id');
           app.data.selectedProductId = id;
         });        
@@ -89,16 +93,21 @@ var app  = new Framework7({
       });
     },
     saveUserProduct: function(record) {
+      var progress = 0;
+      var dialog = app.dialog.progress('UPLOADING ...', progress);      
       var promise = new Promise(function(resolve, reject) {
-        app.methods.uploadImages(record.sku).then(function(imageDataRows) {
+        app.methods.uploadImages(record.sku, dialog).then(function(imageDataRows) {
           record.userImages = imageDataRows;
+          dialog.setText('Transaction data.');
           app.request.postJSON(
             host + 'purchaseTransactions',
             record,
             function (data) {
+              dialog.close();
               resolve(data);
             },
             function(xhr) {
+              dialog.close();
               reject(xhr);
             }
           );
@@ -107,6 +116,8 @@ var app  = new Framework7({
       return promise;
     },
     updateUserProduct: function(record, transactionId) {
+      var progress = 0;
+      var dialog = app.dialog.progress('Updating...', progress);      
       var promise = new Promise(function(resolve, reject) {
         app.request({
           method: "PUT",
@@ -114,9 +125,11 @@ var app  = new Framework7({
           data: JSON.stringify(record),
           contentType: "application/json",
           success: function (data) {
+            dialog.close();
             resolve(data);
           },
           error: function(xhr) {
+            dialog.close();
             reject(xhr);
           }
         });
@@ -125,16 +138,27 @@ var app  = new Framework7({
     },
     deleteUserProduct: function(transactionId) {
       var promise = new Promise(function(resolve, reject) {
-        app.request({
-          method: "DELETE",
-          url: host + 'purchaseTransactions/' + transactionId,
-          success: function (data) {
-            resolve(data);
-          },
-          error: function(xhr, status) {
-            reject(xhr);
-          }
-        });
+        app.dialog.confirm('Are you sure?', function () {
+          var dialog = app.dialog.create({
+            title: 'DELETING ...',
+            cssClass: 'flash-message'
+          });
+          dialog.open();      
+          app.request({
+            method: "DELETE",
+            url: host + 'purchaseTransactions/' + transactionId,
+            success: function (data) {
+              dialog.close();
+              app.methods.flashMessage('Item removed').then(function() {
+                resolve(data);
+              });
+            },
+            error: function(xhr, status) {
+              dialog.close();
+              reject(xhr);
+            }
+          });
+        });        
       });
       return promise;
     },
@@ -192,12 +216,18 @@ var app  = new Framework7({
       var messages;
       if (responseText.startsWith("{") && responseText.endsWith("}")) {
         messages = 'Invalid input(s):<br/>';
-        var errors = JSON.parse(responseText).fieldErrors;
-        errors.forEach(function(error) {
-          var fieldName = error.field;
-          $$('input[name="' + fieldName + '"]').parent('.item-input-wrap').addClass('error-field-wrapper');
-          messages = messages + error.message + '<br/>';
-        });
+        var responseObj = JSON.parse(responseText);
+        var errors = responseObj.fieldErrors;
+        if (errors) {
+          errors.forEach(function(error) {
+            var fieldName = error.field;
+            $$('input[name="' + fieldName + '"]').parent('.item-input-wrap').addClass('error-field-wrapper');
+            messages = messages + error.message + '<br/>';
+          });
+        } else {
+          // TODO: Error handling
+          messages = responseObj.error + ' (' + responseObj.status + ')';
+        }
       } else {
         messages = responseText;
       }
@@ -348,7 +378,7 @@ var app  = new Framework7({
         imageBrowser.open();
       });
     },
-    uploadImages: function(sku) {
+    uploadImages: function(sku, dialog) {
       var promise = new Promise(function(resolve, reject) {
         app.request({
           url: host + 'awsParameters',
@@ -358,6 +388,10 @@ var app  = new Framework7({
             AWS.config.credentials = new AWS.Credentials(awsParams.accessKeyId, awsParams.secretAccessKey, awsParams.sessionToken);
             var s3 = new AWS.S3();
             imageDB.getFiles().then(function (records) {
+              var recordCount = records.length;
+              var progressStep = 100 / recordCount;
+              var currentProgress = 0;
+              var currentCount = 0;
               var imageDataRows = [];
               var requestArray = [];
               records.forEach(function(record, index) {
@@ -396,6 +430,11 @@ var app  = new Framework7({
                 }).catch(function(err) {
                   log(err);
                   console.log(err, err.stack); // an error occurred
+                }).then(function() {
+                  currentCount += 1;
+                  currentProgress += progressStep;
+                  dialog.setProgress(currentProgress);
+                  dialog.setText('Image ' + currentCount + ' of ' + recordCount);              
                 });
               });
               Promise.all(requestArray).then(function() {
@@ -443,6 +482,20 @@ var app  = new Framework7({
         }
       }
       return true;
+    },
+    flashMessage: function(msg) {
+      var promise = new Promise(function(resolve, reject) { 
+        var dialog = app.dialog.create({
+          title: msg,
+          cssClass: 'flash-message'
+        });
+        dialog.open();
+        setTimeout(function () {
+          dialog.close();
+          resolve();
+        }, 1500);
+      });
+      return promise;
     }
   },
   // App routes
@@ -470,11 +523,6 @@ var mainView = app.views.create('.view-main', {
 $$(document).on('page:afterin', '.page[data-name="home"]', function (e) {
   app.methods.getUserProducts();
 });
-
-
-
-
-
 
 
 
