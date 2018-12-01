@@ -1,11 +1,9 @@
 package com.sonicop.ohm.optopus.myohmbeads.controller;
 
 import com.sonicop.ohm.optopus.myohmbeads.dto.PurchaseTransaction;
-import com.sonicop.ohm.optopus.myohmbeads.model.Image;
-import com.sonicop.ohm.optopus.myohmbeads.model.Product;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.transaction.Transactional;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
@@ -13,10 +11,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@ActiveProfiles(profiles = "dev")
+@Transactional
 public class MyOhmBeadsControllerTest {
   
   @Autowired
@@ -46,16 +47,16 @@ public class MyOhmBeadsControllerTest {
   }
 
 
-  @Test
-  public void testSaveImages() {
-    List<Image> images = new ArrayList();
-    for (int i = 0; i < 3; i++) { 
-      Image image = new Image();
-      image.setProduct(new Product("AAA004" + i));
-      image.setReference("image" + i);
-      image.setCaption("caption" + i);
-      images.add(image);
-    }
-    ResponseEntity<List<Image>> response = myOhmBeadsController.saveImages(images, null);
-  }
+//  @Test
+//  public void testSaveImages() {
+//    List<Image> images = new ArrayList();
+//    for (int i = 0; i < 3; i++) { 
+//      Image image = new Image();
+//      image.setProduct(new Product("AAA004" + i));
+//      image.setReference("image" + i);
+//      image.setCaption("caption" + i);
+//      images.add(image);
+//    }
+//    ResponseEntity<List<Image>> response = myOhmBeadsController.saveImages(images, null);
+//  }
 }

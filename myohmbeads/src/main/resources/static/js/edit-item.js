@@ -66,6 +66,46 @@ $$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, pag
     });  
   });
 
+  $$('a.check-and-back').on('click', function() {
+    $$('.error-field-wrapper').removeClass('error-field-wrapper');
+    var formData = app.form.convertToData('#edit-item-form');
+    if (app.methods.equalsObjects(app.data.initialFormData, formData)) {
+      page.router.back();
+      return;
+    } else {
+      app.dialog.create({
+        title: 'Warning!',
+        text: 'You have entered some data.',
+        buttons: [{
+          text:'Update',
+          onClick: function() {
+            var errors = app.methods.validatePurchaseTranstationForm(formData);
+            if (errors) {
+              return;
+            }
+            app.methods.updateUserProduct(formData, transactionId).then(
+              function(data) {
+                app.methods.flashMessage('Item updated').then(function() {
+                  page.router.back();
+                });        
+              },
+              function(xhr) {
+                app.methods.displayFormErrors(xhr.responseText);
+              }
+            );            
+          }
+        },
+        {
+          text:'Discard',
+          onClick: function() {
+             page.router.back();
+             return;
+           }}      
+        ]
+      }).open();
+    }
+  });
+  
   $$('.page[data-name="edit-item"] a#update').on('click', function() {
     $$('.error-field-wrapper').removeClass('error-field-wrapper');
     var formData = app.form.convertToData('#edit-item-form');

@@ -155,6 +155,7 @@ public class MyOhmBeadsController {
         image.setTakenByMake(imageMetaData.getTakenByMake());
         image.setTakenByModel(imageMetaData.getTakenByModel());
         image.setUsedInTransactionId(userProduct.getTransactionId());
+        image.setCreateTime(new Date());
         image.setCreatedBy(userId);
         imageRepository.save(image);
       }
@@ -329,15 +330,15 @@ public class MyOhmBeadsController {
 
   
 
-	@PostMapping(value = "/images")
-	public ResponseEntity saveImages(@Valid @RequestBody List<Image> images, Principal principal) {
-    UUID userId = getUser(principal).getUserId();
-    for (Image image: images) {
-      image.setCreatedBy(userId);
-      imageRepository.save(image);
-    }
-		return new ResponseEntity(images, HttpStatus.OK);
-  }
+//	@PostMapping(value = "/images")
+//	public ResponseEntity saveImages(@Valid @RequestBody List<Image> images, Principal principal) {
+//    UUID userId = getUser(principal).getUserId();
+//    for (Image image: images) {
+//      image.setCreatedBy(userId);
+//      imageRepository.save(image);
+//    }
+//		return new ResponseEntity(images, HttpStatus.OK);
+//  }
   
   
   

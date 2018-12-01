@@ -38,7 +38,7 @@ $$(document).on('page:init', '.page[data-name="new-item"]', function (e, page) {
 
   $$('#zoom-in-icon').on('click', function(event) {
     app.methods.browseImages();
-    event.stopPropagation();
+     event.stopPropagation();
   });
   
   $$('a.check-and-back').on('click', function() {
@@ -55,21 +55,6 @@ $$(document).on('page:init', '.page[data-name="new-item"]', function (e, page) {
           text:'Save',
           onClick: function() {
             addNewItem(formData);
-//            var errors = app.methods.validatePurchaseTranstationForm(formData);
-//            if (errors) {
-//              return;
-//            }
-//            formData.sku = app.methods.extractSku(formData.sku);
-//            app.methods.saveUserProduct(formData).then(
-//              function() {
-//                app.methods.flashMessage('Item added').then(function() {
-//                  page.router.back();
-//                });
-//              },
-//              function(xhr) {
-//                app.methods.displayFormErrors(xhr.responseText);
-//              }
-//            );
           }
         },
         {
