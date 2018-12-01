@@ -74,7 +74,7 @@ $$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, pag
       return;
     } else {
       app.dialog.create({
-        title: 'Warning!',
+        title: 'WARNING',
         text: 'You have entered some data.',
         buttons: [{
           text:'Update',
@@ -111,7 +111,7 @@ $$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, pag
     var formData = app.form.convertToData('#edit-item-form');
     if (app.methods.equalsObjects(app.data.initialFormData, formData)) {
       app.dialog.create({
-        title: 'Warning!',
+        title: 'WARNING',
         text: 'No data has been changed.',
         buttons: [{text:'Cancel'}]
       }).open();

@@ -49,7 +49,7 @@ $$(document).on('page:init', '.page[data-name="new-item"]', function (e, page) {
       return;
     } else {
       app.dialog.create({
-        title: 'Warning!',
+        title: 'WARNING',
         text: 'You have entered some data.',
         buttons: [{
           text:'Save',

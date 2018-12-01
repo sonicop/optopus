@@ -232,7 +232,7 @@ var app  = new Framework7({
         messages = responseText;
       }
       app.dialog.create({
-        title: 'Warning!',
+        title: 'WARNING',
         text: messages,
         buttons: [{text:'Retry'}]
       }).open();      
