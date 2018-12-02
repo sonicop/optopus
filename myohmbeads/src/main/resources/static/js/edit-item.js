@@ -50,7 +50,8 @@ $$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, pag
     if (initialDateTxt === '') {
       initialDates = [];
     } else {
-      initialDates = [new Date(initialDateTxt.split('-'))];
+      var dateElements = initialDateTxt.split('-')
+      initialDates = [new Date(dateElements[0], dateElements[1]-1, dateElements[2])];
     }
     var today = new Date();
     today.setHours(0,0,0,0);
