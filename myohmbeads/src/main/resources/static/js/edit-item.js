@@ -50,7 +50,7 @@ $$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, pag
     if (initialDateTxt === '') {
       initialDates = [];
     } else {
-      initialDates = [new Date(initialDateTxt).getTimezoneOffset() / 60];
+      initialDates = [new Date(initialDateTxt.split('-'))];
     }
     var today = new Date();
     today.setHours(0,0,0,0);
@@ -63,7 +63,7 @@ $$(document).on('page:afterin', '.page[data-name="edit-item"]', function (e, pag
         disabled: {
           from: tomorrow
         }
-    });  
+    });
   });
 
   $$('a.check-and-back').on('click', function() {
