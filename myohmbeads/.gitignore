@@ -9,6 +9,7 @@
 .settings
 .springBeans
 .sts4-cache
+*.bak
 
 ### IntelliJ IDEA ###
 .idea
@@ -23,6 +24,7 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+/target/
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
