@@ -12,6 +12,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -23,6 +25,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "Brands")
+@NamedQueries({
+  @NamedQuery(name = "Brand.findAll", query = "SELECT b FROM Brand b")})
 public class Brand implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -37,10 +41,12 @@ public class Brand implements Serializable {
   @Column(name = "name")
   private String name;
   @Size(max = 500)
-  @Column(name = "description")
-  private String description;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "brandId")
-  private List<Product> productList;
+  @Column(name = "comment")
+  private String comment;
+//  @OneToMany(cascade = CascadeType.ALL, mappedBy = "brandId")
+//  private List<Product> productList;
+//  @OneToMany(cascade = CascadeType.ALL, mappedBy = "brandId")
+//  private List<Category> categoryList;
 
   public Brand() {
   }
@@ -70,21 +76,29 @@ public class Brand implements Serializable {
     this.name = name;
   }
 
-  public String getDescription() {
-    return description;
+  public String getComment() {
+    return comment;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setComment(String comment) {
+    this.comment = comment;
   }
 
-  public List<Product> getProductList() {
-    return productList;
-  }
-
-  public void setProductList(List<Product> productList) {
-    this.productList = productList;
-  }
+//  public List<Product> getProductList() {
+//    return productList;
+//  }
+//
+//  public void setProductList(List<Product> productList) {
+//    this.productList = productList;
+//  }
+//
+//  public List<Category> getCategoryList() {
+//    return categoryList;
+//  }
+//
+//  public void setCategoryList(List<Category> categoryList) {
+//    this.categoryList = categoryList;
+//  }
 
   @Override
   public int hashCode() {

@@ -6,15 +6,18 @@
 package com.sonicop.ohm.optopus.admin.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -24,6 +27,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "Images")
+@NamedQueries({
+  @NamedQuery(name = "Image.findAll", query = "SELECT i FROM Image i")})
 public class Image implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -32,19 +37,25 @@ public class Image implements Serializable {
   @NotNull
   @Column(name = "image_id")
   private Integer imageId;
-  @Size(max = 500)
-  @Column(name = "description")
-  private String description;
   @Basic(optional = false)
   @NotNull
-  @Size(min = 1, max = 200)
-  @Column(name = "object_key")
-  private String objectKey;
-  @JoinTable(name = "Products_has_Images", joinColumns = {
-    @JoinColumn(name = "Images_image_id", referencedColumnName = "image_id")}, inverseJoinColumns = {
-    @JoinColumn(name = "Products_sku", referencedColumnName = "sku")})
-  @ManyToMany
-  private List<Product> productList;
+  @Size(min = 1, max = 1024)
+  @Column(name = "reference")
+  private String reference;
+  @Basic(optional = false)
+  @NotNull
+  @Column(name = "create_time")
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date createTime;
+  @Size(max = 500)
+  @Column(name = "comment")
+  private String comment;
+  @JoinColumn(name = "sku", referencedColumnName = "sku")
+  @ManyToOne(optional = false)
+  private Product sku;
+  @JoinColumn(name = "created_by", referencedColumnName = "user_id")
+  @ManyToOne(optional = false)
+  private User createdBy;
 
   public Image() {
   }
@@ -53,9 +64,10 @@ public class Image implements Serializable {
     this.imageId = imageId;
   }
 
-  public Image(Integer imageId, String objectKey) {
+  public Image(Integer imageId, String reference, Date createTime) {
     this.imageId = imageId;
-    this.objectKey = objectKey;
+    this.reference = reference;
+    this.createTime = createTime;
   }
 
   public Integer getImageId() {
@@ -66,28 +78,44 @@ public class Image implements Serializable {
     this.imageId = imageId;
   }
 
-  public String getDescription() {
-    return description;
+  public String getReference() {
+    return reference;
   }
 
-  public void setDescription(String description) {
-    this.description = description;
+  public void setReference(String reference) {
+    this.reference = reference;
   }
 
-  public String getObjectKey() {
-    return objectKey;
+  public Date getCreateTime() {
+    return createTime;
   }
 
-  public void setObjectKey(String objectKey) {
-    this.objectKey = objectKey;
+  public void setCreateTime(Date createTime) {
+    this.createTime = createTime;
   }
 
-  public List<Product> getProductList() {
-    return productList;
+  public String getComment() {
+    return comment;
   }
 
-  public void setProductList(List<Product> productList) {
-    this.productList = productList;
+  public void setComment(String comment) {
+    this.comment = comment;
+  }
+
+  public Product getSku() {
+    return sku;
+  }
+
+  public void setSku(Product sku) {
+    this.sku = sku;
+  }
+
+  public User getCreatedBy() {
+    return createdBy;
+  }
+
+  public void setCreatedBy(User createdBy) {
+    this.createdBy = createdBy;
   }
 
   @Override

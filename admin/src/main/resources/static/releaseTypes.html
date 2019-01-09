@@ -1,0 +1,161 @@
+<html>
+  <head>
+    <title>Optopus Admin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="scripts/jquery/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="scripts/jtable/themes/lightcolor/gray/jtable.css" rel="stylesheet" type="text/css"/>
+    <style>
+      div.jtable-main-container {
+        font-size: larger !important;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Optopus Admin</h1>
+    
+    <div id="TableContainer"></div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+    <script src="scripts/jquery/jquery-ui.min.js"></script>
+
+    <!-- Include jTable script file. -->
+    <script src="scripts/jtable/jquery.jtable.min.js" type="text/javascript"></script>    
+
+    <script type="text/javascript">
+      
+      var tableTitle = 'Release Types';
+      var entityName = "releaseTypes";
+      var tableHeaders = 
+          {
+            releaseCode: { title: 'Code', 
+                           key: true,
+                           create: true,
+                           edit: true,
+                           list: true },
+            name: {title: 'Name'},
+            comment: {title: 'Comment'}
+          }
+          
+      $(document).ready(function () {
+        $('#TableContainer').jtable({
+          title: tableTitle,
+          paging: true,
+          sorting: true,
+          actions: {
+            listAction: function (postData, jtParams) {
+              return $.Deferred(function ($dfd) {
+                var result = {};
+                var sortingParam = '';
+                if (jtParams.jtSorting) {
+                  sortingParam = '&sort=' + (jtParams.jtSorting).replace(' ', ',');
+                }
+                $.ajax({
+                  url: entityName + '/?size=' + jtParams.jtPageSize + '&page=' + (jtParams.jtStartIndex/jtParams.jtPageSize) + sortingParam,
+                  type: 'GET',
+                  contentType: 'application/json',
+                  dataType: 'json',
+                  success: function (data) {
+                    result['Records'] = data['_embedded'][entityName];
+                    result['TotalRecordCount'] = data.page.totalElements;
+                    console.log(result);
+                    result['Result'] = 'OK';
+                    $dfd.resolve(result);
+                  },
+                  error: function (xhr) {
+                    console.error(xhr);
+                    result['Result'] = 'FAILED';
+                    $dfd.reject(result);
+                  }
+                });
+              });
+            },
+            createAction: function (postData, jtParams) {
+              return $.Deferred(function ($dfd) {
+                var record = convertQueryStringToJson(postData);
+                var result = {};
+                $.ajax({
+                  url: entityName,
+                  type: 'POST',
+                  contentType: 'application/json',
+                  dataType: 'json',
+                  data: JSON.stringify(record),
+                  success: function (data) {
+                    console.log(data);
+                    result['Result'] = 'OK';
+                    result['Record'] = data;
+                    $dfd.resolve(result);
+                  },
+                  error: function (xhr) {
+                    console.error(xhr);
+                    result['Result'] = 'FAILED';
+                    $dfd.reject(result);
+                  }
+                });
+              });
+            },
+            updateAction: function (postData, jtParams) {
+              return $.Deferred(function ($dfd) {
+                var record = convertQueryStringToJson(postData);
+                var result = {};
+                $.ajax({
+                  url: entityName,
+                  type: 'POST',
+                  headers: { "X-HTTP-Method": "PATCH" },
+                  contentType: 'application/json',
+                  dataType: 'json',
+                  data: JSON.stringify(record),
+                  success: function (data) {
+                    console.log(data);
+                    result['Result'] = 'OK';
+                    result['Record'] = data;
+                    $dfd.resolve(result);
+                  },
+                  error: function (xhr) {
+                    console.error(xhr);
+                    result['Result'] = 'FAILED';
+                    $dfd.reject(result);
+                  }
+                });
+              });
+            },
+            deleteAction:  function (postData, jtParams) {
+              return $.Deferred(function ($dfd) {
+                var key = encodeURI(Object.values(postData).join('_'));
+                var result = {};
+                $.ajax({
+                  url: entityName + '/' + key,
+                  type: 'DELETE',
+                  contentType: 'application/json',
+                  dataType: 'json',
+                  success: function (data) {
+                    console.log(data);
+                    result['Result'] = 'OK';
+                    result['Record'] = data;
+                    $dfd.resolve(result);
+                  },
+                  error: function (xhr) {
+                    console.error(xhr.responseText);
+                    result['Result'] = 'FAILED';
+                    $dfd.reject(result);
+                  }
+                });
+              });
+            }
+          },
+          fields: tableHeaders
+        });
+        $('#TableContainer').jtable('load');
+      });
+      
+      function convertQueryStringToJson(queryString) {
+        return JSON.parse('{"' + decodeURI(queryString).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}')
+      }
+    </script>
+
+  </body>
+</html>

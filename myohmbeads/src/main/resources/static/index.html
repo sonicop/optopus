@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!--
+  Customize this policy to fit your own app's needs. For more guidance, see:
+      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+  Some notes:
+      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+          * Enable inline JS: add 'unsafe-inline' to default-src
+  -->
+<!--  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#2196f3">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title>My Ohm Beads</title>
+
+  <link rel="stylesheet" href="framework7/css/framework7.min.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/app.css">
+  <style>
+    .navbar {
+      background: #999999 !important;
+    }
+    
+    .navbar .title {
+      color: #efeff4 !important;
+    }
+    
+    .navbar .f7-icons,
+    .navbar a.link {
+      color: #efeff4 !important;
+    }
+    
+    .navbar .icon-back {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D'12'%20height%3D'20'%20viewBox%3D'0%200%2012%2020'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'M.18261596%209.4221638c.0352203-.05148305.07573462-.10050698.1215468-.14631917L9.1425872.4374202c.5830904-.58309038%201.52656832-.5849888%202.11643872.00488163.5857864.58578644.591222%201.53009836.0048816%202.11643873L3.82594417%209.9967039l7.43188553%207.4318855c.5830904.5830904.5849888%201.5265683-.0048817%202.1164387-.5857864.5857865-1.5300983.591222-2.11643868.0048816L.2980849%2010.7114853c-.3526746-.3526746-.3939974-.89699-.11546894-1.2893215z'%20fill%3D'%23efeff4'%20fill-rule%3D'evenodd'%2F%3E%3C%2Fsvg%3E") !important;;
+    }
+    
+    #new-item-form li:nth-child(3),
+    #edit-item-form li:nth-child(3),
+    #new-item-form li:nth-child(4),
+    #edit-item-form li:nth-child(4),
+    #new-item-form li:nth-child(5),
+    #edit-item-form li:nth-child(5),
+    #new-item-form li:nth-child(6),
+    #edit-item-form li:nth-child(6),
+    #new-item-form li:nth-child(7),
+    #edit-item-form li:nth-child(7) {
+      display: inline-block;
+      width: 49vw;
+    }
+    
+    form textarea {
+      height: inherit !important;
+    }
+    
+    .required label {
+      font-weight: bold;
+    }
+    .required label:after {
+      color: #ff0000;
+      content: ' *';
+      display:inline;
+    }
+
+    .item-label {
+      color: #000000 !important;
+    }
+    
+    .item-title {
+      font-weight: bold;
+    }
+    
+    .item-media {
+      width: 80px;
+      height: 80px;
+      background-size: 80px;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    
+    .list .item-text {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    #stock-photo {
+      display: inline-block;
+      height: 171px;
+    }
+    
+    #photo-label {
+      display: block;
+      height: calc(100vh - 200px);
+    }
+    
+    #photo-label, #stock-photo {
+      width: 100%;
+      margin-bottom: 5px;
+      background-image: url(images/photo-camera.svg);
+      background-size: 60px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    
+    #photo-file {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+    
+    .error-field-wrapper {
+      border-bottom: 1px red solid;
+    }
+    
+    .block {
+      margin: 15px 0px !important;
+      padding: 0px 15px !important;
+    }
+    
+    .list {
+      margin: 0px !important;
+    }
+    
+    .block-bottom {
+      position: absolute;
+      bottom: 0px;
+      width: 100%;      
+    }
+    .thumbnail {
+      display: inline-flex;
+      width: 38px;
+      height: 38px;
+      background-position: center;
+      background-size: cover;
+    }
+    
+    .preformatted {
+      font-family: monospace;
+      white-space: pre;
+      font-size: smaller;      
+    }
+    
+    #item-photo .swiper-container {
+      width: 150px;
+      height: 169px; 
+    }
+    
+    #item-photo .swiper-slide {
+      width: 100%;
+      height: 150px;
+      margin-bottom: 26px;
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat
+    }
+
+    #item-photo .swiper-wrapper img {
+      height: 150px;
+    }
+    
+    .pagination-nav {
+      bottom: 0px !important;
+    }
+    
+    #zoom-in-icon {
+      cursor: pointer;
+      display: none;
+    }
+
+    #zoom-in-icon i {
+      text-shadow: 2px 2px #eeeeee;
+      font-size: 40px;     
+    }
+  </style>
+</head>
+<body class="color-theme-gray">
+  <div id="app">
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar"></div>
+    <!-- Left panel with cover effect-->
+    <div class="panel panel-left panel-cover theme-dark">
+      <div class="view">
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="title">Menu</div>
+            </div>
+          </div>
+          <div class="page-content">
+            <div class="block">
+              <div class="list links-list">
+                <ul>
+                  <li><a class="panel-close" href="/new-item/">My Items</a></li>
+                  <li><a class="panel-close" href="/product-of-the-month/">Products of the Month</a></li>
+                  <li><a class="pop-open panel-close popup-open" data-popup="#my-popup" href="#">View Messages</a></li>
+                </ul>
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Right panel with reveal effect-->
+    <div class="panel panel-right panel-reveal theme-dark">
+      <div class="view">
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="title">Settings</div>
+            </div>
+          </div>
+          <div class="page-content">
+            <div class="block">
+              <div class="list links-list">
+                <ul>
+                  <li><a class="panel-close" href="#">Profile</a></li>
+                  <li><a class="panel-close popup-open" href="#" data-popup=".popup-logger">Logger</a></li>
+                  <li><a class="panel-close" href="#" id="resetDB">Reset Database</a></li>
+                  <li><a class="panel-close" href="#">Sign Out</a></li>
+                </ul>
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main ios-edges">
+      <!-- Page, data-name contains page name which can be used in callbacks -->
+      <div class="page" data-name="home">
+        <!-- Top Navbar -->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left">
+              <a href="#" class="link icon-only panel-open" data-panel="left">
+                <i class="icon f7-icons ios-only">menu</i>
+                <i class="icon material-icons md-only">menu</i>
+              </a>
+            </div>
+            <div class="title sliding">MY OHM BEADS</div>
+            <div class="right">
+              <a href="#" class="link icon-only panel-open" data-panel="right">
+                <i class="icon f7-icons ios-only">settings</i>
+                <i class="icon material-icons md-only">settings</i>
+              </a>
+            </div>
+          </div>
+        </div>
+     
+        <!-- Scrollable page content-->
+        <div class="page-content">
+          <div class="block-title">
+            My Items
+            <div style="float: right; width: 25px">
+              <a href="/new-item/">
+                <i class="icon f7-icons ios-only">add_round_fill</i>
+                <i class="icon material-icons md-only">add_round_fill</i>
+              </a>
+            </div>
+          </div>  
+          <div class="list media-list">
+            <ul id="product-list">
+            </ul>
+          </div>
+          
+        </div>
+      </div>
+
+        <div class="popup popup-logger">
+          <div class="block">
+            <h1>Logger</h1>
+            <p><a class="link popup-close button" href="#">Close</a></p>
+            <div id="logger" class=" preformatted"></div>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <script id="product-template" type="text/template">
+    <li class="swipeout deleted-callback" data-id="{{transactionId}}">
+      <div class="swipeout-content">
+        <a href="/edit-item/{{transactionId}}" class="item-link item-content edit-link">
+          <div class="item-media" style="background-image: url('{{reference}}')"></div>
+          <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-title">{{brandName}} - {{name}}</div>
+<!--              <div class="item-after">{{price}} {{currency}}</div>-->
+            </div>
+            <div class="item-subtitle">{{sku}}</div>
+            <div class="item-text">{{note}}</div>
+          </div>
+        </a>
+      </div>
+      <div class="swipeout-actions-right">
+        <a href="#" class="open-more-actions">More</a>
+        <a href="/edit-item/{{transactionId}}" class="color-orange alert-mark">Edit</a>
+        <a href="#" class="my-swipeout-delete color-red">Remove</a>
+      </div>
+    </li>
+  </script>
+
+  <!-- Cordova -->
+  <!--
+  <script src="cordova.js"></script>
+  -->
+  <script src="js/image-db.js"></script>
+  <script src="js/exif.min.js"></script>
+  
+
+  <!-- Framework7 library -->
+  <script src="framework7/js/framework7.min.js"></script>
+
+  <!-- App routes -->
+  <script src="js/routes.js"></script>
+
+  <!-- Your custom app scripts -->
+  <script src="js/aws-sdk-2.348.0.min.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/new-item.js"></script>
+  <script src="js/edit-item.js"></script>
+  <script src="js/photo-loader.js"></script>
+  <script src="js/aws-sdk-2.348.0.min.js"></script>
+</body>
+</html>

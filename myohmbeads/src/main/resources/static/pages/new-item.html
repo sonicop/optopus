@@ -1,0 +1,112 @@
+<div class="page" data-name="new-item">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link check-and-back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title">New Item</div>
+    </div>
+  </div>
+  <div class="page-content">
+    <div class="list no-hairlines-md">
+      <form id="new-item-form" autocomplete="off">
+      <ul>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label required"><label class="required">Product</label></div>
+              <div class="item-input-wrap">
+                <input name="sku" id="product-autocomplete" type="text" placeholder="SKU / Name">
+              </div>              
+            </div>
+          </div>
+        </li>
+        <li style="float: right; width: 49vw;">
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div id="item-photo" class="item-title item-label">
+                <div class="swiper-container" id="stock-photo">
+                  <div id="zoom-in-icon" style="bottom: 0; right: 0; position: absolute; z-index: 100">
+                    <i class="f7-icons ios-only">zoom_in</i>
+                    <i class="material-icons md-only">zoom_in</i>
+                  </div>
+                  <div class="swiper-pagination pagination-nav"></div>
+                  <div class="swiper-wrapper" id="swiper-wrapper"></div>
+                </div> 
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Serial Number</div>
+              <div class="item-input-wrap">
+                <input name="serialNumber" id="product-autocomplete" type="text" placeholder="Serial Number">
+              </div>              
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Purchase Price</div>
+              <div class="item-input-wrap">
+                <input name="purchasePrice" type="number" min="0.01" step="0.01" max="10000" placeholder="$"/>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Currency</div>
+              <div class="item-input-wrap">
+                <input name="currencyCode" id="currency-autocomplete" type="text" placeholder="USD" />
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Purchase From</div>
+              <div class="item-input-wrap">
+                <input name="purchaseFrom" id="seller-autocomplete" type="text" placeholder="Select a retailer" />
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Purchase Date</div>
+              <div class="item-input-wrap">
+                <input name="purchaseDate" type="date" placeholder="Select purchase date">
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="align-top">
+          <div class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Personal Notes</div>
+              <div class="item-input-wrap">
+                <textarea name="note" placeholder="Notes" rows="3"></textarea>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      </form>
+    </div>
+    <div class="block">
+      <p class="row">
+        <a href="#" class="col button color-orange button-big button-fill disabled" id="save">Save</a>
+      </p>
+    </div>
+  </div>
+</div>

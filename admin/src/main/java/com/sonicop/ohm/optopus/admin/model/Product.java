@@ -10,12 +10,16 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,6 +32,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "Products")
+@NamedQueries({
+  @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")})
 public class Product implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -39,14 +45,18 @@ public class Product implements Serializable {
   private String sku;
   @Basic(optional = false)
   @NotNull
+  @Column(name = "create_time")
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date createTime;
+  @Basic(optional = false)
+  @NotNull
+  @Column(name = "created_by")
+  private int createdBy;
+  @Basic(optional = false)
+  @NotNull
   @Size(min = 1, max = 100)
   @Column(name = "name")
   private String name;
-  @Basic(optional = false)
-  @NotNull
-  @Size(min = 1, max = 500)
-  @Column(name = "description")
-  private String description;
   // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
   @Column(name = "map")
   private BigDecimal map;
@@ -59,8 +69,13 @@ public class Product implements Serializable {
   @Column(name = "soldout_date")
   @Temporal(TemporalType.DATE)
   private Date soldoutDate;
+  @Size(max = 500)
+  @Column(name = "comment")
+  private String comment;
   @ManyToMany(mappedBy = "productList")
-  private List<Image> imageList;
+  private List<Category> categoryList;
+//  @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+//  private List<UserProduct> userProductList;
   @JoinColumn(name = "brand_id", referencedColumnName = "brand_id")
   @ManyToOne(optional = false)
   private Brand brandId;
@@ -70,6 +85,8 @@ public class Product implements Serializable {
   @JoinColumn(name = "rating_id", referencedColumnName = "rating_id")
   @ManyToOne
   private Rating ratingId;
+//  @OneToMany(cascade = CascadeType.ALL, mappedBy = "sku")
+//  private List<Image> imageList;
 
   public Product() {
   }
@@ -78,10 +95,11 @@ public class Product implements Serializable {
     this.sku = sku;
   }
 
-  public Product(String sku, String name, String description) {
+  public Product(String sku, Date createTime, int createdBy, String name) {
     this.sku = sku;
+    this.createTime = createTime;
+    this.createdBy = createdBy;
     this.name = name;
-    this.description = description;
   }
 
   public String getSku() {
@@ -92,20 +110,28 @@ public class Product implements Serializable {
     this.sku = sku;
   }
 
+  public Date getCreateTime() {
+    return createTime;
+  }
+
+  public void setCreateTime(Date createTime) {
+    this.createTime = createTime;
+  }
+
+  public int getCreatedBy() {
+    return createdBy;
+  }
+
+  public void setCreatedBy(int createdBy) {
+    this.createdBy = createdBy;
+  }
+
   public String getName() {
     return name;
   }
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
   }
 
   public BigDecimal getMap() {
@@ -140,13 +166,29 @@ public class Product implements Serializable {
     this.soldoutDate = soldoutDate;
   }
 
-  public List<Image> getImageList() {
-    return imageList;
+  public String getComment() {
+    return comment;
   }
 
-  public void setImageList(List<Image> imageList) {
-    this.imageList = imageList;
+  public void setComment(String comment) {
+    this.comment = comment;
   }
+
+  public List<Category> getCategoryList() {
+    return categoryList;
+  }
+
+  public void setCategoryList(List<Category> categoryList) {
+    this.categoryList = categoryList;
+  }
+
+//  public List<UserProduct> getUserProductList() {
+//    return userProductList;
+//  }
+//
+//  public void setUserProductList(List<UserProduct> userProductList) {
+//    this.userProductList = userProductList;
+//  }
 
   public Brand getBrandId() {
     return brandId;
@@ -171,6 +213,14 @@ public class Product implements Serializable {
   public void setRatingId(Rating ratingId) {
     this.ratingId = ratingId;
   }
+
+//  public List<Image> getImageList() {
+//    return imageList;
+//  }
+//
+//  public void setImageList(List<Image> imageList) {
+//    this.imageList = imageList;
+//  }
 
   @Override
   public int hashCode() {
