@@ -19,11 +19,11 @@ To import CSV
 5. connect optopus.poc
 
 6. Load data by enter the following command
-mysql> LOAD DATA INFILE 'product_data3.csv' INTO TABLE products FIELDS TERMINATED BY ','  IGNORE 1 LINES (sku,name,map) SET created_by = UNHEX('6c7acae9994111e8ab1c080027d981a5'), release_type_code = 'WW', brand_id = 1;
+mysql> LOAD DATA INFILE 'product_data3.csv' INTO TABLE products FIELDS TERMINATED BY ','  IGNORE 1 LINES (sku,name,map) SET created_by = UNHEX('6556350a994111e8ab1c080027d981a5'), release_type_code = 'WW', brand_id = 1;
 Query OK, 1850 rows affected, 8 warnings (0.04 sec)
 Records: 1850  Deleted: 0  Skipped: 0  Warnings: 8
 
-mysql> LOAD DATA INFILE 'images_data.csv' INTO TABLE images FIELDS TERMINATED BY ','  IGNORE 1 LINES (sku,reference) SET created_by = UNHEX('6c7acae9994111e8ab1c080027d981a5'),  image_id = UNHEX(REPLACE(UUID(), "-",""));
+mysql> LOAD DATA INFILE 'images_data.csv' INTO TABLE images FIELDS TERMINATED BY ','  IGNORE 1 LINES (sku,reference) SET created_by = UNHEX('6556350a994111e8ab1c080027d981a5'),  image_id = UNHEX(REPLACE(UUID(), "-",""));
 Query OK, 1850 rows affected (0.03 sec)
 Records: 1850  Deleted: 0  Skipped: 0  Warnings: 0
 
