@@ -13,6 +13,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,6 +28,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "Users")
+@NamedQueries({
+  @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u")})
 public class User implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -69,10 +73,10 @@ public class User implements Serializable {
   @Column(name = "eula_time")
   @Temporal(TemporalType.TIMESTAMP)
   private Date eulaTime;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdBy")
-  private List<Image> imageList;
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-  private List<UsersHasProduct> usersHasProductList;
+  private List<UserProduct> userProductList;
+//  @OneToMany(cascade = CascadeType.ALL, mappedBy = "createdBy")
+//  private List<Image> imageList;
 
   public User() {
   }
@@ -163,21 +167,21 @@ public class User implements Serializable {
     this.eulaTime = eulaTime;
   }
 
-  public List<Image> getImageList() {
-    return imageList;
+  public List<UserProduct> getUserProductList() {
+    return userProductList;
   }
 
-  public void setImageList(List<Image> imageList) {
-    this.imageList = imageList;
+  public void setUserProductList(List<UserProduct> userProductList) {
+    this.userProductList = userProductList;
   }
 
-  public List<UsersHasProduct> getUsersHasProductList() {
-    return usersHasProductList;
-  }
-
-  public void setUsersHasProductList(List<UsersHasProduct> usersHasProductList) {
-    this.usersHasProductList = usersHasProductList;
-  }
+//  public List<Image> getImageList() {
+//    return imageList;
+//  }
+//
+//  public void setImageList(List<Image> imageList) {
+//    this.imageList = imageList;
+//  }
 
   @Override
   public int hashCode() {

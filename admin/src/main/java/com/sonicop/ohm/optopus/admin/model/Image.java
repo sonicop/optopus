@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,6 +27,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "Images")
+@NamedQueries({
+  @NamedQuery(name = "Image.findAll", query = "SELECT i FROM Image i")})
 public class Image implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -33,9 +37,6 @@ public class Image implements Serializable {
   @NotNull
   @Column(name = "image_id")
   private Integer imageId;
-  @Size(max = 500)
-  @Column(name = "comment")
-  private String comment;
   @Basic(optional = false)
   @NotNull
   @Size(min = 1, max = 1024)
@@ -46,6 +47,9 @@ public class Image implements Serializable {
   @Column(name = "create_time")
   @Temporal(TemporalType.TIMESTAMP)
   private Date createTime;
+  @Size(max = 500)
+  @Column(name = "comment")
+  private String comment;
   @JoinColumn(name = "sku", referencedColumnName = "sku")
   @ManyToOne(optional = false)
   private Product sku;
@@ -74,14 +78,6 @@ public class Image implements Serializable {
     this.imageId = imageId;
   }
 
-  public String getComment() {
-    return comment;
-  }
-
-  public void setComment(String comment) {
-    this.comment = comment;
-  }
-
   public String getReference() {
     return reference;
   }
@@ -96,6 +92,14 @@ public class Image implements Serializable {
 
   public void setCreateTime(Date createTime) {
     this.createTime = createTime;
+  }
+
+  public String getComment() {
+    return comment;
+  }
+
+  public void setComment(String comment) {
+    this.comment = comment;
   }
 
   public Product getSku() {

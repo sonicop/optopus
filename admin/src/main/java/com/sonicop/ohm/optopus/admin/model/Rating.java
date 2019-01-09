@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -22,6 +24,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "Ratings")
+@NamedQueries({
+  @NamedQuery(name = "Rating.findAll", query = "SELECT r FROM Rating r")})
 public class Rating implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -38,8 +42,8 @@ public class Rating implements Serializable {
   @Size(max = 500)
   @Column(name = "comment")
   private String comment;
-  @OneToMany(mappedBy = "ratingId")
-  private List<Product> productList;
+//  @OneToMany(mappedBy = "ratingId")
+//  private List<Product> productList;
 
   public Rating() {
   }
@@ -77,13 +81,13 @@ public class Rating implements Serializable {
     this.comment = comment;
   }
 
-  public List<Product> getProductList() {
-    return productList;
-  }
-
-  public void setProductList(List<Product> productList) {
-    this.productList = productList;
-  }
+//  public List<Product> getProductList() {
+//    return productList;
+//  }
+//
+//  public void setProductList(List<Product> productList) {
+//    this.productList = productList;
+//  }
 
   @Override
   public int hashCode() {

@@ -15,7 +15,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,6 +32,8 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "Products")
+@NamedQueries({
+  @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p")})
 public class Product implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -40,16 +45,6 @@ public class Product implements Serializable {
   private String sku;
   @Basic(optional = false)
   @NotNull
-  @Size(min = 1, max = 100)
-  @Column(name = "name")
-  private String name;
-  @Basic(optional = false)
-  @NotNull
-  @Size(min = 1, max = 500)
-  @Column(name = "comment")
-  private String comment;
-  @Basic(optional = false)
-  @NotNull
   @Column(name = "create_time")
   @Temporal(TemporalType.TIMESTAMP)
   private Date createTime;
@@ -57,6 +52,11 @@ public class Product implements Serializable {
   @NotNull
   @Column(name = "created_by")
   private int createdBy;
+  @Basic(optional = false)
+  @NotNull
+  @Size(min = 1, max = 100)
+  @Column(name = "name")
+  private String name;
   // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
   @Column(name = "map")
   private BigDecimal map;
@@ -69,6 +69,13 @@ public class Product implements Serializable {
   @Column(name = "soldout_date")
   @Temporal(TemporalType.DATE)
   private Date soldoutDate;
+  @Size(max = 500)
+  @Column(name = "comment")
+  private String comment;
+  @ManyToMany(mappedBy = "productList")
+  private List<Category> categoryList;
+//  @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+//  private List<UserProduct> userProductList;
   @JoinColumn(name = "brand_id", referencedColumnName = "brand_id")
   @ManyToOne(optional = false)
   private Brand brandId;
@@ -78,12 +85,8 @@ public class Product implements Serializable {
   @JoinColumn(name = "rating_id", referencedColumnName = "rating_id")
   @ManyToOne
   private Rating ratingId;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "sku")
-  private List<Image> imageList;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-  private List<ProductsHasCategory> productsHasCategoryList;
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-  private List<UsersHasProduct> usersHasProductList;
+//  @OneToMany(cascade = CascadeType.ALL, mappedBy = "sku")
+//  private List<Image> imageList;
 
   public Product() {
   }
@@ -92,12 +95,11 @@ public class Product implements Serializable {
     this.sku = sku;
   }
 
-  public Product(String sku, String name, String comment, Date createTime, int createdBy) {
+  public Product(String sku, Date createTime, int createdBy, String name) {
     this.sku = sku;
-    this.name = name;
-    this.comment = comment;
     this.createTime = createTime;
     this.createdBy = createdBy;
+    this.name = name;
   }
 
   public String getSku() {
@@ -106,22 +108,6 @@ public class Product implements Serializable {
 
   public void setSku(String sku) {
     this.sku = sku;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getComment() {
-    return comment;
-  }
-
-  public void setComment(String comment) {
-    this.comment = comment;
   }
 
   public Date getCreateTime() {
@@ -138,6 +124,14 @@ public class Product implements Serializable {
 
   public void setCreatedBy(int createdBy) {
     this.createdBy = createdBy;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public BigDecimal getMap() {
@@ -172,6 +166,30 @@ public class Product implements Serializable {
     this.soldoutDate = soldoutDate;
   }
 
+  public String getComment() {
+    return comment;
+  }
+
+  public void setComment(String comment) {
+    this.comment = comment;
+  }
+
+  public List<Category> getCategoryList() {
+    return categoryList;
+  }
+
+  public void setCategoryList(List<Category> categoryList) {
+    this.categoryList = categoryList;
+  }
+
+//  public List<UserProduct> getUserProductList() {
+//    return userProductList;
+//  }
+//
+//  public void setUserProductList(List<UserProduct> userProductList) {
+//    this.userProductList = userProductList;
+//  }
+
   public Brand getBrandId() {
     return brandId;
   }
@@ -196,29 +214,13 @@ public class Product implements Serializable {
     this.ratingId = ratingId;
   }
 
-  public List<Image> getImageList() {
-    return imageList;
-  }
-
-  public void setImageList(List<Image> imageList) {
-    this.imageList = imageList;
-  }
-
-  public List<ProductsHasCategory> getProductsHasCategoryList() {
-    return productsHasCategoryList;
-  }
-
-  public void setProductsHasCategoryList(List<ProductsHasCategory> productsHasCategoryList) {
-    this.productsHasCategoryList = productsHasCategoryList;
-  }
-
-  public List<UsersHasProduct> getUsersHasProductList() {
-    return usersHasProductList;
-  }
-
-  public void setUsersHasProductList(List<UsersHasProduct> usersHasProductList) {
-    this.usersHasProductList = usersHasProductList;
-  }
+//  public List<Image> getImageList() {
+//    return imageList;
+//  }
+//
+//  public void setImageList(List<Image> imageList) {
+//    this.imageList = imageList;
+//  }
 
   @Override
   public int hashCode() {
